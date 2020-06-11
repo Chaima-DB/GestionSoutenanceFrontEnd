@@ -1,0 +1,51 @@
+<!--<div class="container align">
+  <div class="container color" >
+    <mat-icon class="maticonsize" color="primary">control_point</mat-icon>
+    <div class="container">
+      <mat-form-field  floatLabel="auto">
+        <mat-label>Reference</mat-label>
+        <input type="text" matInput required [(ngModel)]="etablissement.reference">
+      </mat-form-field>
+    </div>
+    <div class="container">
+      <mat-form-field floatLabel="auto">
+        <mat-label>nom</mat-label>
+        <input type="texte" matInput required [(ngModel)]="etablissement.nom">
+      </mat-form-field>
+    </div>
+    <div class="container">
+      <button mat-raised-button class="btnsize mt-3" color="primary" (click)="save()"><mat-icon >done</mat-icon> Enregistrer</button>
+      <div>{{ok}}</div>
+      <div>{{no}}</div>
+    </div>
+  </div>
+
+</div> -->
+
+
+<form [formGroup]="etablissementForm" autocomplete="off" novalidate (ngSubmit)="save()" fxLayout="column wrap"
+      fxLayoutAlign="center center" fxLayoutGap="10px">
+  <mat-card-content>
+
+    <mat-form-field>
+      <input matInput type="text" placeholder="Owner's name" formControlName="reference" id="reference">
+      <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+      <mat-error *ngIf="hasError('reference', 'required')">la reference est obligatoire</mat-error>
+      <mat-error *ngIf="hasError('reference', 'maxlength')">You have more than 60 characters</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" placeholder="Owner's address" formControlName="address">
+      <mat-hint align="end">Not more then 100 characters long.</mat-hint>
+      <mat-error *ngIf="hasError('nom', 'required')">nom d'etablissement est obligatoire</mat-error>
+      <mat-error *ngIf="hasError('nom', 'maxlength')">You have more than 100 characters</mat-error>
+    </mat-form-field>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <mat-card-actions align="center">
+      <button mat-raised-button color="primary" [disabled]="!etablissementForm.valid">Create</button>
+    </mat-card-actions>
+  </mat-card-actions>
+</form>
+

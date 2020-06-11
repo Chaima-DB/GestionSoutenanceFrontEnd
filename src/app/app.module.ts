@@ -25,6 +25,7 @@ import {DoctorantService} from './controller/service/doctorant.service';
 import { EtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/etablissement.component';
 import { ListEtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/list-etablissement/list-etablissement.component';
 import { AjoutEtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/ajout-etablissement/ajout-etablissement.component';
+import { DocComponent } from './doc/doc.component';
 
 
 
@@ -47,7 +48,8 @@ import { AjoutEtablissementComponent } from './dashboard/dashboard-admin/dash-et
     StructureDERechercheComponent,
     EtablissementComponent,
     ListEtablissementComponent,
-    AjoutEtablissementComponent
+    AjoutEtablissementComponent,
+    DocComponent
   ],
     imports: [
         BrowserModule,
