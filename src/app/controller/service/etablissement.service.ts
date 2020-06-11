@@ -58,6 +58,7 @@ export class EtablissementService {
         if (data > 0) {
           this._result = data;
           this.etablissements.push(this.cloneEtablissement(this.etablissement));
+          this.etablissement = null;
           this._ok = 'etablissement enregistrer avec succes ';
         } else if (data === -1) {
           this._no = 'cette reference existe déjà';

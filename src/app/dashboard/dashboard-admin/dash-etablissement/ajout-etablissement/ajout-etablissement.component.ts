@@ -10,7 +10,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class AjoutEtablissementComponent implements OnInit {
   public etablissementForm: FormGroup;
-  constructor(private etablissementService: EtablissementService) { }
+  private _isReset: boolean;
+  constructor(private etablissementService: EtablissementService) {this._isReset = false;
+  }
   requiredFormControlreference = new FormControl('',[
     Validators.required,
   ]);
@@ -30,6 +32,10 @@ export class AjoutEtablissementComponent implements OnInit {
     return this.etablissementService.etablissements;
   }
 
+  get isReset(): boolean {
+    return this._isReset;
+  }
+
   get ok(): string {
     return this.etablissementService.ok;
   }
@@ -45,5 +51,9 @@ export class AjoutEtablissementComponent implements OnInit {
   }
   public deleteByReference(etablissement: Etablissement) {
     this.etablissementService.deleteByReference(etablissement);
+  }
+  resetForm() {
+    this._isReset = true;
+    this.etablissementService.etablissement = null;
   }
 }

@@ -5,8 +5,8 @@
     <div class="container">
       <mat-form-field  floatLabel="auto">
         <mat-label>Reference</mat-label>
-        <input type="text" matInput required [formControl]="requiredFormControlreference" [(ngModel)]="etablissement.reference">
-        <mat-error *ngIf="requiredFormControlreference.hasError('required')">
+        <input type="text" matInput  [formControl]="requiredFormControlreference" [(ngModel)]="etablissement.reference">
+        <mat-error *ngIf="requiredFormControlreference.hasError('required') && isReset ==false ">
           champ <strong>obligatoire</strong>
         </mat-error>
       </mat-form-field>
@@ -14,8 +14,8 @@
     <div class="container">
       <mat-form-field floatLabel="auto">
         <mat-label>nom</mat-label>
-        <input type="texte" matInput required  [formControl]="requiredFormControlnom" [(ngModel)]="etablissement.nom">
-        <mat-error *ngIf="requiredFormControlnom.hasError('required')">
+        <input type="texte" matInput   [formControl]="requiredFormControlnom" [(ngModel)]="etablissement.nom">
+        <mat-error *ngIf="requiredFormControlnom.hasError('required') && isReset ==false ">
          champ <strong>obligatoire</strong>
         </mat-error>
 
@@ -23,6 +23,7 @@
     </div>
     <div class="container">
       <button mat-raised-button class="btnsize mt-3" color="primary"><mat-icon >done</mat-icon> Enregistrer</button>
+      <button mat-raised-button class="btnsize mt-3" color="primary" (click)="resetForm()"><mat-icon >done</mat-icon> reset</button>
     </div>
     <mat-error >
       {{no}}
