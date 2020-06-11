@@ -9,7 +9,7 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./list-etablissement.component.css']
 })
 export class ListEtablissementComponent implements OnInit {
-  displayedColumns = ['titre'];
+  displayedColumns = ['reference', 'nom'];
   dataSource: MatTableDataSource<Etablissement>;
   constructor(private etablissementService: EtablissementService) {
     this.dataSource = new MatTableDataSource(this.etablissements);

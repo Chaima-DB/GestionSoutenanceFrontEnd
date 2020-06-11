@@ -11,6 +11,7 @@ export class EtablissementService {
   private _url = 'http://localhost:8090/api/v1/gestionDesSoutenances-api/etablissement/';
   private _ok: string;
   private _no: string;
+  private _result: number;
 
   constructor(private http: HttpClient) {
   }
@@ -43,17 +44,23 @@ export class EtablissementService {
     this._etablissements = value;
   }
 
+  get result(): number {
+    return this._result;
+  }
+
+  set result(value: number) {
+    this._result = value;
+  }
+
   public save() {
     this.http.post<number>(this._url, this.etablissement).subscribe(
       data => {
         if (data > 0) {
+          this._result = data;
           this.etablissements.push(this.cloneEtablissement(this.etablissement));
-          this.etablissement = null;
-          this._ok = 'dash-etablissement enregistrer avec succes ';
+          this._ok = 'etablissement enregistrer avec succes ';
         } else if (data === -1) {
           this._no = 'cette reference existe déjà';
-        } else if (data === -2) {
-          this._no = 'le champ reference ne peut pas être vide';
         }
       }, error => {
         console.log('erreur when saving');
