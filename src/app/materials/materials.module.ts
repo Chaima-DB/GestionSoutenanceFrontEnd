@@ -14,6 +14,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {FormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 const Materials = [
@@ -32,7 +33,7 @@ const Materials = [
   MatCardModule,
   FormsModule,
   MatSelectModule,
-
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({
