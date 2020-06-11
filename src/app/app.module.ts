@@ -28,7 +28,6 @@ import { AjoutEtablissementComponent } from './dashboard/dashboard-admin/dash-et
 import { DocComponent } from './doc/doc.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +59,9 @@ import { DocComponent } from './doc/doc.component';
         ReactiveFormsModule,
 
     ],
-  providers: [DoctorantService],
+  providers: [
+    DoctorantService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
