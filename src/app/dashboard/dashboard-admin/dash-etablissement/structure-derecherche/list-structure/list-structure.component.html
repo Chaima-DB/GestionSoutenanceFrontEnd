@@ -7,15 +7,18 @@
       </div>
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table">
-            <thead class=" text-primary">
-            <th > Reference </th>
-            <th> Titre </th>
-            <th> Etablissement </th>
-            <th > Responsable </th>
-            <th> Email du Responsable </th>
+          <table class="table table-striped">
+            <thead class="text-center thead-dark">
+            <tr>
+              <th scope="col"> Reference </th>
+              <th scope="col"> Titre </th>
+              <th scope="col"> Etablissement </th>
+              <th scope="col"> Responsable </th>
+              <th scope="col"> Email du Responsable </th>
+              <th scope="col"> <span class="fa fa-user-times "></span> </th>
+            </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
             <tr *ngFor="let s of structures">
               <td> {{s.reference}} </td>
               <td> {{s.title}} </td>

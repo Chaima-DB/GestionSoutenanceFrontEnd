@@ -1,34 +1,37 @@
-<div class="col-md-12 margin">
+<div class="container">
   <div class="card">
     <div class="card-header">
       <h1 class="card-title text-center"> Table Des Doctorants</h1>
     </div>
-  <div class="card-body">
-    <div class="table-responsive">
-      <table class="table">
-        <thead class=" text-primary">
-        <th> CIN </th>
-        <th>CNE </th>
-        <th> Etablissement </th>
-        <th > Responsable </th>
-        <th> Email du Responsable </th>
-        <th> Actions </th>
-        </thead>
-        <tbody>
-        <tr *ngFor="let s of doctorants">
-          <td> {{s.cin}} </td>
-          <td> {{s.cne}} </td>
-          <td> {{s.email}} </td>
-          <td> {{s.nom}} </td>
-          <td> {{s.prenom}} </td>
-          <td>
-            <button class="btn btn-danger btn-sm fa fa-trash" ></button>
-          </td>
-        </tr>
-
-        </tbody>
-      </table>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead class="text-center thead-dark">
+          <tr>
+            <th scope="col"> CIN </th>
+            <th scope="col"> CNE </th>
+            <th scope="col"> Email </th>
+            <th scope="col"> Nom </th>
+            <th scope="col"> Prenom </th>
+            <th scope="col"> tel </th>
+            <th scope="col"> <span class="fa fa-user-times "></span> </th>
+          </tr>
+          </thead>
+          <tbody class="text-center">
+          <tr *ngFor="let doctorant of doctorants">
+            <td> {{doctorant.cin}} </td>
+            <td> {{doctorant.cne}} </td>
+            <td> {{doctorant.email}} </td>
+            <td> {{doctorant.nom}} </td>
+            <td> {{doctorant.prenom}} </td>
+            <td> {{doctorant.tel}} </td>
+            <td>
+              <button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteDoctorant()" ></button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
-

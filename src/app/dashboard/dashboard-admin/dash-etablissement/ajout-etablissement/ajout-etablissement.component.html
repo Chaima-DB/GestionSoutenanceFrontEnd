@@ -32,33 +32,30 @@
 </div>
 </form> -->
 
-<div class="container margin">
+<div class="container mt-4">
   <div class="row">
     <div class="col-md-12">
-      <div class="card col-sm-12 col-md " >
-
+      <div class="card col-sm-12 col-md-12 " >
         <div class="card-header">
           <h1 class="text-center">Ajout d'un Etablissement</h1>
         </div>
-
         <div class="card-body">
-
-          <div class="form-group">
-            <div class="row">
-              <div class="col-md-6">
-                <label >Reference </label>
-                <input type="text" id="reference" name="reference" required minlength="3" class="form-control" [(ngModel)]="etablissement.reference">
-              </div>
-              <div class="col-md-6">
-                <label >Nom d'Etablissement</label>
-                <input type="text" class="form-control"  [(ngModel)]="etablissement.nom" >
+          <form action="" [formGroup]="etablissementForm" >
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <label >Reference </label>
+                  <input type="text" id="reference" name="reference" required minlength="3" class="form-control" [formControl]="requiredFormControlreference" [(ngModel)]="etablissement.reference">
+                </div>
+                <div class="col-md-6">
+                  <label >Nom d'Etablissement</label>
+                  <input type="text" class="form-control" [formControl]="requiredFormControlnom" [(ngModel)]="etablissement.nom" >
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
-
         <div class="card-footer">
-
           <div  class="alert alert-danger" role="alert" [hidden]="no== null" >
             {{no}}
           </div>
@@ -67,7 +64,6 @@
           </div>
           <button class="btn btn-outline-info btn-block" [disabled]="etablissement.reference== null || etablissement.reference==''" (click)="save()" >Save</button>
         </div>
-
       </div>
     </div>
   </div>

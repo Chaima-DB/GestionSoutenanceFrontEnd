@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,10 +25,8 @@ import { EtablissementComponent } from './dashboard/dashboard-admin/dash-etablis
 import { ListEtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/list-etablissement/list-etablissement.component';
 import { AjoutEtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/ajout-etablissement/ajout-etablissement.component';
 import { DocComponent } from './doc/doc.component';
-import { AjoutStructureComponent } from './dashboard/dashboard-admin/dash-etablissement/structure-derecherche/ajout-structure/ajout-structure.component';
-import { ListStructureComponent } from './dashboard/dashboard-admin/dash-etablissement/structure-derecherche/list-structure/list-structure.component';
-
-
+import {ListStructureComponent} from "./dashboard/dashboard-admin/dash-etablissement/structure-derecherche/list-structure/list-structure.component";
+import {AjoutStructureComponent} from "./dashboard/dashboard-admin/dash-etablissement/structure-derecherche/ajout-structure/ajout-structure.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,8 +48,10 @@ import { ListStructureComponent } from './dashboard/dashboard-admin/dash-etablis
     ListEtablissementComponent,
     AjoutEtablissementComponent,
     DocComponent,
+    ListStructureComponent,
     AjoutStructureComponent,
-    ListStructureComponent
+
+
   ],
     imports: [
         BrowserModule,

@@ -10,7 +10,7 @@ import {DoctorantService} from "../../../../controller/service/doctorant.service
 })
 export class ListeDoctorantComponent implements OnInit {
 
-
+  clickevent: boolean;
   constructor( private doctorantService: DoctorantService) {
 
   }
@@ -21,5 +21,8 @@ export class ListeDoctorantComponent implements OnInit {
  get doctorants(): Array<Doctorant>  {
  return this.doctorantService.doctorants;
  }
-
+  deleteDoctorant(){
+    this.clickevent = true;
+    console.log(this.clickevent);
+  }
 }
