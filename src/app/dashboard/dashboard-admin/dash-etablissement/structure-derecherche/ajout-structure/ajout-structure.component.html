@@ -1,0 +1,155 @@
+ <!--<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card col-sm-12 col-md " >
+
+        <div class="card-header">
+          <h1 class="text-center">Ajout d'une Structure De Recherche</h1>
+        </div>
+
+        <div class="card-body">
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" >Reference</label>
+                  </div>
+                  <input type="text" id="reference" name="reference" class="form-control" [(ngModel)]="structure.reference">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" >Titre</label>
+                  </div>
+                  <input type="text" class="form-control" [(ngModel)]="structure.title">
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" >Etablissement</label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" >Responsable</label>
+                  </div>
+                  <input type="text" class="form-control" [(ngModel)]="structure.responsable">
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" >Email du responsable</label>
+                  </div>
+                  <input type="text" class="form-control"  ngDefaultControl [(ngModel)]="structure.emailRespo">
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <div  class="alert alert-danger" role="alert" [hidden]="no== null" >
+            {{no}}
+          </div>
+          <div class="alert alert-success" role="alert" [hidden]="ok== null" >
+            {{ok}}
+          </div>
+          <button class="btn btn-outline-info btn-block" [disabled]="structure.reference== null">Save</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div> -->
+
+
+
+
+<div class="container" style="margin-top: 30px">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card col-sm-12 col-md " >
+
+        <div class="card-header">
+          <h1 class="text-center">Ajout d'une Structure De Recherche</h1>
+        </div>
+
+        <div class="card-body">
+
+          <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label >Reference </label>
+              <input type="text"  name="reference" required minlength="3" class="form-control" [(ngModel)]="structure.reference">
+            </div>
+            <div class="col-md-6">
+              <label >Nom de Structure</label>
+              <input type="text" class="form-control"  [(ngModel)]="structure.title" >
+            </div>
+          </div>
+        </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <label >Responsable </label>
+                <input type="text"  name="reference" required minlength="3" class="form-control" [(ngModel)]="structure.responsable">
+              </div>
+              <div class="col-md-6">
+                <label >Email du responsable</label>
+                <input type="text" class="form-control"  [(ngModel)]="structure.emailRespo" >
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" >Etablissement</label>
+                </div>
+                <select class="custom-select"  [(ngModel)]="structure.etablissement.reference" >
+                  <option selected *ngFor="let e of etablissements" [value]="e.reference  " ngDefaultControl >{{e.nom}}</option>
+                </select>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+
+          <div  class="alert alert-danger" role="alert" [hidden]="no== null" >
+            {{no}}
+          </div>
+          <div class="alert alert-success" role="alert" [hidden]="ok== null" >
+            {{ok}}
+          </div>
+          <button class="btn btn-outline-info btn-block" [disabled]="structure.reference== null" (click)="save()" >Save</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
