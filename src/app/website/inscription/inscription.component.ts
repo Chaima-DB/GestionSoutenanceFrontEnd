@@ -3,6 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import validate = WebAssembly.validate;
 import {StructureDeRechercheService} from '../../controller/service/structure-de-recherche.service';
 import {StructureDeRecherche} from '../../controller/model/structure-de-recherche.model';
+import {Etablissement} from '../../controller/model/etablissement.model';
 
 @Component({
   selector: 'app-inscription',
@@ -59,5 +60,8 @@ export class InscriptionComponent implements OnInit {
 
   get structures(): Array<StructureDeRecherche> {
     return this.structureDeRechercheService.structures;
+  }
+  get structure(): StructureDeRecherche {
+    return this.structureDeRechercheService.structure;
   }
 }

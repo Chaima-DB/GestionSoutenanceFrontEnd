@@ -1,4 +1,5 @@
-<div class="container">
+
+<!-- <div class="container">
   <table mat-table [dataSource]="etablissements" matSort class="mat-elevation-z8">
 
     <ng-container matColumnDef="reference">
@@ -17,5 +18,36 @@
     <tr mat-row *matRowDef="let data; columns: displayedColumns;"></tr>
   </table>
 
-</div>
+</div> -->
 
+<div class=" col-md-12" style="margin-top: 30px">
+
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="card-title text-center"> Table Des Etablissements</h1>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+            <th > Reference </th>
+            <th> Nom d'Etablissement </th>
+            <th> Actions </th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let e of etablissements">
+              <td> {{e.reference}} </td>
+              <td> {{e.nom}} </td>
+              <td>
+                <button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteByReference(e)"></button>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

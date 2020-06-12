@@ -1,9 +1,9 @@
-<mat-sidenav-container>
+<mat-sidenav-container >
   <mat-sidenav mode="side" opened #sideNav>
     <app-dashborad-sidelist></app-dashborad-sidelist>
 
-    <div align="center">
-      <button mat-mini-fab class="minifab"  (click)="sideNav.close(); closeSideNav()">
+    <div align="center" style="margin-top: 300px">
+      <button mat-mini-fab class="minifab" color="primary" (click)="sideNav.close(); closeSideNav()">
         <mat-icon>arrow_left</mat-icon>
       </button></div>
   </mat-sidenav>

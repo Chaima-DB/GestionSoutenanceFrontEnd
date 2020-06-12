@@ -94,9 +94,9 @@
           <div class="container col-sm-12 col-md-6">
             <mat-form-field class="full-width">
               <mat-label>Choisir une </mat-label>
-              <mat-select [formControl]="selected"  >
+              <mat-select [formControl]="selected" [(ngModel)]="structure.reference" >
                 <mat-option>Aucun</mat-option>
-                <mat-option value="valid" *ngFor="let s of structures">{{s.title}}</mat-option>
+                <mat-option value="valid" *ngFor="let s of structures" [value]="s.reference  " ngDefaultControl>{{s.title}}</mat-option>
               </mat-select>
               <mat-error *ngIf="selected.hasError('required')">Tu doit faire une selection</mat-error>
               <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">

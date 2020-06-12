@@ -19,13 +19,15 @@ import { LoginComponent } from './website/login/login.component';
 import { InscriptionComponent } from './website/inscription/inscription.component';
 import { NavComponent } from './website/navigation/nav/nav.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import { StructureDERechercheComponent } from './dashboard/dashboard-admin/structure-derecherche/structure-derecherche.component';
+import { StructureDERechercheComponent } from './dashboard/dashboard-admin/dash-etablissement/structure-derecherche/structure-derecherche.component';
 import {HttpClientModule} from '@angular/common/http';
 import {DoctorantService} from './controller/service/doctorant.service';
 import { EtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/etablissement.component';
 import { ListEtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/list-etablissement/list-etablissement.component';
 import { AjoutEtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/ajout-etablissement/ajout-etablissement.component';
 import { DocComponent } from './doc/doc.component';
+import { AjoutStructureComponent } from './dashboard/dashboard-admin/dash-etablissement/structure-derecherche/ajout-structure/ajout-structure.component';
+import { ListStructureComponent } from './dashboard/dashboard-admin/dash-etablissement/structure-derecherche/list-structure/list-structure.component';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { DocComponent } from './doc/doc.component';
     EtablissementComponent,
     ListEtablissementComponent,
     AjoutEtablissementComponent,
-    DocComponent
+    DocComponent,
+    AjoutStructureComponent,
+    ListStructureComponent
   ],
     imports: [
         BrowserModule,

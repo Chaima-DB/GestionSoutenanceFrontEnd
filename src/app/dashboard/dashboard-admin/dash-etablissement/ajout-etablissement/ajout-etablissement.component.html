@@ -1,11 +1,11 @@
-<form action=""[formGroup]="etablissementForm"(ngSubmit)="save()">
+<!--<form action=""[formGroup]="etablissementForm"(ngSubmit)="save()">
 <div class="container align">
   <div class="container color" >
     <mat-icon class="maticonsize" color="primary">control_point</mat-icon>
     <div class="container">
       <mat-form-field  floatLabel="auto">
         <mat-label>Reference</mat-label>
-        <input type="text" matInput  [formControl]="requiredFormControlreference" [(ngModel)]="etablissement.reference">
+        <input type="text" matInput required [formControl]="requiredFormControlreference" [(ngModel)]="etablissement.reference">
         <mat-error *ngIf="requiredFormControlreference.hasError('required') && isReset ==false ">
           champ <strong>obligatoire</strong>
         </mat-error>
@@ -14,7 +14,7 @@
     <div class="container">
       <mat-form-field floatLabel="auto">
         <mat-label>nom</mat-label>
-        <input type="texte" matInput   [formControl]="requiredFormControlnom" [(ngModel)]="etablissement.nom">
+        <input type="texte" matInput required  [formControl]="requiredFormControlnom" [(ngModel)]="etablissement.nom">
         <mat-error *ngIf="requiredFormControlnom.hasError('required') && isReset ==false ">
          champ <strong>obligatoire</strong>
         </mat-error>
@@ -29,8 +29,46 @@
       {{no}}
     </mat-error>
   </div>
-
 </div>
-</form>
+</form> -->
 
+<div class="container" style="margin-top: 30px">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card col-sm-12 col-md " >
 
+        <div class="card-header">
+          <h1 class="text-center">Ajout d'un Etablissement</h1>
+        </div>
+
+        <div class="card-body">
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <label >Reference </label>
+                <input type="text" id="reference" name="reference" required minlength="3" class="form-control" [(ngModel)]="etablissement.reference">
+              </div>
+              <div class="col-md-6">
+                <label >Nom d'Etablissement</label>
+                <input type="text" class="form-control"  [(ngModel)]="etablissement.nom" >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+
+          <div  class="alert alert-danger" role="alert" [hidden]="no== null" >
+            {{no}}
+          </div>
+          <div class="alert alert-success" role="alert" [hidden]="ok== null" >
+            {{ok}}
+          </div>
+          <button class="btn btn-outline-info btn-block" [disabled]="etablissement.reference== null || etablissement.reference==''" (click)="save()" >Save</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

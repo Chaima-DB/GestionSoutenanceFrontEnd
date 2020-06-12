@@ -2,7 +2,9 @@ mat-sidenav-container , mat-sidenav-content , mat-sidenav {
   height: 100%;
 }
 mat-sidenav {
-  width: 250px;
-  background-color: #A4A4A5;
-  color: white;
+  width: 300px;
+  background-color: rgba(14, 0, 150, 0.64);
+  color: white ;
+  text-align: center;
 }
+
