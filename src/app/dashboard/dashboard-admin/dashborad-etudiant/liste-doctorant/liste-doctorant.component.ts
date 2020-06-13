@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import {Doctorant} from '../../../../controller/model/doctorant.model';
-import {DoctorantService} from "../../../../controller/service/doctorant.service";
+import {DoctorantService} from '../../../../controller/service/doctorant.service';
+
 
 
 @Component({
@@ -10,7 +11,6 @@ import {DoctorantService} from "../../../../controller/service/doctorant.service
 })
 export class ListeDoctorantComponent implements OnInit {
 
-  clickevent: boolean;
   constructor( private doctorantService: DoctorantService) {
 
   }
@@ -21,8 +21,10 @@ export class ListeDoctorantComponent implements OnInit {
  get doctorants(): Array<Doctorant>  {
  return this.doctorantService.doctorants;
  }
-  deleteDoctorant(){
-    this.clickevent = true;
-    console.log(this.clickevent);
+  get doctorant(): Doctorant  {
+    return this.doctorantService.doctorant;
+  }
+  public deleteByCin(doctorant: Doctorant) {
+    this.doctorantService.deleteByCin(doctorant);
   }
 }

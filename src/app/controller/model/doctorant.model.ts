@@ -1,3 +1,7 @@
+import {Sujet} from './sujet.model';
+import {Specialite} from './specialite.model';
+import {StructureDeRecherche} from './structure-de-recherche.model';
+
 export class Doctorant {
   public cin: string;
   public cne: string;
@@ -6,4 +10,8 @@ export class Doctorant {
   public prenom: string;
   public sexe: string;
   public tel: string;
+  public password: string;
+  public sujet: Sujet = new Sujet();
+  public specialite: Specialite = new Specialite();
+  public structureDeRecherche: StructureDeRecherche = new StructureDeRecherche();
 }

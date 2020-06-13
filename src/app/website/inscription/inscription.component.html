@@ -4,116 +4,134 @@
   <div class="container ">
     <h1 class="inscrire-size" >S'inscrire</h1>
   </div>
-  <form  action="">
-    <div class="container">
-      <div class="container color" >
-        <div class="row">
-          <div class="container-fluid  col-sm-12 col-md-6">
-            <mat-form-field class="full-width"  floatLabel="auto">
-              <mat-label>CIN</mat-label>
-              <input [formControl]="requiredFormControlCin" type="text" matInput required>
-              <mat-error *ngIf="requiredFormControlCin.hasError('required')">
-              CIN <strong>required</strong>
-            </mat-error>
-            </mat-form-field>
+
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Informations Générales </ng-template>
+        <div class="container color" >
+          <div class="row">
+            <div class="container-fluid  col-sm-12 col-md-6">
+              <mat-form-field class="full-width"  floatLabel="auto">
+                <mat-label>CIN</mat-label>
+                <input formControlName="cinCtrl" type="text" matInput required [(ngModel)]="doctorant.cin">
+              </mat-form-field>
+            </div>
+            <div class="container-fluid  col-sm-12 col-md-6">
+              <mat-form-field class="full-width" floatLabel="auto">
+                <mat-label>CNE</mat-label>
+                <input formControlName="cneCtrl" [formControl]="requiredFormControlCne" type="text" matInput required [(ngModel)]="doctorant.cne">
+              </mat-form-field>
+            </div>
           </div>
-          <div class="container-fluid  col-sm-12 col-md-6">
-            <mat-form-field class="full-width" floatLabel="auto">
-              <mat-label>CNE</mat-label>
-              <input [formControl]="requiredFormControlCne" type="text" matInput required>
-              <mat-error *ngIf="requiredFormControlCne.hasError('required')">
-                CNE <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
+          <div class="row">
+            <div class="container col-sm-12 col-md-6">
+              <mat-form-field class="full-width" floatLabel="auto">
+                <mat-label>Nom</mat-label>
+                <input formControlName="nomCtrl"  type="text" matInput required [(ngModel)]="doctorant.nom">
+              </mat-form-field>
+            </div>
+            <div class="container col-sm-12 col-md-6">
+              <mat-form-field class="full-width" floatLabel="auto">
+                <mat-label>Prénom</mat-label>
+                <input formControlName="prenomCtrl"   type="text" matInput required [(ngModel)]="doctorant.prenom">
+              </mat-form-field>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="container col-sm-12 col-md-6">
-            <mat-form-field class="full-width" floatLabel="auto">
-              <mat-label>Nom</mat-label>
-              <input [formControl]="requiredFormControlnom" type="text" matInput required>
-              <mat-error *ngIf="requiredFormControlnom.hasError('required')">
-                Nom <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="container col-sm-12 col-md-6">
-            <mat-form-field class="full-width" floatLabel="auto">
-              <mat-label>Prénom</mat-label>
-              <input [formControl]="requiredFormControlprenom" type="text" matInput required>
-              <mat-error *ngIf="requiredFormControlprenom.hasError('required')">
-                Prénom <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row">
-          <div class="container-fluid  col-sm-12 col-md-6">
-            <mat-form-field class="full-width" floatLabel="auto">
-              <mat-label>Email</mat-label>
-              <input matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com" required>
-              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                Prière d'enter une address email valide
-              </mat-error>
-              <mat-error *ngIf="emailFormControl.hasError('required')">
-                Email <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="container-fluid  col-sm-12 col-md-6">
-            <mat-form-field class="full-width" floatLabel="auto">
-              <mat-label>telephone</mat-label>
-              <input [formControl]="requiredFormControltel" type="tel" matInput required>
-              <mat-error *ngIf="requiredFormControltel.hasError('required')">
-                telephone <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
+          <div class="row">
+            <div class="container col-sm-12 col-md-6">
+              <mat-form-field class="full-width" floatLabel="auto">
+                <mat-label>Telephone</mat-label>
+                <input formControlName="telCtrl"  type="text" matInput required [(ngModel)]="doctorant.tel">
+              </mat-form-field>
+            </div>
+            <div class="container col-sm-12 col-md-6">
+              <mat-form-field class="full-width" floatLabel="auto">
+                <mat-label aria-placeholder="homme ou femme">sexe</mat-label>
+                <input formControlName="sexeCtrl"   type="text" matInput required [(ngModel)]="doctorant.sexe">
+              </mat-form-field>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="container col-sm-12 col-md-6">
-            <mat-form-field class="full-width" floatLabel="auto">
-              <mat-label>Sujet de thèse</mat-label>
-              <input [formControl]="requiredFormControlsujet" type="text" matInput required>
-              <mat-error *ngIf="requiredFormControlsujet.hasError('required')">
-                Sujet de thèse <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Apropos de votre Etude Doctorale</ng-template>
+        <div class="container color" >
+          <div class="row">
+            <div class="container col-sm-12 col-md-6">
+              <mat-form-field class="full-width" floatLabel="auto">
+                <mat-label>Sujet de thèse</mat-label>
+                <input formControlName="sujetCtrl"  type="text" matInput required [(ngModel)]="doctorant.sujet.libelle">
+              </mat-form-field>
+            </div>
+            <div class="container col-sm-12 col-md-6">
+              <mat-form-field class="full-width " floatLabel="auto">
+                <mat-label>Choisir une Spécialité </mat-label>
+                <mat-select   formControlName="specialiteCtrl" [(ngModel)]="doctorant.specialite.reference" >
+                  <mat-option>Aucun</mat-option>
+                  <mat-option value="valid"  *ngFor="let s of specialites " [value]="s.reference  " ngDefaultControl>{{s.libelle}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
           </div>
-          <div class="container col-sm-12 col-md-6">
-            <mat-form-field class="full-width " floatLabel="auto">
-              <mat-label>Directeur de thèse</mat-label>
-              <input [formControl]="requiredFormControldirecteur" type="text" matInput required>
-              <mat-error *ngIf="requiredFormControldirecteur.hasError('required')">
-                Directeur de thèse <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
+          <div class="row">
+            <div class="container col-sm-12 col-md-6">
+              <mat-form-field class="full-width">
+                <mat-label>Choisir une Structure De Recherche </mat-label>
+                <mat-select   formControlName="structureCtrl" [(ngModel)]="doctorant.structureDeRecherche.reference" >
+                  <mat-option>Aucun</mat-option>
+                  <mat-option value="valid"  *ngFor="let s of structures" [value]="s.reference  " ngDefaultControl>{{s.title}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="container col-sm-12 col-md-6">
-            <mat-form-field class="full-width">
-              <mat-label>Choisir une </mat-label>
-              <mat-select [formControl]="selected" [(ngModel)]="structure.reference" >
-                <mat-option>Aucun</mat-option>
-                <mat-option value="valid" *ngFor="let s of structures" [value]="s.reference  " ngDefaultControl>{{s.title}}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="selected.hasError('required')">Tu doit faire une selection</mat-error>
-              <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
-                Ta selection est invalid
-              </mat-error>
-            </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext >Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>A propos de votre Compte </ng-template>
+        <div class="container color" >
+          <div class="row">
+            <div class="container-fluid  col-sm-12 col-md-6">
+              <mat-form-field class="full-width"  floatLabel="auto">
+                <mat-label>Email</mat-label>
+                <input formControlName="emailCtrl" type="text" matInput required [(ngModel)]="doctorant.email">
+              </mat-form-field>
+            </div>
+            <div class="container-fluid  col-sm-12 col-md-6">
+              <mat-form-field class="full-width" floatLabel="auto">
+                <mat-label>Password</mat-label>
+                <input formControlName="passwordCtrl"  type="password" matInput required [(ngModel)]="doctorant.password">
+              </mat-form-field>
+            </div>
           </div>
         </div>
-        <div class="container">
-          <button mat-raised-button class="btnsize mt-3" color="primary" >S'inscrire</button>
+        <div>
+          <button mat-button matStepperNext (click)="saveDoctorant()">S'inscrire</button>
         </div>
-        <div class="container mt-4">
-          Vous êtes déjà inscrit ?<a class="link " routerLink="/login"> Log in</a>
-        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Inscription première</ng-template>
+      <p>Ton Inscription est faite avec success </p>
+      <p>Lors de sa confirmation depuit l'Administration du Centre D'étude Doctorale De la FSTG </p>
+      <p>Vous aller recevoir un message dans votre boite email que vous venez d'enregistrer </p>
+      <p>A ce moment vous pouvez accéder à votre compte  </p>
+      <div >
+        page de Log In <a class="link " routerLink="/login"> Log in</a>
       </div>
-    </div>
-  </form>
+    </mat-step>
+  </mat-horizontal-stepper>
 </div>
 
 

@@ -27,6 +27,7 @@ import { AjoutEtablissementComponent } from './dashboard/dashboard-admin/dash-et
 import { DocComponent } from './doc/doc.component';
 import {ListStructureComponent} from "./dashboard/dashboard-admin/dash-etablissement/structure-derecherche/list-structure/list-structure.component";
 import {AjoutStructureComponent} from "./dashboard/dashboard-admin/dash-etablissement/structure-derecherche/ajout-structure/ajout-structure.component";
+import {MatStepperModule} from '@angular/material/stepper';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,15 +54,16 @@ import {AjoutStructureComponent} from "./dashboard/dashboard-admin/dash-etabliss
 
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MaterialsModule,
-        ReactiveFormsModule,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialsModule,
+    ReactiveFormsModule,
+    MatStepperModule,
 
-    ],
+  ],
   providers: [
     DoctorantService,
   ],

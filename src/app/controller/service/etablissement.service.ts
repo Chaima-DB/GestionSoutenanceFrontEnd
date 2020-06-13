@@ -8,7 +8,8 @@ import {HttpClient} from '@angular/common/http';
 export class EtablissementService {
   private _etablissement: Etablissement;
   private _etablissements: Array<Etablissement>;
-  private _url = 'http://localhost:8090/api/v1/gestionDesSoutenances-api/etablissement/';
+  private _baseUrl= 'http://localhost:8090/';
+  private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/etablissement/';
   private _ok: string;
   private _no: string;
   private _result: number;
@@ -67,8 +68,6 @@ export class EtablissementService {
         console.log('erreur when saving');
       }
     );
-
-
   }
 
   private cloneEtablissement(etablissement: Etablissement) {
@@ -77,19 +76,6 @@ export class EtablissementService {
     myClone.nom = etablissement.nom;
     return myClone;
   }
-
-  public findAll() {
-    this.http.get<Array<Etablissement>>(this._url).subscribe(
-      data => {
-        this.etablissements = data;
-        console.log('done');
-      }, error => {
-        console.log('erreur will find all');
-      }
-    );
-  }
-
-
   public deleteByRefFromView(etablissement: Etablissement) {
     const index = this.etablissements.findIndex(e => e.reference === etablissement.reference);
     if (index !== -1) {
@@ -103,6 +89,16 @@ export class EtablissementService {
         this.deleteByRefFromView(etablissement);
       }, error => {
         console.log('erreur');
+      }
+    );
+  }
+  public findAll() {
+    this.http.get<Array<Etablissement>>(this._url).subscribe(
+      data => {
+        this.etablissements = data;
+        console.log('done');
+      }, error => {
+        console.log('erreur will find all');
       }
     );
   }

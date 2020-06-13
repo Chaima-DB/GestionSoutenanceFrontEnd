@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {StructureDeRecherche} from '../model/structure-de-recherche.model';
-import {Etablissement} from '../model/etablissement.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,8 @@ import {Etablissement} from '../model/etablissement.model';
 export class StructureDeRechercheService {
   private _structure: StructureDeRecherche;
   private _structures: Array<StructureDeRecherche>;
-  private _url = 'http://localhost:8090/api/v1/gestionDesSoutenances-api/structureDeRecherche/';
+  private _baseUrl= 'http://localhost:8090/';
+  private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/structureDeRecherche/';
   private _ok: string;
   private _no: string;
   constructor(private http: HttpClient) { }

@@ -32,9 +32,6 @@ export class ListEtablissementComponent implements OnInit {
     return this.etablissementService.no;
   }
 
-  public save() {
-    this.etablissementService.save();
-  }
   public deleteByReference(etablissement: Etablissement) {
     this.etablissementService.deleteByReference(etablissement);
   }
