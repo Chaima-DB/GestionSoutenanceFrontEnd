@@ -56,13 +56,13 @@
           </form>
         </div>
         <div class="card-footer">
-          <div  class="alert alert-danger" role="alert" [hidden]="no== null" >
+          <div  class="alert alert-danger" role="alert" [hidden]="no== null" #message >
             {{no}}
           </div>
           <div class="alert alert-success" role="alert" [hidden]="ok== null" >
             {{ok}}
           </div>
-          <button class="btn btn-outline-info btn-block" [disabled]="etablissement.reference== null || etablissement.reference==''" (click)="save()" >Save</button>
+          <button class="btn btn-outline-info btn-block" [disabled]="etablissement.reference== null || etablissement.reference==''" (click)="save()" (click)="openSnackBar()" >Save</button>
         </div>
       </div>
     </div>

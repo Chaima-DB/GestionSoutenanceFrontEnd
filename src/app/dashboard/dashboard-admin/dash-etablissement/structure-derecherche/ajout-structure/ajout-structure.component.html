@@ -122,9 +122,9 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group ">
             <div class="row">
-              <div class="input-group mb-3">
+              <div class="input-group mb-3 align ml-3">
                 <div class="input-group-prepend">
                   <label class="input-group-text" >Etablissement</label>
                 </div>
@@ -132,7 +132,6 @@
                   <option>choisir etablissement...</option>
                   <option selected *ngFor="let e of etablissements" [value]="e.reference  " ngDefaultControl >{{e.nom}}</option>
                 </select>
-
               </div>
 
             </div>
