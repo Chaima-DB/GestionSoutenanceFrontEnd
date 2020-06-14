@@ -19,6 +19,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatDialog, MatDialogConfig, MatDialogModule} from '@angular/material/dialog';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 const Materials = [
@@ -42,6 +43,7 @@ const Materials = [
   MatMenuModule,
   MatBadgeModule,
   MatDialogModule,
+  MatStepperModule,
 ];
 
 @NgModule({

@@ -28,6 +28,11 @@
         <h1 class="card-title text-center"> Table Des Etablissements</h1>
       </div>
       <div class="card-body">
+        <div class="container ">
+          <div class="form-group row mb-4">
+            <input type="text" class="form-control" placeholder="Search" [(ngModel)] = "Tablesearch">
+          </div>
+        </div>
         <div class="table-responsive">
           <table class="table table-striped">
             <thead class="text-center thead-dark">
@@ -38,7 +43,7 @@
               </tr>
             </thead>
             <tbody class="text-center">
-              <tr *ngFor="let e of etablissements">
+              <tr *ngFor="let e of etablissements | filter:Tablesearch | paginate: { itemsPerPage: 5 , currentPage: page}">
                 <td> {{e.reference}} </td>
                 <td> {{e.nom}} </td>
                 <td>
@@ -47,42 +52,9 @@
               </tr>
             </tbody>
           </table>
+          <pagination-controls (pageChange)="page = $event"></pagination-controls>
         </div>
       </div>
     </div>
   </div>
-</div>
-
-<!-- test mat table-->
-
-<div class="container mt-4 mb-4">
-  <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
-  </mat-form-field>
-
-  <table mat-table matSort (matSortChange)="sortData($event)" [dataSource]="dataSource" class="mat-elevation-z8">
-
-    <!-- Position Column -->
-    <ng-container matColumnDef="reference">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Reference </th>
-      <td mat-cell *matCellDef="let e">{{e.reference}}  </td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="etablissement">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Etablissement </th>
-      <td mat-cell *matCellDef="let e">{{e.nom}}</td>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Action </th>
-      <td mat-cell *matCellDef="let e"><button mat-icon-button (click)="deleteByReference(e)"><mat-icon color="warn">delete</mat-icon> </button> </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-  </table>
 </div>
