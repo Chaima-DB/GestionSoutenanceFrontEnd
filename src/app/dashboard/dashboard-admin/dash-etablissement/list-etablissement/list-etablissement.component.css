@@ -1,11 +1,12 @@
 .margin{
   margin-top: 30px;
 }
-table {
-  width: 100%;
+.pageColor :focus {
+  background-color: purple;
 }
-
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
+.pageColor :current {
+  background-color: purple;
+}
+.pageColor :hover {
+  background-color: purple;
 }

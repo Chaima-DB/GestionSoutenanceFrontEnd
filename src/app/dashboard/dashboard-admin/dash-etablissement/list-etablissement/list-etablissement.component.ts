@@ -27,10 +27,6 @@ export class ListEtablissementComponent implements OnInit {
   get etablissements(): Array<Etablissement> {
     return this.etablissementService.etablissements;
   }
-  get dataSource(): MatTableDataSource<Etablissement> {
-    return this.etablissementService.dataSource;
-  }
-
   get ok(): string {
     return this.etablissementService.ok;
   }
