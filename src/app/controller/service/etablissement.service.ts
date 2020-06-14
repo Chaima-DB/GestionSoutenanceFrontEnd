@@ -1,12 +1,15 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Etablissement} from '../model/etablissement.model';
 import {HttpClient} from '@angular/common/http';
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatTableDataSource} from '@angular/material/table';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class EtablissementService {
+  private _dataSource: MatTableDataSource<Etablissement>;
   private _etablissement: Etablissement;
   private _etablissements: Array<Etablissement>;
   private _baseUrl= 'http://localhost:8090/';
@@ -15,7 +18,6 @@ export class EtablissementService {
   private _no: string;
   private _result: number;
   private _status: boolean;
-
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) {
   }
   get ok(): string {
@@ -62,6 +64,15 @@ export class EtablissementService {
     this._status = value;
   }
 
+  get dataSource(): MatTableDataSource<Etablissement> {
+    return this._dataSource;
+  }
+
+  set dataSource(value: MatTableDataSource<Etablissement>) {
+    this._dataSource = value;
+  }
+
+
   public save() {
     this.http.post<number>(this._url, this.etablissement).subscribe(
       data => {
@@ -72,6 +83,7 @@ export class EtablissementService {
           this._snackBar.open('Enregistrer avec success ','',{
             duration: 5000,
           });
+          window.location.reload();
         } else if (data === -1) {
           this._snackBar.open('cette reference est déjà utiliser ','',{
             duration: 5000,
@@ -104,6 +116,7 @@ export class EtablissementService {
         this._snackBar.open('Etablissement supprimer avec succes ','',{
           duration: 5000,
         });
+        window.location.reload();
       }, error => {
         console.log('erreur');
       }
@@ -113,10 +126,14 @@ export class EtablissementService {
     this.http.get<Array<Etablissement>>(this._url).subscribe(
       data => {
         this.etablissements = data;
+        this._dataSource = new MatTableDataSource(this.etablissements);
         console.log('done');
       }, error => {
         console.log('erreur will find all');
       }
     );
+  }
+  public sorting(){
+
   }
 }
