@@ -10,7 +10,8 @@ import {StructureDeRechercheService} from '../../../../../controller/service/str
   styleUrls: ['./list-structure.component.css']
 })
 export class ListStructureComponent implements OnInit {
-
+  public page = 1;
+  public Tablesearch = "";
 
   constructor(
     private structureDeRechercheService: StructureDeRechercheService,

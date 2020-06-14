@@ -1,4 +1,6 @@
-
+.card-title {
+  height: 20px;
+}
 div {
   text-align: center;
   font-size: 20px;

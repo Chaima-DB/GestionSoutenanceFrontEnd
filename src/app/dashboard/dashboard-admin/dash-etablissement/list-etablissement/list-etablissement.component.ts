@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {EtablissementService} from '../../../../controller/service/etablissement.service';
 import {Etablissement} from '../../../../controller/model/etablissement.model';
-import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-list-etablissement',
@@ -9,7 +8,7 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./list-etablissement.component.css']
 })
 export class ListEtablissementComponent implements OnInit {
-  public page: number = 1;
+  public page = 1;
   public Tablesearch = "";
 
   // ======== Constructor

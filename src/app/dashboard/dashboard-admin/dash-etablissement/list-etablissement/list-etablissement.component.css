@@ -1,12 +1,3 @@
-.margin{
-  margin-top: 30px;
-}
-.pageColor :focus {
-  background-color: purple;
-}
-.pageColor :current {
-  background-color: purple;
-}
-.pageColor :hover {
-  background-color: purple;
+.card-title {
+  height: 20px;
 }

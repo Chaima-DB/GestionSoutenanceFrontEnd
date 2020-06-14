@@ -130,7 +130,7 @@
                 </div>
                 <select class="custom-select"  [(ngModel)]="structure.etablissement.reference" >
                   <option>choisir etablissement...</option>
-                  <option selected *ngFor="let e of etablissements" [value]="e.reference  " ngDefaultControl >{{e.nom}}</option>
+                  <option selected *ngFor="let e of etablissements" [value]="e.reference  " ngDefaultControl >{{e.nom}} ({{e.reference}})</option>
                 </select>
               </div>
 

@@ -1,9 +1,3 @@
-table {
-  width: 100%;
-}
-th.mat-sort-header-sorted {
-  color: black;
-}
-.margin{
-  margin-top: 30px;
+.card-title {
+  height: 20px;
 }

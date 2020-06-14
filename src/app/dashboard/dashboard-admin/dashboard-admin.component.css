@@ -1,10 +1,13 @@
 mat-sidenav-container , mat-sidenav-content , mat-sidenav {
   height: 100%;
 }
-mat-sidenav {
+.minifab {
+  background-color: #673ab7;
+}
+sideNav {
   width: 300px;
-  background-color: rgba(14, 0, 150, 0.64);
-  color: white ;
+  color: #673ab7 ;
+  background-color: white;
   text-align: center;
 }
 .margin{

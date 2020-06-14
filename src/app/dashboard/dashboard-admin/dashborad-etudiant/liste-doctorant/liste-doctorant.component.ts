@@ -12,6 +12,8 @@ import {DetailsDoctorantsComponent} from '../details-doctorants/details-doctoran
   styleUrls: ['./liste-doctorant.component.css']
 })
 export class ListeDoctorantComponent implements OnInit {
+  public page = 1;
+  public  Tablesearch= "";
 
   constructor( private doctorantService: DoctorantService,
                private dialog: MatDialog) {

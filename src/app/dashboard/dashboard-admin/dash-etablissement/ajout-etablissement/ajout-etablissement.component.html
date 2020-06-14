@@ -1,38 +1,5 @@
-<!--<form action=""[formGroup]="etablissementForm"(ngSubmit)="save()">
-<div class="container align">
-  <div class="container color" >
-    <mat-icon class="maticonsize" color="primary">control_point</mat-icon>
-    <div class="container">
-      <mat-form-field  floatLabel="auto">
-        <mat-label>Reference</mat-label>
-        <input type="text" matInput required [formControl]="requiredFormControlreference" [(ngModel)]="etablissement.reference">
-        <mat-error *ngIf="requiredFormControlreference.hasError('required') && isReset ==false ">
-          champ <strong>obligatoire</strong>
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="container">
-      <mat-form-field floatLabel="auto">
-        <mat-label>nom</mat-label>
-        <input type="texte" matInput required  [formControl]="requiredFormControlnom" [(ngModel)]="etablissement.nom">
-        <mat-error *ngIf="requiredFormControlnom.hasError('required') && isReset ==false ">
-         champ <strong>obligatoire</strong>
-        </mat-error>
 
-      </mat-form-field>
-    </div>
-    <div class="container">
-      <button mat-raised-button class="btnsize mt-3" color="primary"><mat-icon >done</mat-icon> Enregistrer</button>
-      <button mat-raised-button class="btnsize mt-3" color="primary" (click)="resetForm()"><mat-icon >done</mat-icon> reset</button>
-    </div>
-    <mat-error >
-      {{no}}
-    </mat-error>
-  </div>
-</div>
-</form> -->
-
-<div class="container mt-4">
+<div class="container mt-2">
   <div class="row">
     <div class="col-md-12">
       <div class="card col-sm-12 col-md-12 " >
