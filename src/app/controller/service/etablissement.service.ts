@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Etablissement} from '../model/etablissement.model';
 import {HttpClient} from '@angular/common/http';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,9 @@ export class EtablissementService {
   private _ok: string;
   private _no: string;
   private _result: number;
+  private _status: boolean;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {
   }
   get ok(): string {
     return this._ok;
@@ -52,6 +54,13 @@ export class EtablissementService {
   set result(value: number) {
     this._result = value;
   }
+  get status(): boolean {
+    return this._status;
+  }
+
+  set status(value: boolean) {
+    this._status = value;
+  }
 
   public save() {
     this.http.post<number>(this._url, this.etablissement).subscribe(
@@ -60,9 +69,13 @@ export class EtablissementService {
           this._result = data;
           this.etablissements.push(this.cloneEtablissement(this.etablissement));
           this.etablissement = null;
-          this._ok = 'etablissement enregistrer avec succes ';
+          this._snackBar.open('Enregistrer avec success ','',{
+            duration: 5000,
+          });
         } else if (data === -1) {
-          this._no = 'cette reference existe déjà';
+          this._snackBar.open('cette reference est déjà utiliser ','',{
+            duration: 5000,
+          });
         }
       }, error => {
         console.log('erreur when saving');
@@ -76,6 +89,7 @@ export class EtablissementService {
     myClone.nom = etablissement.nom;
     return myClone;
   }
+
   public deleteByRefFromView(etablissement: Etablissement) {
     const index = this.etablissements.findIndex(e => e.reference === etablissement.reference);
     if (index !== -1) {
@@ -87,6 +101,9 @@ export class EtablissementService {
     this.http.delete<number>(this._url + 'reference/' + etablissement.reference).subscribe(
       data => {
         this.deleteByRefFromView(etablissement);
+        this._snackBar.open('Etablissement supprimer avec succes ','',{
+          duration: 5000,
+        });
       }, error => {
         console.log('erreur');
       }

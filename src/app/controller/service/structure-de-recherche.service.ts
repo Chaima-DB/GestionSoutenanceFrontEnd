@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {StructureDeRecherche} from '../model/structure-de-recherche.model';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Injectable({
@@ -13,7 +14,9 @@ export class StructureDeRechercheService {
   private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/structureDeRecherche/';
   private _ok: string;
   private _no: string;
-  constructor(private http: HttpClient) { }
+  private _status: boolean;
+
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar) { }
 
 
   get structures(): Array<StructureDeRecherche> {
@@ -56,6 +59,13 @@ export class StructureDeRechercheService {
     this._no = value;
   }
 
+  get status(): boolean {
+    return this._status;
+  }
+
+  set status(value: boolean) {
+    this._status = value;
+  }
   public findAll() {
     this.http.get<Array<StructureDeRecherche>>(this._url).subscribe(
       data => {
@@ -74,10 +84,16 @@ export class StructureDeRechercheService {
         if (data > 0) {
           this._structures.push(this.cloneStructure(this._structure));
           this.structure = null;
-          this._ok = 'Structure De Recherche enregistrer avec success ';
+         // this._ok = 'Structure De Recherche enregistrer avec success ';
+          this._snackBar.open('Enregistrer avec success ','',{
+            duration: 5000,
+          });
           console.log(data);
         } else if (data === -1) {
-          this._no = 'cette reference est déjà utiliser ';
+         // this._no = 'cette reference est déjà utiliser ';
+          this._snackBar.open('cette reference est déjà utiliser ','',{
+            duration: 5000,
+          });
         }
       }, error => {
         console.log('erreur when saving');
@@ -110,6 +126,9 @@ export class StructureDeRechercheService {
     this.http.delete<number>(this._url + 'reference/' + structure.reference).subscribe(
       data => {
         this.deleteByRefFromView(structure);
+        this._snackBar.open('structure supprimer avec succés ','',{
+          duration: 5000,
+        });
       }, error => {
         console.log('erreur');
       }

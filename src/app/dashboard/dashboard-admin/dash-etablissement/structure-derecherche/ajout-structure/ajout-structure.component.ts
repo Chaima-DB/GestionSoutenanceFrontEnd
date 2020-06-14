@@ -3,6 +3,7 @@ import {StructureDeRechercheService} from '../../../../../controller/service/str
 import {EtablissementService} from '../../../../../controller/service/etablissement.service';
 import {StructureDeRecherche} from '../../../../../controller/model/structure-de-recherche.model';
 import {Etablissement} from '../../../../../controller/model/etablissement.model';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-ajout-structure',
@@ -11,10 +12,10 @@ import {Etablissement} from '../../../../../controller/model/etablissement.model
 })
 export class AjoutStructureComponent implements OnInit {
 private _i: number;
-
+  public bool: boolean = true;
   constructor(
     private structureDeRechercheService: StructureDeRechercheService,
-    private etablissementService: EtablissementService
+    private etablissementService: EtablissementService,
   ) { this._i = 1; }
 
   ngOnInit(): void {
@@ -39,7 +40,9 @@ private _i: number;
   get etablissements(): Array<Etablissement> {
     return this.etablissementService.etablissements;
   }
-
+  get status(): boolean {
+    return this.structureDeRechercheService.status;
+  }
   get ok(): string {
     return this.structureDeRechercheService.ok;
   }
@@ -49,5 +52,6 @@ private _i: number;
 
   public save() {
     this.structureDeRechercheService.save();
+
   }
 }

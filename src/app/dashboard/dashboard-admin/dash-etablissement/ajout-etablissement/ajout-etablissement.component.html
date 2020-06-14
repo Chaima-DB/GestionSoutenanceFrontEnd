@@ -40,29 +40,21 @@
           <h1 class="text-center">Ajout d'un Etablissement</h1>
         </div>
         <div class="card-body">
-          <form action="" [formGroup]="etablissementForm" >
             <div class="form-group">
               <div class="row">
                 <div class="col-md-6">
                   <label >Reference </label>
-                  <input type="text" id="reference" name="reference" required minlength="3" class="form-control" [formControl]="requiredFormControlreference" [(ngModel)]="etablissement.reference">
+                  <input type="text" id="reference" #reference name="reference" pattern="[a-zA-Z]+[a-zA-Z]+[a-zA-Z]" required minlength="3" class="form-control"  [(ngModel)]="etablissement.reference">
                 </div>
                 <div class="col-md-6">
                   <label >Nom d'Etablissement</label>
-                  <input type="text" class="form-control" [formControl]="requiredFormControlnom" [(ngModel)]="etablissement.nom" >
+                  <input type="text" class="form-control"  [(ngModel)]="etablissement.nom" >
                 </div>
               </div>
             </div>
-          </form>
         </div>
         <div class="card-footer">
-          <div  class="alert alert-danger" role="alert" [hidden]="no== null" #message >
-            {{no}}
-          </div>
-          <div class="alert alert-success" role="alert" [hidden]="ok== null" >
-            {{ok}}
-          </div>
-          <button class="btn btn-outline-info btn-block" [disabled]="etablissement.reference== null || etablissement.reference==''" (click)="save()" (click)="openSnackBar()" >Save</button>
+          <button class="btn btn-outline-info btn-block" [disabled]="etablissement.reference == null || etablissement.reference==' ' "  (click)="save()">Save</button>
         </div>
       </div>
     </div>

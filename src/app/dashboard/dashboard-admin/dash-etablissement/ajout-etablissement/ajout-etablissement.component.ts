@@ -11,7 +11,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class AjoutEtablissementComponent implements OnInit {
   public etablissementForm: FormGroup;
-  private _isReset: boolean;
+  private _isReset: boolean = true;
 
   constructor(private etablissementService: EtablissementService, private _snackBar: MatSnackBar) {this._isReset = false;
   }
@@ -42,14 +42,11 @@ export class AjoutEtablissementComponent implements OnInit {
     return this._isReset;
   }
 
-  get ok(): string {
-    return this.etablissementService.ok;
-  }
-  get no(): string {
-    return this.etablissementService.no;
-  }
   get result(): number {
     return this.etablissementService.result;
+  }
+  get status(): boolean {
+    return this.etablissementService.status;
   }
   public deleteByReference(etablissement: Etablissement) {
     this.etablissementService.deleteByReference(etablissement);
@@ -60,18 +57,8 @@ export class AjoutEtablissementComponent implements OnInit {
   }
   public save() {
     this.etablissementService.save();
-    this.etablissementForm.reset();
-
-  }
-// ----- snack bar ---------------
-  durationInSeconds = 5;
-  openSnackBar() {
-    if (this.ok != null){
-      this._snackBar.open('ok');
-    }else if (this.no != null) {
-      this._snackBar.open('no');
+      this.etablissementForm.reset();
     }
 
-  }
 }
 
