@@ -1,6 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import {Doctorant} from '../../../../controller/model/doctorant.model';
 import {DoctorantService} from '../../../../controller/service/doctorant.service';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {DetailsDoctorantsComponent} from '../details-doctorants/details-doctorants.component';
 
 
 
@@ -11,7 +13,8 @@ import {DoctorantService} from '../../../../controller/service/doctorant.service
 })
 export class ListeDoctorantComponent implements OnInit {
 
-  constructor( private doctorantService: DoctorantService) {
+  constructor( private doctorantService: DoctorantService,
+               private dialog: MatDialog) {
 
   }
   ngOnInit(): void {
@@ -26,5 +29,14 @@ export class ListeDoctorantComponent implements OnInit {
   }
   public deleteByCin(doctorant: Doctorant) {
     this.doctorantService.deleteByCin(doctorant);
+  }
+  public findByCin(doctorant: Doctorant) {
+    this.doctorantService.findByCin(doctorant);
+    const  dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = ' 1000px ';
+    dialogConfig.height = '1000px';
+    this.dialog.open(DetailsDoctorantsComponent, dialogConfig);
   }
 }

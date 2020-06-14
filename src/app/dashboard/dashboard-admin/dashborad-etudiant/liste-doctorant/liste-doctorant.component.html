@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="card">
     <div class="card-header">
@@ -15,6 +16,7 @@
             <th scope="col"> Prenom </th>
             <th scope="col"> tel </th>
             <th scope="col"> <span class="fa fa-user-times "></span> </th>
+            <th scope="col"> <span class="fa fa-address-card "></span> </th>
           </tr>
           </thead>
           <tbody class="text-center">
@@ -27,6 +29,9 @@
             <td> {{doctorant.tel}} </td>
             <td>
               <button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteByCin(doctorant)" ></button>
+            </td>
+            <td>
+              <button class="btn btn-info btn-sm fa fa-info-circle" (click)="findByCin(doctorant)" ></button>
             </td>
           </tr>
           </tbody>

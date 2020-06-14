@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import validate = WebAssembly.validate;
 import {StructureDeRechercheService} from '../../controller/service/structure-de-recherche.service';
 import {StructureDeRecherche} from '../../controller/model/structure-de-recherche.model';
-import {Etablissement} from '../../controller/model/etablissement.model';
 import {DoctorantService} from '../../controller/service/doctorant.service';
 import {Doctorant} from '../../controller/model/doctorant.model';
 import {SpecialiteService} from '../../controller/service/specialite.service';
 import {SujetService} from '../../controller/service/sujet.service';
-import {Sujet} from '../../controller/model/sujet.model';
 import {Specialite} from '../../controller/model/specialite.model';
 
 @Component({
@@ -92,16 +89,6 @@ export class InscriptionComponent implements OnInit {
 
   get doctorant(): Doctorant {
     return this.doctorantService.doctorant;
-  }
-  get sujet(): Sujet {
-    return  this.sujetService.sujet;
-  }
-  get sujets(): Array<Sujet>{
-    return  this.sujetService.sujets;
-  }
-
-  get specialite(): Specialite {
-    return  this.specialiteService.specialite;
   }
   get specialites(): Array<Specialite>{
     return  this.specialiteService.specialites;

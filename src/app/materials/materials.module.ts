@@ -14,8 +14,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {FormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatDialog, MatDialogConfig, MatDialogModule} from '@angular/material/dialog';
 
 
 const Materials = [
@@ -36,6 +39,9 @@ const Materials = [
   MatSelectModule,
   MatProgressSpinnerModule,
   MatSnackBarModule,
+  MatMenuModule,
+  MatBadgeModule,
+  MatDialogModule,
 ];
 
 @NgModule({

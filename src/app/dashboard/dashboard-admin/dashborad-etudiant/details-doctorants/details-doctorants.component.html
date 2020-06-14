@@ -1,0 +1,192 @@
+<div class="d-flex justify-content-between">
+  <button mat-button (click)="onClose()"><mat-icon>close</mat-icon></button>
+</div>
+
+<!---------------------------------------------------------------------------------------------------------->
+
+<div class="container-fluid text-left">
+  <h1 class="text-center text-dark mb-4">Profil <label>{{doctorant.nom}}</label><label> {{doctorant.prenom}}</label></h1>
+  <div class="row mb-3">
+    <div class="col">
+      <div class="card shadow mb-3">
+        <div class="card-header py-3">
+          <p class="text-left text-primary m-0 font-weight-bold">Information Personnel: </p>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-row">
+              <div class="col">
+                <div class="form-group"><label for="cin"><strong>CIN :   </strong></label><label for="username"><strong>{{doctorant.cin}}</strong></label><input type="text" class="form-control" name="username" /></div>
+                <div class="form-group"><label for="username"><strong>CNE :  </strong></label><label for="username"><strong>{{doctorant.cne}}</strong></label><input type="text" class="form-control"  name="username" /></div>
+              </div>
+              <div class="col">
+                <div class="form-group"><label for="email"><strong>Email Address :  </strong></label><label for="email"><strong>{{doctorant.email}}</strong></label><input type="email" class="form-control"  name="email" /></div>
+                <div class="form-group"><label for="username"><strong>Telephone : </strong></label><label for="username"><strong>{{doctorant.tel}}</strong></label><input type="text" class="form-control"  name="username" /></div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col">
+                <div class="form-group"><label for="first_name"><strong>Sexe :  </strong><br /></label><label for="first_name"><strong>{{doctorant.sexe}} </strong><br /></label><input type="text" class="form-control"  name="first_name" /></div>
+              </div>
+              <div class="col">
+                <div class="form-group"><label for="last_name"><strong>Date Inscription :  </strong></label><label for="last_name"><strong></strong></label><input class="form-control" type="date" /></div>
+              </div>
+            </div>
+            <div class="form-group"><button class="btn btn-primary btn-sm text-center" type="submit">Edite</button></div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card shadow mb-3">
+            <div class="card-header py-3">
+              <p class="text-primary m-0 font-weight-bold">Information Sur Sa Doctorat :</p>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group"><label for="username"><strong>Structure De Recherche:     </strong></label><label for="username"><strong>{{doctorant.structureDeRecherche.title}}</strong></label><select class="form-control"><optgroup label="This is a group"><option value="12" selected>This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+                    <div
+                      class="form-group"><label for="username"><strong>Sujet De Thèse : </strong></label><label for="username"><strong>{{doctorant.sujet.libelle}}</strong></label></div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group"><label for="email"><strong>Specialité:   </strong></label><label for="email"><strong>{{doctorant.specialite.libelle}}</strong></label><select class="form-control"><optgroup label="This is a group"><option value="12" selected>This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+                    <div
+                      class="form-group"><label for="username"><strong>Directeur De Thèse : </strong></label><label for="username"><strong></strong></label><select class="form-control"><optgroup label="This is a group"><option value="12" selected>This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+                  </div>
+                </div>
+                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Editer</button></div>
+              </form>
+            </div>
+          </div>
+          <div class="card shadow">
+            <div class="card-header py-3">
+              <p class="text-primary m-0 font-weight-bold">Affecter Des Rapporteur : </p>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-group"><label for="address"><strong>Date : </strong></label><input class="form-control" type="date" /></div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group"><label for="username"><strong>Ajouter un  Rapporteur </strong></label><select class="form-control"><optgroup label="This is a group"><option value="12" selected>This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+                  </div>
+                </div>
+                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Save Settings</button>
+                  <h4 class="text-center text-primary">Liste Des Rapporteurs</h4>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                      <tr>
+                        <th>Nom</th>
+                        <th> Prénom</th>
+                        <th> Spécialité</th>
+                        <th> Date de Dèrnière Publication</th>
+                        <th>Avis</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td>Cell 1</td>
+                        <td>Cell 2</td>
+                        <td>Cell 2</td>
+                        <td>Cell 2</td>
+                        <td>Cell 2</td>
+                      </tr>
+                      <tr>
+                        <td>Cell 3</td>
+                        <td>Cell 4</td>
+                        <td>Cell 4</td>
+                        <td>Cell 4</td>
+                        <td>Cell 4</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card shadow mb-5">
+    <div class="card-body">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h3 class="text-left text-primary font-weight-bold m-0">Soutenance </h3>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group"><label for="address"><strong>Date : </strong></label><input class="form-control" type="date" /></div>
+            <div class="form-row">
+              <div class="col">
+                <div class="form-group"><label for="username"><strong>Ajouter un Jury </strong></label><select class="form-control"><optgroup label="This is a group"><option value="12" selected>This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+              </div>
+            </div>
+            <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Save Settings</button>
+              <h4 class="text-center text-primary">Liste Des Jurys</h4>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th> Prénom</th>
+                    <th> Spécialité</th>
+                    <th> Date de Dèrnière Publication</th>
+                    <th>Avis</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Cell 1</td>
+                    <td>Cell 2</td>
+                    <td>Cell 2</td>
+                    <td>Cell 2</td>
+                    <td>Cell 2</td>
+                  </tr>
+                  <tr>
+                    <td>Cell 3</td>
+                    <td>Cell 4</td>
+                    <td>Cell 4</td>
+                    <td>Cell 4</td>
+                    <td>Cell 4</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="card shadow mb-5">
+        <div class="card-header py-3">
+          <p class="text-primary m-0 font-weight-bold">Documents</p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Title</h4>
+                  <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
+                  <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Title</h4>
+                  <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
+                  <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

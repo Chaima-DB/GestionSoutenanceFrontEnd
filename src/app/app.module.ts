@@ -25,9 +25,10 @@ import { EtablissementComponent } from './dashboard/dashboard-admin/dash-etablis
 import { ListEtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/list-etablissement/list-etablissement.component';
 import { AjoutEtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/ajout-etablissement/ajout-etablissement.component';
 import { DocComponent } from './doc/doc.component';
-import {ListStructureComponent} from "./dashboard/dashboard-admin/dash-etablissement/structure-derecherche/list-structure/list-structure.component";
-import {AjoutStructureComponent} from "./dashboard/dashboard-admin/dash-etablissement/structure-derecherche/ajout-structure/ajout-structure.component";
 import {MatStepperModule} from '@angular/material/stepper';
+import {ListStructureComponent} from './dashboard/dashboard-admin/dash-etablissement/structure-derecherche/list-structure/list-structure.component';
+import {AjoutStructureComponent} from './dashboard/dashboard-admin/dash-etablissement/structure-derecherche/ajout-structure/ajout-structure.component';
+import { DetailsDoctorantsComponent } from './dashboard/dashboard-admin/dashborad-etudiant/details-doctorants/details-doctorants.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     DocComponent,
     ListStructureComponent,
     AjoutStructureComponent,
+    DetailsDoctorantsComponent,
 
 
   ],
@@ -67,6 +69,6 @@ import {MatStepperModule} from '@angular/material/stepper';
   providers: [
     DoctorantService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
