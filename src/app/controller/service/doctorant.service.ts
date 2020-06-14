@@ -7,12 +7,14 @@ import {Doctorant} from '../model/doctorant.model';
   providedIn: 'root'
 })
 export class DoctorantService {
+  public static _compteur: number;
   private _doctorant: Doctorant;
   private _doctorants: Array<Doctorant>;
   private _baseUrl= 'http://localhost:8090/';
   private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/doctorant/';
   private _ok: string;
   private _no: string;
+  private _newDoctorant = false;
   constructor(private http: HttpClient) {}
 
 
@@ -55,6 +57,15 @@ export class DoctorantService {
     this._ok = value;
   }
 
+  get newDoctorant(): boolean {
+    DoctorantService._compteur++;
+    return this._newDoctorant;
+  }
+
+  set newDoctorant(value: boolean) {
+    this._newDoctorant = value;
+  }
+
   public findAll() {
     this.http.get<Array<Doctorant>>(this._url).subscribe(
       data => {
@@ -72,15 +83,18 @@ export class DoctorantService {
           this.doctorants.push(this.cloneDoctorant(this.doctorant));
           this.doctorant = null;
           this._ok = ' enregistrer avec succes ';
+          this._newDoctorant = true;
+          DoctorantService._compteur++;
+          console.log(this._newDoctorant);
+          console.log(DoctorantService._compteur);
         } else if (data === -1) {
           this._no = 'cette reference existe déjà';
+
         }
       }, error => {
         console.log('erreur when saving');
       }
     );
-
-
   }
 
   private cloneDoctorant(doctorant: Doctorant) {
@@ -115,6 +129,17 @@ export class DoctorantService {
         this.deleteByCinFromView(doctorant);
       }, error => {
         console.log('erreur');
+      }
+    );
+  }
+
+  public findByCin(doctorant: Doctorant){
+    this.http.get<Doctorant>(this._url + 'cin/' + doctorant.cin).subscribe(
+      data => {
+        this._doctorant = data;
+
+      }, error => {
+        console.log('error');
       }
     );
   }

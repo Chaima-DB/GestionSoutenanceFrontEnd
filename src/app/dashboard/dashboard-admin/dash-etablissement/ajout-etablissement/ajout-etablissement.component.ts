@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {EtablissementService} from '../../../../controller/service/etablissement.service';
 import {Etablissement} from '../../../../controller/model/etablissement.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-ajout-etablissement',
@@ -61,10 +61,10 @@ export class AjoutEtablissementComponent implements OnInit {
   public save() {
     this.etablissementService.save();
     this.etablissementForm.reset();
-
   }
+
+
 // ----- snack bar ---------------
-  durationInSeconds = 5;
   openSnackBar() {
     if (this.ok != null){
       this._snackBar.open('ok');
@@ -72,6 +72,5 @@ export class AjoutEtablissementComponent implements OnInit {
       this._snackBar.open('no');
     }
 
-  }
+    }
 }
-
