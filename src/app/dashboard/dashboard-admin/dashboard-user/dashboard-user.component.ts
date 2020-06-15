@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {DetailsDoctorantsComponent} from '../dashborad-etudiant/details-doctorants/details-doctorants.component';
+import {FileUploadComponent} from '../../../file-upload/file-upload.component';
 
 
 @Component({
@@ -8,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
-
+  public uploadDialoge(){
+    const  dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = ' 1000px ';
+    dialogConfig.height = '1000px';
+    this.dialog.open(FileUploadComponent, dialogConfig);
+  }
 }

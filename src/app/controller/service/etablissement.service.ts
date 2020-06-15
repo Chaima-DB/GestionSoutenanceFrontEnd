@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Etablissement} from '../model/etablissement.model';
 import {HttpClient} from '@angular/common/http';
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class EtablissementService {
   private _etablissement: Etablissement;
   private _etablissements: Array<Etablissement>;
-  private _baseUrl= 'http://localhost:8090/';
+  private _baseUrl = 'http://localhost:8090/';
   private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/etablissement/';
   private _ok: string;
   private _no: string;
@@ -115,6 +115,19 @@ export class EtablissementService {
         console.log('done');
       }, error => {
         console.log('erreur will find all');
+      }
+    );
+  }
+  public update(etablissement: Etablissement) {
+    this.http.put<Etablissement>(this._url, this.etablissement).subscribe(
+      data => {
+          this.etablissements.push(this.cloneEtablissement(this.etablissement));
+          this.etablissement = null;
+          this._snackBar.open('modifier avec success ', '',{
+            duration: 5000,
+          });
+      }, error => {
+        console.log('erreur when saving');
       }
     );
   }

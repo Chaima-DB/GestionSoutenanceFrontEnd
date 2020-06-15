@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Doctorant} from '../model/doctorant.model';
+import {Etablissement} from '../model/etablissement.model';
 
 
 @Injectable({
@@ -142,6 +143,14 @@ export class DoctorantService {
         console.log('error');
       }
     );
+  }
+  public update(doctorant: Doctorant, id: number) {
+    this.http.put<number>(this._url + 'id/' + id, this.doctorant).subscribe(data => {
+      console.log(data);
+      console.log(this.doctorant.dateInscription);
+    }, error => {
+      console.log('error');
+      });
   }
 
 }

@@ -28,8 +28,11 @@ import { DocComponent } from './doc/doc.component';
 import {ListStructureComponent} from './dashboard/dashboard-admin/dash-etablissement/structure-derecherche/list-structure/list-structure.component';
 import {AjoutStructureComponent} from './dashboard/dashboard-admin/dash-etablissement/structure-derecherche/ajout-structure/ajout-structure.component';
 import { DetailsDoctorantsComponent } from './dashboard/dashboard-admin/dashborad-etudiant/details-doctorants/details-doctorants.component';
-import {Ng2SearchPipeModule} from "ng2-search-filter";
-import {NgxPaginationModule} from "ngx-pagination";
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import {DateFormatModule, DatePipe} from 'ng-date-format';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,8 @@ import {NgxPaginationModule} from "ngx-pagination";
     ListStructureComponent,
     AjoutStructureComponent,
     DetailsDoctorantsComponent,
+    FileUploadComponent,
+
 
 
   ],
@@ -67,10 +72,13 @@ import {NgxPaginationModule} from "ngx-pagination";
     ReactiveFormsModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-
+    BrowserAnimationsModule,
+    DateFormatModule,
+    BsDatepickerModule.forRoot(),
   ],
   providers: [
     DoctorantService,
+    DatePipe,
   ],
   bootstrap: [AppComponent],
 })

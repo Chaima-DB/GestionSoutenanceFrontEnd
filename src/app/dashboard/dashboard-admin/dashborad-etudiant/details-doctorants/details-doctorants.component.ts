@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {DoctorantService} from '../../../../controller/service/doctorant.service';
 import {Doctorant} from '../../../../controller/model/doctorant.model';
+import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-details-doctorants',
@@ -9,8 +10,11 @@ import {Doctorant} from '../../../../controller/model/doctorant.model';
   styleUrls: ['./details-doctorants.component.css']
 })
 export class DetailsDoctorantsComponent implements OnInit {
-
-  constructor(public dialogBox: MatDialogRef<DetailsDoctorantsComponent>, private doctorantService: DoctorantService) { }
+datePickerConfig: Partial<BsDatepickerConfig>;
+  constructor(public dialogBox: MatDialogRef<DetailsDoctorantsComponent>,
+              private doctorantService: DoctorantService, ) {
+    this.datePickerConfig = Object.assign({}, { containerClass: 'theme-dark-blue', dateInputFormat: 'yyyy-MM-dd'});
+  }
 
   ngOnInit(): void {
   }
@@ -22,5 +26,8 @@ export class DetailsDoctorantsComponent implements OnInit {
   }
   get doctorant(): Doctorant  {
     return this.doctorantService.doctorant;
+  }
+  public update(doctorant: Doctorant, id: number) {
+    this.doctorantService.update(doctorant, id);
   }
 }

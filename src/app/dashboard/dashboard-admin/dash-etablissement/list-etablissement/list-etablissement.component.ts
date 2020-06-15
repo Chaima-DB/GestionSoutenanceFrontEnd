@@ -34,10 +34,12 @@ export class ListEtablissementComponent implements OnInit {
   }
   // -------------------------------------
   //
-  //--------- Delete
+  // --------- Delete
   public deleteByReference(etablissement: Etablissement) {
     this.etablissementService.deleteByReference(etablissement);
   }
-
+  public update(etablissement: Etablissement){
+    this.etablissementService.update(etablissement);
+  }
 
 }
