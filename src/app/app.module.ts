@@ -33,6 +33,15 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import {DateFormatModule, DatePipe} from 'ng-date-format';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ListProfesseursComponent } from './dashboard/dashboard-admin/dashborad-professeur/list-professeurs/list-professeurs.component';
+import { DetailProfesseurComponent } from './dashboard/dashboard-admin/dashborad-professeur/detail-professeur/detail-professeur.component';
+import { AjoutProfesseurComponent } from './dashboard/dashboard-admin/dashborad-professeur/ajout-professeur/ajout-professeur.component';
+import {Professeur} from './controller/model/professeur.model';
+import {ProfesseurService} from './controller/service/professeur.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardSoutenanceComponent } from './dashboard/dashboard-admin/dashboard-soutenance/dashboard-soutenance.component';
+import { AjoutSoutenanceComponent } from './dashboard/dashboard-admin/dashboard-soutenance/ajout-soutenance/ajout-soutenance.component';
+import { ListSoutenancesComponent } from './dashboard/dashboard-admin/dashboard-soutenance/list-soutenances/list-soutenances.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +68,13 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     AjoutStructureComponent,
     DetailsDoctorantsComponent,
     FileUploadComponent,
+    ListProfesseursComponent,
+    DetailProfesseurComponent,
+    AjoutProfesseurComponent,
+    DashboardComponent,
+    DashboardSoutenanceComponent,
+    AjoutSoutenanceComponent,
+    ListSoutenancesComponent,
 
 
 
@@ -78,6 +94,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
   ],
   providers: [
     DoctorantService,
+    ProfesseurService,
     DatePipe,
   ],
   bootstrap: [AppComponent],

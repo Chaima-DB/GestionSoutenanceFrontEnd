@@ -3,6 +3,8 @@ import {Doctorant} from '../../../../controller/model/doctorant.model';
 import {DoctorantService} from '../../../../controller/service/doctorant.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {DetailsDoctorantsComponent} from '../details-doctorants/details-doctorants.component';
+import {SoutenanceService} from '../../../../controller/service/soutenance.service';
+import {Soutenance} from '../../../../controller/model/soutenance.model';
 
 
 
@@ -15,7 +17,7 @@ export class ListeDoctorantComponent implements OnInit {
   public page = 1;
   public  Tablesearch= "";
 
-  constructor( private doctorantService: DoctorantService,
+  constructor( private doctorantService: DoctorantService, private soutenanceService: SoutenanceService,
                private dialog: MatDialog) {
 
   }
@@ -29,6 +31,9 @@ export class ListeDoctorantComponent implements OnInit {
   get doctorant(): Doctorant  {
     return this.doctorantService.doctorant;
   }
+  get soutenance(): Soutenance {
+    return this.soutenanceService.soutenance;
+  }
   public deleteByCin(doctorant: Doctorant) {
     this.doctorantService.deleteByCin(doctorant);
   }
@@ -40,5 +45,8 @@ export class ListeDoctorantComponent implements OnInit {
     dialogConfig.width = ' 1000px ';
     dialogConfig.height = '1000px';
     this.dialog.open(DetailsDoctorantsComponent, dialogConfig);
+  }
+  public findByDoctorantCin(doctorant: Doctorant) {
+    this.soutenanceService.findByDoctorantCin(doctorant);
   }
 }

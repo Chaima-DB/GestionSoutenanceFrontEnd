@@ -1,7 +1,7 @@
 <div class="container mt-2">
   <div class="card">
     <div class="card-header">
-      <h1 class="card-title text-center"> Table Des Doctorants</h1>
+      <h1 class="card-title text-center"> Table Des Professeurs</h1>
     </div>
     <div class="card-body">
       <div class="container ">
@@ -13,23 +13,23 @@
         <table class="table table-striped">
           <thead class="text-center thead-dark">
           <tr>
-            <th scope="col"> CNE </th>
+            <th scope="col"> CIN </th>
             <th scope="col"> Nom </th>
-            <th scope="col"> Prenom </th>
+            <th scope="col"> Date de dérnière publication </th>
             <th scope="col"> <span class="fa fa-user-times "></span> </th>
             <th scope="col"> <span class="fa fa-address-card "></span> </th>
           </tr>
           </thead>
           <tbody class="text-center">
-          <tr *ngFor="let doctorant of doctorants | filter:Tablesearch | paginate: { itemsPerPage: 5 , currentPage: page}">
-            <td> {{doctorant.cne}} </td>
-            <td> {{doctorant.nom}} </td>
-            <td> {{doctorant.prenom}} </td>
+          <tr *ngFor="let professeur of professeurs | filter:Tablesearch | paginate: { itemsPerPage: 5 , currentPage: page}">
+            <td> {{professeur.cin}} </td>
+            <td> {{professeur.nom}} </td>
+            <td> {{professeur.dateDernierePublication}} </td>
             <td>
-              <button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteByCin(doctorant)" ></button>
+              <button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteByCin(professeur)" ></button>
             </td>
             <td>
-              <button class="btn btn-info btn-sm fa fa-info-circle" (click)="findByCin(doctorant);findByDoctorantCin(doctorant)" ></button>
+              <button class="btn btn-info btn-sm fa fa-info-circle" (click)="findByCin(professeur)" ></button>
             </td>
           </tr>
           </tbody>
@@ -41,3 +41,4 @@
     </div>
   </div>
 </div>
+

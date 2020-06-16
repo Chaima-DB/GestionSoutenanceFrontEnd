@@ -1,0 +1,74 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card col-sm-12 col-md-12 " >
+        <div class="card-header">
+          <h1 class="text-center">Ajout d'un Professeur</h1>
+        </div>
+        <form action="" >
+        <div class="card-body">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <label >CIN </label>
+                <input type="text" id="cin" #cin name="cin" pattern="[a-zA-Z]+[a-zA-Z]+[a-zA-Z]" required minlength="3" class="form-control"  [(ngModel)]="professeur.cin">
+              </div>
+              <div class="col-md-6">
+                <label >Email</label>
+                <input type="email" id="email" #email name="email" class="form-control"  [(ngModel)]="professeur.email" >
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <label >Nom </label>
+                <input type="text" id="nom" #nom name="nom"  required minlength="3" class="form-control"  [(ngModel)]="professeur.nom">
+              </div>
+              <div class="col-md-6">
+                <label >Prénom</label>
+                <input type="text" id="prenom" #prenom name="prenom" class="form-control"  [(ngModel)]="professeur.prenom" >
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <label >Date du Dérnière publication </label>
+                <input type="date"  id="dateDernierePublication" placeholder="jj/mm/aaaa"
+                       #dateDernierePublication name="dateDernierePublication" required minlength="3"
+                       class="form-control"  [(ngModel)]="professeur.dateDernierePublication">
+              </div>
+              <div class="col-md-6">
+                <label >Specialité</label>
+                <select class="custom-select" id="specialite" #specialite name="specialite"  [(ngModel)]="professeur.specialite.reference" >
+                  <option selected *ngFor="let s of specialites" [value]="s.reference  " ngDefaultControl >{{s.libelle}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <label >telephone </label>
+                <input type="text" id="tel" #tel name="tel" required minlength="3" class="form-control"  [(ngModel)]="professeur.tel">
+              </div>
+              <div class="col-md-6">
+                <label >Sexe</label>
+                <select class="custom-select" name="sexe" id="sexe" #sexe [(ngModel)]="professeur.sexe">
+                <option selected value="Homme">Homme</option>
+                <option selected value="Femme">Femme</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-outline-info btn-block" [disabled]="professeur.cin == null || professeur.cin==' ' "  (click)="save()">Save</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

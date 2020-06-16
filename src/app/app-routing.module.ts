@@ -11,6 +11,7 @@ import {LoginComponent} from './website/login/login.component';
 import {InscriptionComponent} from './website/inscription/inscription.component';
 import {EtablissementComponent} from './dashboard/dashboard-admin/dash-etablissement/etablissement.component';
 import {AjoutEtablissementComponent} from './dashboard/dashboard-admin/dash-etablissement/ajout-etablissement/ajout-etablissement.component';
+import {DashboardSoutenanceComponent} from './dashboard/dashboard-admin/dashboard-soutenance/dashboard-soutenance.component';
 
 
 const routes: Routes = [
@@ -48,6 +49,9 @@ const routes: Routes = [
                 },
                 { path : 'espace-etablissement',
                   component: EtablissementComponent,
+                },
+                { path : 'espace-soutenance',
+                  component: DashboardSoutenanceComponent,
                 },
               ]
   }
