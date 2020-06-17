@@ -16,8 +16,8 @@
                 <input type="text"  name="reference" required minlength="3" class="form-control" [(ngModel)]="soutenance.reference">
               </div>
               <div class="col-md-6">
-                <label >Doctorant</label>
-                <input type="text" class="form-control"  [(ngModel)]="soutenance.doctorant.cin" >
+                <label >Date de la soutenance </label>
+                <input type="datetime-local"  name="reference" required minlength="3" class="form-control" [(ngModel)]="soutenance.dateSoutenance">
               </div>
             </div>
           </div>
@@ -25,8 +25,15 @@
           <div class="form-group">
             <div class="row">
               <div class="col-md-6">
-                <label >Date de la soutenance </label>
-                <input type="datetime-local"  name="reference" required minlength="3" class="form-control" [(ngModel)]="soutenance.dateSoutenance">
+                <div class="input-group mb-3 align ml-3">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" >Doctorant</label>
+                  </div>
+                  <select class="custom-select"  [(ngModel)]="soutenance.doctorant.cin" >
+                    <option>choisir un doctorant...</option>
+                    <option selected *ngFor="let d of doctorants" [value]="d.cin  " ngDefaultControl >{{d.nom}} {{d.prenom}}</option>
+                  </select>
+                </div>
               </div>
               <div class="col-md-6">
                 <div class="input-group mb-3 align ml-3">
@@ -35,7 +42,7 @@
                   </div>
                   <select class="custom-select"  [(ngModel)]="jury.professeur.cin" >
                     <option>choisir un jury...</option>
-                    <option selected *ngFor="let p of professeurs" [value]="p.cin  " ngDefaultControl >{{p.nom}} ({{p.prenom}})</option>
+                    <option selected *ngFor="let p of professeurs" [value]="p.cin"  ngDefaultControl >{{p.nom}} {{p.prenom}}</option>
                   </select>
                 </div>
               </div>
@@ -67,15 +74,7 @@
         </div>
 
         <div class="card-footer">
-
-          <div  class="alert alert-danger" role="alert" [hidden]="no== null" >
-            {{no}}
-          </div>
-          <div class="alert alert-success" role="alert" [hidden]="ok== null" >
-            {{ok}}
-          </div>
           <button class="btn btn-outline-info btn-block" [disabled]="soutenance.reference== null"  (click)="save()" >Save</button>
-
         </div>
 
       </div>

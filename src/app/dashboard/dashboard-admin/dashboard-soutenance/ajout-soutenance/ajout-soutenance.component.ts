@@ -4,6 +4,8 @@ import {ProfesseurService} from '../../../../controller/service/professeur.servi
 import {Soutenance} from '../../../../controller/model/soutenance.model';
 import {Professeur} from '../../../../controller/model/professeur.model';
 import {Jury} from '../../../../controller/model/jury.model';
+import {DoctorantService} from '../../../../controller/service/doctorant.service';
+import {Doctorant} from '../../../../controller/model/doctorant.model';
 
 @Component({
   selector: 'app-ajout-soutenance',
@@ -16,10 +18,12 @@ export class AjoutSoutenanceComponent implements OnInit {
   constructor(
     private soutenanceService: SoutenanceService,
     private professeurService: ProfesseurService,
+    private doctorantService: DoctorantService,
   ) { this._i = 1; }
 
   ngOnInit(): void {
     this.professeurService.findAll();
+    this.doctorantService.findAll();
   }
 
   get i(): number {
@@ -30,7 +34,12 @@ export class AjoutSoutenanceComponent implements OnInit {
   set i(value: number) {
     this._i = value;
   }
-
+  get doctorant(): Doctorant {
+    return this.doctorantService.doctorant;
+  }
+  get doctorants(): Array<Doctorant> {
+    return this.doctorantService.doctorants;
+  }
   get soutenance(): Soutenance {
     return this.soutenanceService.soutenance;
   }
@@ -39,6 +48,8 @@ export class AjoutSoutenanceComponent implements OnInit {
   }
   get professeurs(): Array<Professeur> {
     return this.professeurService.professeurs;
+  }get jurys(): Array<Jury> {
+    return this.soutenanceService.jurys;
   }
   get jury(): Jury {
     return this.soutenanceService.jury;

@@ -12,6 +12,8 @@ export class SoutenanceService {
   private _soutenance: Soutenance;
   private _jury: Jury;
   private _jurys:Array<Jury>;
+  private _doctorant: Doctorant;
+  private _doctorants : Array<Doctorant>;
   private _juryDetails : Array<Jury>;
   private _soutenances :Array<Soutenance>;
   private _baseUrl= 'http://localhost:8090/';
@@ -49,6 +51,29 @@ export class SoutenanceService {
   set status(value: boolean) {
     this._status = value;
   }
+
+  get doctorant(): Doctorant {
+    if (this._doctorant == null){
+      this._doctorant = new Doctorant();
+    }
+    return this._doctorant;
+  }
+
+  set doctorant(value: Doctorant) {
+    this._doctorant = value;
+  }
+
+  get doctorants(): Array<Doctorant> {
+    return this._doctorants;
+  }
+
+  set doctorants(value: Array<Doctorant>) {
+    if ( this._doctorants == null){
+      this._doctorants = new Array<Doctorant>();
+    }
+    this._doctorants = value;
+  }
+
   get juryDetails(): Array<Jury> {
     if ( this._juryDetails == null){
       this._juryDetails = new Array<Jury>();
@@ -107,7 +132,13 @@ export class SoutenanceService {
   }
 
   public addJury() {
+    console.log(this.jurys);
+    console.log(this.jury);
     this.soutenance.jurys.push(this.cloneJury(this.jury));
+    console.log(this.jury);
+    this.jurys.push(this.cloneJury(this.jury));
+    console.log(this.jury);
+    console.log(this.jurys);
     this.jury = null;
   }
   public validateSave(): boolean {
@@ -131,16 +162,26 @@ export class SoutenanceService {
           this._snackBar.open('cette reference est déjà utiliser ', '',{
             duration: 5000,
           });
+        }else if (data === -3) {
+          // this._no = 'cette reference est déjà utiliser ';
+          this._snackBar.open('cet doctorant à déjà une soutenance ', '',{
+            duration: 5000,
+          });
+        }else if (data === -4) {
+          // this._no = 'cette reference est déjà utiliser ';
+          this._snackBar.open('sauvegarde échouer! erreur dans le choix des jurys ', '',{
+            duration: 5000,
+          });
         }
       }, error => {
-        console.log('erreur');
+        console.log('erreur sauvgarde soutenance');
 
       }
     );
   }
 
   public deleteByReferenceFromView(soutenance: Soutenance){
-    let index = this.soutenances.findIndex(s => s.reference === soutenance.reference)
+    const index = this.soutenances.findIndex(s => s.reference === soutenance.reference)
     if (index !== -1){
       this.soutenances.splice(index,1);
     }
@@ -184,13 +225,13 @@ export class SoutenanceService {
     const myClone = new  Soutenance();
     myClone.reference = soutenance.reference;
     myClone.dateSoutenance = soutenance.dateSoutenance;
-    myClone.doctorant.cin = soutenance.doctorant.cin;
+    myClone.doctorant = soutenance.doctorant;
     return myClone;
   }
 
   private cloneJury(jury: Jury) {
     const myClone = new  Jury();
-    myClone.professeur.cin = jury.professeur.cin;
+    myClone.professeur = jury.professeur;
     myClone.avis = jury.avis;
     return myClone;
   }
