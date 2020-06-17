@@ -162,6 +162,11 @@ export class SoutenanceService {
           this._snackBar.open('cette reference est déjà utiliser ', '',{
             duration: 5000,
           });
+        }else if (data === -2) {
+          // this._no = 'cette reference est déjà utiliser ';
+          this._snackBar.open('veillez remplir le champ doctorant', '',{
+            duration: 5000,
+          });
         }else if (data === -3) {
           // this._no = 'cette reference est déjà utiliser ';
           this._snackBar.open('cet doctorant à déjà une soutenance ', '',{
