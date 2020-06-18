@@ -43,24 +43,12 @@ export class AjoutProfesseurComponent implements OnInit {
   get professeur(): Professeur {
     return this.professeurService.professeur;
   }
-  get professeurs(): Array<Professeur> {
-    return this.professeurService.professeurs;
-  }
   get specialites(): Array<Specialite> {
     return this.specialiteService.specialites;
-  }
-
-  get isReset(): boolean {
-    return this._isReset;
-  }
-  resetForm() {
-    this._isReset = true;
-    this.professeurService.professeur = null;
   }
   public save() {
     this.professeurService.save();
     this.professeurForm.reset();
   }
-
 
 }

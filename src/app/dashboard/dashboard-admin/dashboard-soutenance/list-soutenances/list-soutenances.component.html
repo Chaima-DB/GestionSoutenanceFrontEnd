@@ -1,1 +1,48 @@
-<p>list-soutenances works!</p>
+<div class=" col-md-12 mt-2" >
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="card-title text-center"> Table Des Soutenances</h1>
+      </div>
+      <div class="card-body">
+        <div class="container ">
+          <div class="form-group row mb-4">
+            <input type="text" class="form-control" placeholder="Search" [(ngModel)] = "Tablesearch">
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead class="text-center thead-dark">
+            <tr>
+              <th scope="col"> Reference </th>
+              <th scope="col"> Date </th>
+              <th scope="col"> Doctorant </th>
+              <th scope="col"> resultats </th>
+              <th scope="col"> <span class="fa fa-user-times "></span> </th>
+              <th scope="col"> <span class="fa fa-info "></span> </th>
+            </tr>
+            </thead>
+            <tbody class="text-center">
+            <tr *ngFor="let s of soutenances | filter:Tablesearch | paginate: { itemsPerPage: 5 , currentPage: page}">
+              <td> {{s.reference}} </td>
+              <td> {{s.dateSoutenance}} </td>
+              <td> {{s.doctorant.nom}} {{s.doctorant.prenom}}</td>
+              <td> {{s.resultat}} </td>
+              <td>
+                <button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteByReference(s)"></button>
+              </td>
+              <td>
+                <button class="btn btn-outline-info btn-sm fa fa-info-circle" (click)="findByReference(s)"></button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="container row justify-content-center">
+            <pagination-controls class="pagination justify-content-center  pageColor" (pageChange)="page = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

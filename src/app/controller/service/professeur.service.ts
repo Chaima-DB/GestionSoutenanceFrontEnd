@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Professeur} from '../model/professeur.model';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,7 @@ export class ProfesseurService {
   private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/professeur/';
   private _ok: string;
   private _no: string;
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private _snackBar: MatSnackBar) {}
 
 
   get professeur(): Professeur {
@@ -84,13 +84,24 @@ export class ProfesseurService {
         if (data > 0) {
           this.professeurs.push(this.cloneProfesseur(this.professeur));
           this.professeur = null;
-          this._ok = ' enregistrer avec succes ';
+          this._snackBar.open('Enregistrer avec success ', '', {
+            duration: 5000,
+          });
         } else if (data === -1) {
-          this._no = 'cette reference existe déjà';
+          this._snackBar.open('reference déjà utiliser!! ', '', {
+            duration: 5000,
+          });
+
+        }else if (data === -2) {
+          this._snackBar.open('choisir une spécialité!! ', '', {
+            duration: 5000,
+          });
 
         }
       }, error => {
-        console.log('erreur when saving');
+        this._snackBar.open('Une erreur est survenu !! réessayer plutard  ', '', {
+          duration: 5000,
+        });
       }
     );
   }

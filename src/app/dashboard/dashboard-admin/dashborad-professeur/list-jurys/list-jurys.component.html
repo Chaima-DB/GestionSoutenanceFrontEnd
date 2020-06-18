@@ -1,0 +1,42 @@
+<div class=" col-md-12 mt-2" >
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="card-title text-center"> Table Des Jurys </h1>
+      </div>
+      <div class="card-body">
+        <div class="container ">
+          <div class="form-group row mb-4">
+            <input type="text" class="form-control" placeholder="Search" [(ngModel)] = "Tablesearch">
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead class="text-center thead-dark">
+            <tr>
+              <th scope="col"> CIN jury</th>
+              <th scope="col"> Nom et prenom Jury </th>
+              <th scope="col"> Reference Soutenance </th>
+              <th scope="col"> Date/Time Soutenance </th>
+              <th scope="col"> Nom et prenom Doctorant</th>
+            </tr>
+            </thead>
+            <tbody class="text-center">
+            <tr *ngFor="let j of jurys | filter:Tablesearch | paginate: { itemsPerPage: 5 , currentPage: page}">
+              <td> {{j.professeur.cin}} </td>
+              <td> {{j.professeur.nom}} {{j.professeur.prenom}} </td>
+              <td> {{j.soutenance.reference}} </td>
+              <td> {{j.soutenance.dateSoutenance}} {{j.soutenance.heureSoutenance}}   </td>
+              <td> {{j.soutenance.doctorant.nom}} {{j.soutenance.doctorant.prenom}} </td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="container row justify-content-center">
+            <pagination-controls class="pagination justify-content-center  pageColor" (pageChange)="page = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

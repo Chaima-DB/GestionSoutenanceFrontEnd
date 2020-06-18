@@ -17,7 +17,7 @@
               </div>
               <div class="col-md-6">
                 <label >Date de la soutenance </label>
-                <input type="datetime-local"  name="reference" required minlength="3" class="form-control" [(ngModel)]="soutenance.dateSoutenance">
+                <input type="date"  name="reference" required minlength="3" class="form-control" [(ngModel)]="soutenance.dateSoutenance">
               </div>
             </div>
           </div>
@@ -25,48 +25,46 @@
           <div class="form-group">
             <div class="row">
               <div class="col-md-6">
-                <div class="input-group mb-3 align ml-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" >Doctorant</label>
-                  </div>
+
+                    <label >Doctorant</label>
                   <select class="custom-select"  [(ngModel)]="soutenance.doctorant.cin" >
                     <option>choisir un doctorant...</option>
                     <option selected *ngFor="let d of doctorants" [value]="d.cin  " ngDefaultControl >{{d.nom}} {{d.prenom}}</option>
                   </select>
-                </div>
+
               </div>
-              <div class="col-md-6">
-                <div class="input-group mb-3 align ml-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" >Les Jurys</label>
-                  </div>
-                  <select class="custom-select"  [(ngModel)]="jury.professeur.cin" >
-                    <option>choisir un jury...</option>
-                    <option selected *ngFor="let p of professeurs" [value]="p.cin"  ngDefaultControl >{{p.nom}} {{p.prenom}}</option>
-                  </select>
-                </div>
-              </div>
+            <div class="col-md-6">
+              <label >Heure </label>
+              <input type="time"  name="reference" required minlength="3" class="form-control" [(ngModel)]="soutenance.heureSoutenance">
             </div>
+          </div>
+          </div>
+          <div class="form-group">
+              <div class="input-group mb-3 align ml-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" >Les Jurys</label>
+                </div>
+                <select class="custom-select"  [(ngModel)]="jury.professeur.cin" >
+                  <option selected *ngFor="let p of professeurs" [value]="p.cin"  ngDefaultControl >{{p.cin}}-{{p.nom}} {{p.prenom}}-{{p.specialite.libelle}}</option>
+                </select>
+                <button  class="btn btn-primary btn-sm"  (click)="addJury()">Ajouter</button>
+              </div>
           </div>
 
           <div class="form-group ">
             <div class="row">
-              <button  class="btn btn-primary btn-block" (click)="addJury()">Ajouter</button>
+
             </div>
           </div>
           <div class="card" >
             <div class="card-header"><h2 class="text-center" > Liste des Jurys</h2></div>
             <table class="table table-striped table-hover">
               <thead>
-              <th>Nom</th><th>Prenom</th>
-              <th>spécialité</th><th>dateDernierePublication</th>
+              <th>CIN</th>
               </thead>
               <tbody>
-              <tr  *ngFor="let a of soutenance.jurys">
-                <td>{{a.professeur.nom}}</td>
-                <td>{{a.professeur.prenom}}</td>
-                <td>{{a.professeur.specialite.libelle}}</td>
-                <td>{{a.professeur.dateDernierePublication}}</td>
+              <tr  *ngFor="let a of lesJurys">
+                <td>{{a.professeur.cin}}</td>
               </tr>
               </tbody>
             </table>

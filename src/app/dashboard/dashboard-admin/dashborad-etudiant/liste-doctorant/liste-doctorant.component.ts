@@ -49,4 +49,5 @@ export class ListeDoctorantComponent implements OnInit {
   public findByDoctorantCin(doctorant: Doctorant) {
     this.soutenanceService.findByDoctorantCin(doctorant);
   }
+
 }

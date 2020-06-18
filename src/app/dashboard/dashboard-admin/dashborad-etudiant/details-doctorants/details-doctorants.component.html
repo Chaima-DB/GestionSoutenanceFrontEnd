@@ -16,27 +16,65 @@
           <form>
             <div class="form-row">
               <div class="col">
-                <div class="form-group"><label for="cin"><strong>CIN :   </strong></label><label for="username"><strong>{{doctorant.cin}}</strong></label><input type="text" class="form-control" name="cin" [(ngModel)]="soutenance.doctorant.cin" [(ngModel)]="doctorant.cin"/></div>
-                <div class="form-group"><label for="username"><strong>CNE :  </strong></label><label for="username"><strong>{{doctorant.cne}}</strong></label><input type="text" class="form-control"  name="cne" [(ngModel)]="doctorant.cne"/></div>
+                <div class="form-group">
+                  <label >
+                    <strong>CIN :   </strong>
+                  </label><label >
+                  <strong>{{doctorant.cin}}</strong>
+                  </label>
+                  <input type="text" class="form-control" name="cin" [(ngModel)]="soutenance.doctorant.cin" [(ngModel)]="doctorant.cin"/>
+                </div>
+                <div class="form-group">
+                  <label ><strong>CNE :  </strong>
+                  </label>
+                  <label >
+                    <strong>{{doctorant.cne}}</strong>
+                  </label>
+                  <input type="text" class="form-control"  name="cne" [(ngModel)]="doctorant.cne"/>
+                </div>
               </div>
               <div class="col">
-                <div class="form-group"><label for="email"><strong>Email Address :  </strong></label><label for="email"><strong>{{doctorant.email}}</strong></label><input type="email" class="form-control"  name="email" [(ngModel)]="doctorant.email"/></div>
-                <div class="form-group"><label for="username"><strong>Telephone : </strong></label><label for="username"><strong>{{doctorant.tel}}</strong></label><input type="text" class="form-control"  name="tel" [(ngModel)]="doctorant.tel"/></div>
+                <div class="form-group">
+                  <label >
+                    <strong>Email Address :  </strong>
+                  </label>
+                  <label>
+                    <strong>{{doctorant.email}}</strong>
+                  </label>
+                  <input type="email" class="form-control"  name="email" [(ngModel)]="doctorant.email"/>
+                </div>
+                <div class="form-group">
+                  <label >
+                    <strong>Telephone : </strong>
+                  </label>
+                  <label >
+                    <strong>{{doctorant.tel}}</strong>
+                  </label>
+                  <input type="text" class="form-control"  name="tel" [(ngModel)]="doctorant.tel"/>
+                </div>
               </div>
             </div>
             <div class="form-row">
               <div class="col">
-                <div class="form-group"><label for="first_name"><strong>Sexe :  </strong><br /></label><label for="first_name"><strong>{{doctorant.sexe}} </strong><br /></label><input type="text" class="form-control"  name="sexe" [(ngModel)]="doctorant.sexe"/></div>
+                <div class="form-group">
+                  <label >
+                    <strong>Sexe :  </strong>
+                  </label>
+                  <label >
+                    <strong>{{doctorant.sexe}} </strong>
+                  </label>
+                  <input type="text" class="form-control"  name="sexe" [(ngModel)]="doctorant.sexe"/>
+                </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label for="last_name">
+                  <label >
                     <strong>Date Inscription :  </strong>
                   </label>
-                  <label for="last_name">
+                  <label >
                     <strong>{{doctorant.dateInscription}}</strong>
                   </label>
-                  <input class="form-control" name="dateInscription" bsDatepicker type="text"
+                  <input class="form-control" name="dateInscription"  type="date"
                          [(ngModel)]="doctorant.dateInscription " />
                 </div>
               </div>
@@ -57,14 +95,62 @@
               <form>
                 <div class="form-row">
                   <div class="col">
-                    <div class="form-group"><label for="username"><strong>Structure De Recherche:     </strong></label><label for="username"><strong>{{doctorant.structureDeRecherche.title}}</strong></label><select class="form-control"><optgroup label="This is a group"><option value="12" selected>This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
-                    <div
-                      class="form-group"><label for="username"><strong>Sujet De Thèse : </strong></label><label for="username"><strong>{{doctorant.sujet.libelle}}</strong></label></div>
+                    <div class="form-group">
+                      <label>
+                      <strong>Structure De Recherche:     </strong>
+                      </label>
+                      <label>
+                        <strong>{{doctorant.structureDeRecherche.title}}</strong>
+                      </label>
+                      <select class="form-control">
+                        <optgroup label="This is a group">
+                        <option value="12" selected>This is item 1</option>
+                        <option value="13">This is item 2</option>
+                        <option value="14">This is item 3</option>
+                        </optgroup>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label >
+                        <strong>Sujet De Thèse : </strong>
+                      </label>
+                      <label >
+                        <strong>{{doctorant.sujet.libelle}}</strong>
+                      </label>
+                    </div>
                   </div>
                   <div class="col">
-                    <div class="form-group"><label for="email"><strong>Specialité:   </strong></label><label for="email"><strong>{{doctorant.specialite.libelle}}</strong></label><select class="form-control"><optgroup label="This is a group"><option value="12" selected>This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+                    <div class="form-group">
+                      <label >
+                        <strong>Specialité:   </strong>
+                      </label>
+                      <label >
+                        <strong>{{doctorant.specialite.libelle}}</strong>
+                      </label>
+                      <select class="form-control">
+                        <optgroup label="This is a group">
+                          <option value="12" selected>This is item 1</option>
+                          <option value="13">This is item 2</option>
+                          <option value="14">This is item 3</option>
+                        </optgroup>
+                      </select>
+                    </div>
                     <div
-                      class="form-group"><label for="username"><strong>Directeur De Thèse : </strong></label><label for="username"><strong></strong></label><select class="form-control"><optgroup label="This is a group"><option value="12" selected>This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+                      class="form-group">
+                      <label >
+                        <strong>Directeur De Thèse : </strong>
+                      </label>
+                      <label >
+                        <strong></strong>
+                      </label>
+                      <select class="form-control">
+                        <optgroup label="This is a group">
+                          <option value="12" selected>This is item 1</option>
+                          <option value="13">This is item 2</option>
+                          <option value="14">This is item 3</option>
+                        </optgroup>
+                      </select>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Editer</button></div>
@@ -77,10 +163,21 @@
             </div>
             <div class="card-body">
               <form>
-                <div class="form-group"><label for="address"><strong>Date : </strong></label><input class="form-control" type="date" /></div>
+                <div class="form-group"><label ><strong>Date : </strong></label><input class="form-control" type="date" /></div>
                 <div class="form-row">
                   <div class="col">
-                    <div class="form-group"><label for="username"><strong>Ajouter un  Rapporteur </strong></label><select class="form-control"><optgroup label="This is a group"><option value="12" selected>This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+                    <div class="form-group">
+                      <label >
+                        <strong>Ajouter un  Rapporteur </strong>
+                      </label>
+                      <select class="form-control">
+                        <optgroup label="This is a group">
+                          <option value="12" selected>This is item 1</option>
+                          <option value="13">This is item 2</option>
+                          <option value="14">This is item 3</option>
+                        </optgroup>
+                      </select>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Save Settings</button>
@@ -133,51 +230,24 @@
             <div class="form-row">
               <div class="col">
                 <div class="form-group">
-                  <label for="soutenance.reference">
-                    <strong>Reference :   </strong>
-                  </label>
-                  <label for="soutenance.reference">
-                    <strong>{{soutenance.reference}}</strong>
-                  </label><input type="text" class="form-control" name="soutenance.reference" [(ngModel)]="soutenance.reference"/>
+                    <label >
+                      <strong>Reference :   </strong>
+                    </label>
+                    <label >
+                      <strong>{{soutenance.reference}}</strong>
+                    </label>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label for="date">
-                    <strong>Date : </strong>
-                  </label><label for="soutenance.reference">
-                  <strong>{{soutenance.dateSoutenance}}</strong>
-                </label>
-                  <input class="form-control" type="datetime-local"name="soutenance.date" [(ngModel)]="soutenance.dateSoutenance" />
+                    <label >
+                      <strong>Date : </strong>
+                    </label>
+                    <label >
+                      <strong >{{soutenance.dateSoutenance}} / {{soutenance.heureSoutenance}} </strong>
+                    </label>
                 </div>
               </div>
-            </div>
-
-            <div class="form-row">
-              <div class="col">
-                <div class="form-group">
-                  <label for="jury">
-                    <strong>Ajouter un Jury </strong>
-                  </label>
-                  <select class="form-control" name="professeur.cin" id="professeur.cin" [(ngModel)]="jury.professeur.cin">
-                  <optgroup label="choisir un professeur">
-                    <option *ngFor="let p of professeurs" [value]="p.cin"  selected>{{p.nom}} {{p.prenom}}</option>
-                  </optgroup>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="form-row">
-            <div class="form-group">
-              <div class="col">
-              <button class="btn btn-primary btn-sm" type="submit" (click)="addjury();findBySoutenanceReference(soutenance)">choisir le jury</button>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col">
-              <button class="btn btn-primary btn-sm" type="submit" (click)="save()">Enregistrer </button>
-              </div>
-            </div>
             </div>
               <div>
               <h4 class="text-center text-primary">Liste Des Jurys</h4>
@@ -193,7 +263,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let j of soutenance.jurys">
+                  <tr *ngFor="let j of juryDetails">
                     <td>{{j.professeur.nom}}</td>
                     <td>{{j.professeur.prenom}}</td>
                     <td>{{j.professeur.specialite.libelle}}</td>

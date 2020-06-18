@@ -4,6 +4,8 @@ import {Jury} from '../model/jury.model';
 import {HttpClient} from '@angular/common/http';
 import {Doctorant} from '../model/doctorant.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {of} from 'rxjs';
+import {newArray} from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +13,19 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class SoutenanceService {
   private _soutenance: Soutenance;
   private _jury: Jury;
-  private _jurys:Array<Jury>;
+  private _jurys: Array<Jury>;
+  private _lesJurys: Array<Jury>;
   private _doctorant: Doctorant;
   private _doctorants : Array<Doctorant>;
   private _juryDetails : Array<Jury>;
-  private _soutenances :Array<Soutenance>;
+  private _soutenances : Array<Soutenance>;
   private _baseUrl= 'http://localhost:8090/';
   private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/soutenance/';
   private _urlJury = this._baseUrl + 'api/v1/gestionDesSoutenances-api/jury/';
   private _ok: string;
   private _no: string;
   private _status: boolean;
+  private _soutenanceDetail: Soutenance;
 
 
 
@@ -109,6 +113,28 @@ export class SoutenanceService {
   }
 
 
+  get lesJurys(): Array<Jury> {
+    if (this._lesJurys == null) {
+      this._lesJurys = new Array<Jury>();
+    }
+    return this._lesJurys;
+  }
+
+  set lesJurys(value: Array<Jury>) {
+    this._lesJurys = value;
+  }
+
+  get soutenanceDetail(): Soutenance {
+    if (this._soutenanceDetail == null) {
+      this._soutenanceDetail = new Soutenance();
+    }
+    return this._soutenanceDetail;
+  }
+
+  set soutenanceDetail(value: Soutenance) {
+    this._soutenanceDetail = value;
+  }
+
   get soutenance(): Soutenance {
     if (this._soutenance == null){
       this._soutenance = new Soutenance();
@@ -132,14 +158,16 @@ export class SoutenanceService {
   }
 
   public addJury() {
-    console.log(this.jurys);
-    console.log(this.jury);
-    this.soutenance.jurys.push(this.cloneJury(this.jury));
-    console.log(this.jury);
-    this.jurys.push(this.cloneJury(this.jury));
-    console.log(this.jury);
-    console.log(this.jurys);
-    this.jury = null;
+    const index = this.soutenance.jurys.findIndex(j => j.professeur.cin === this.jury.professeur.cin);
+    if (index < 0) {
+      this.soutenance.jurys.push(this.cloneJury(this.jury));
+      this.lesJurys.push(this.cloneJury(this.jury));
+      this.jury = null;
+    }else{
+      this._snackBar.open(' jury déjà choisie ', '', {
+        duration: 5000,
+      });
+    }
   }
   public validateSave(): boolean {
     return this.soutenance.reference != null;
@@ -151,9 +179,9 @@ export class SoutenanceService {
         console.log(data);
         if (data > 0) {
           this.soutenances.push(this.cloneSoutenance(this.soutenance));
-
           this.jury = null;
           this.soutenance = null;
+          this.jurys = null;
           this._snackBar.open('Enregistrer avec success ', '', {
             duration: 5000,
           });
@@ -204,11 +232,21 @@ export class SoutenanceService {
     );
   }
 
+  public findAllJurys() {
+    this.http.get<Array<Jury>>(this._urlJury).subscribe(
+      data => {
+        this.jurys = data;
+        console.log('findAll jurys done');
+      }, error => {
+        console.log('erreur');
+      }
+    );
+  }
   public findAll() {
     this.http.get<Array<Soutenance>>(this._url).subscribe(
       data => {
         this.soutenances = data;
-        console.log('done');
+        console.log('find All soutenances done');
       }, error => {
         console.log('erreur');
       }
@@ -230,7 +268,8 @@ export class SoutenanceService {
     const myClone = new  Soutenance();
     myClone.reference = soutenance.reference;
     myClone.dateSoutenance = soutenance.dateSoutenance;
-    myClone.doctorant = soutenance.doctorant;
+    myClone.doctorant.cin = soutenance.doctorant.cin;
+    myClone.heureSoutenance = soutenance.heureSoutenance;
     return myClone;
   }
 
@@ -246,9 +285,24 @@ export class SoutenanceService {
     this.http.get<Soutenance>(this._url + 'doctorant/cin/' + doctorant.cin).subscribe(
       data => {
         this._soutenance = data;
-
+        this.findBySoutenanceReference(data);
       }, error => {
+        this._snackBar.open('une erreur est survenu!! réessayer plutard  ', '', {
+          duration: 5000,
+        });
         console.log('error to find soutenance by doctorant');
+      }
+    );
+  }
+  public findByReference(soutenance: Soutenance) {
+    this.http.get<Soutenance>(this._url + 'reference/' + soutenance.reference).subscribe(
+      data => {
+        this._soutenanceDetail = data;
+        this.findBySoutenanceReference(data);
+      }, error => {
+          this._snackBar.open('une erreur est survenu!! réessayer plutard  ', '', {
+            duration: 5000,
+          });
       }
     );
   }

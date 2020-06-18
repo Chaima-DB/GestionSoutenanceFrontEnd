@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {SoutenanceService} from '../../../../controller/service/soutenance.service';
+import {Doctorant} from '../../../../controller/model/doctorant.model';
+import {DoctorantService} from '../../../../controller/service/doctorant.service';
+import {Soutenance} from '../../../../controller/model/soutenance.model';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {DetailsDoctorantsComponent} from '../../dashborad-etudiant/details-doctorants/details-doctorants.component';
+import {DetailsSoutenancesComponent} from '../details-soutenances/details-soutenances.component';
 
 @Component({
   selector: 'app-list-soutenances',
@@ -7,9 +14,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListSoutenancesComponent implements OnInit {
 
-  constructor() { }
+  public page = 1;
+  public Tablesearch = '';
+
+  constructor(
+    private soutenanceService: SoutenanceService,
+    private doctorantService: DoctorantService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
+    this.soutenanceService.findAll();
+    this.doctorantService.findAll();
   }
-
+  get doctorant(): Doctorant {
+    return this.doctorantService.doctorant;
+  }
+  get doctorants(): Array<Doctorant> {
+    return this.doctorantService.doctorants;
+  }
+  get soutenance(): Soutenance {
+    return this.soutenanceService.soutenance;
+  }
+  get soutenances(): Array<Soutenance> {
+    return this.soutenanceService.soutenances;
+  }
+  public deleteByReference(soutenance: Soutenance) {
+    this.soutenanceService.deleteByReference(soutenance);
+  }
+  public findByReference(soutenance: Soutenance) {
+    this.soutenanceService.findByReference(soutenance);
+    const  dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = ' 700px ';
+    dialogConfig.height = '700px';
+    this.dialog.open(DetailsSoutenancesComponent, dialogConfig);
+  }
 }

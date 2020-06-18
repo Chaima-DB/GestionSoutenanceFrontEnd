@@ -6,6 +6,7 @@ import {Professeur} from '../../../../controller/model/professeur.model';
 import {Jury} from '../../../../controller/model/jury.model';
 import {DoctorantService} from '../../../../controller/service/doctorant.service';
 import {Doctorant} from '../../../../controller/model/doctorant.model';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-ajout-soutenance',
@@ -50,6 +51,9 @@ export class AjoutSoutenanceComponent implements OnInit {
     return this.professeurService.professeurs;
   }get jurys(): Array<Jury> {
     return this.soutenanceService.jurys;
+  }
+  get lesJurys(): Array<Jury> {
+    return this.soutenanceService.lesJurys;
   }
   get jury(): Jury {
     return this.soutenanceService.jury;

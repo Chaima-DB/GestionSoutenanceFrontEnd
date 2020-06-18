@@ -16,18 +16,14 @@ import {Jury} from '../../../../controller/model/jury.model';
   styleUrls: ['./details-doctorants.component.css']
 })
 export class DetailsDoctorantsComponent implements OnInit {
-datePickerConfig: Partial<BsDatepickerConfig>;
   constructor(public dialogBox: MatDialogRef<DetailsDoctorantsComponent>,
               private doctorantService: DoctorantService,
               private professeurService: ProfesseurService,
               private soutenanceService: SoutenanceService) {
-    this.datePickerConfig = Object.assign({}, { containerClass: 'theme-dark-blue', dateInputFormat: 'yyyy-MM-dd'});
   }
 
   ngOnInit(): void {
     this.professeurService.findAll();
-    console.log(this.jury);
-
   }
   onClose(){
   this.dialogBox.close();
@@ -41,32 +37,14 @@ datePickerConfig: Partial<BsDatepickerConfig>;
   public update(doctorant: Doctorant, id: number) {
     this.doctorantService.update(doctorant, id);
   }
-  get professeurs(): Array<Professeur> {
-    return this.professeurService.professeurs;
-  }
   get professeur(): Professeur{
     return this.professeurService.professeur;
-  }
-  get soutenances(): Array<Soutenance> {
-    return this.soutenanceService.soutenances;
   }
   get soutenance(): Soutenance {
     return this.soutenanceService.soutenance;
   }
-  get jury(): Jury{
-    return this.soutenanceService.jury;
-  }
-  get jurys(): Array<Jury>{
-    return this.soutenanceService.jurys;
-  }
   get juryDetails(): Array<Jury>{
     return this.soutenanceService.juryDetails;
-  }
-  public addjury(){
-  this.soutenanceService.addJury();
-}
-  public findBySoutenanceReference(soutenance: Soutenance){
-    return this.soutenanceService.findBySoutenanceReference(soutenance);
   }
 public save() {
     this.soutenanceService.save();

@@ -1,0 +1,73 @@
+ <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h3 class="text-left text-primary font-weight-bold m-0">Soutenance </h3>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="form-row">
+            <div class="col">
+              <div class="form-group">
+                <label >
+                  <strong>Reference :   </strong>
+                </label>
+                <label >
+                  <strong>{{soutenanceDetail.reference}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="col">
+              <div class="form-group">
+                <label >
+                  <strong>Date : </strong>
+                </label>
+                <label >
+                  <strong >{{soutenanceDetail.dateSoutenance}}</strong>
+                </label>
+              </div>
+                </div>
+              <div class="col">
+              <div class="form-group">
+                <label >
+                  <strong>Time : </strong>
+                </label>
+                <label >
+                  <strong >{{soutenanceDetail.heureSoutenance}}</strong>
+                </label>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-center text-primary">Liste Des Jurys</h4>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>CIN</th>
+                  <th>Nom</th>
+                  <th> Prénom</th>
+                  <th> Spécialité</th>
+                  <th> Date de Dèrnière Publication</th>
+                  <th>Avis</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let j of juryDetails">
+                  <td>{{j.professeur.cin}}</td>
+                  <td>{{j.professeur.nom}}</td>
+                  <td>{{j.professeur.prenom}}</td>
+                  <td>{{j.professeur.specialite.libelle}}</td>
+                  <td>{{j.professeur.dateDernierePublication}}</td>
+                  <td>{{j.avis}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </form>
+      </div>
+ </div>
+
