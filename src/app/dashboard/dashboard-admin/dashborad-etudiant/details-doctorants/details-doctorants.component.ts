@@ -9,6 +9,13 @@ import {ServerBuilderOutput} from '@angular-devkit/build-angular';
 import {SoutenanceService} from '../../../../controller/service/soutenance.service';
 import {Soutenance} from '../../../../controller/model/soutenance.model';
 import {Jury} from '../../../../controller/model/jury.model';
+import {SpecialiteService} from '../../../../controller/service/specialite.service';
+import {StructureDeRechercheService} from '../../../../controller/service/structure-de-recherche.service';
+import {Specialite} from '../../../../controller/model/specialite.model';
+import {StructureDeRecherche} from '../../../../controller/model/structure-de-recherche.model';
+import {of} from 'rxjs';
+import {DirecteurDeTheseService} from '../../../../controller/service/directeur-de-these.service';
+import {DirecteurDeThese} from '../../../../controller/model/directeur-de-these.model';
 
 @Component({
   selector: 'app-details-doctorants',
@@ -19,35 +26,86 @@ export class DetailsDoctorantsComponent implements OnInit {
   constructor(public dialogBox: MatDialogRef<DetailsDoctorantsComponent>,
               private doctorantService: DoctorantService,
               private professeurService: ProfesseurService,
-              private soutenanceService: SoutenanceService) {
+              private soutenanceService: SoutenanceService,
+              private specialiteService: SpecialiteService,
+              private structureDeRechercheService: StructureDeRechercheService,
+              private directeurDeTheseService: DirecteurDeTheseService) {
   }
 
   ngOnInit(): void {
     this.professeurService.findAll();
+    this.specialiteService.findAll();
+    this.structureDeRechercheService.findAll();
   }
-  onClose(){
-  this.dialogBox.close();
+
+  onClose() {
+    this.dialogBox.close();
   }
-  get doctorants(): Array<Doctorant>  {
+  get directeurDeThese(): DirecteurDeThese {
+    return this.directeurDeTheseService.directeurDeThese;
+  }
+  get doctorants(): Array<Doctorant> {
     return this.doctorantService.doctorants;
   }
-  get doctorant(): Doctorant  {
+  get professeurs(): Array<Professeur> {
+    return this.professeurService.professeurs;
+  }
+
+  get doctorant(): Doctorant {
     return this.doctorantService.doctorant;
   }
+
   public update(doctorant: Doctorant, id: number) {
     this.doctorantService.update(doctorant, id);
   }
-  get professeur(): Professeur{
+
+  get professeur(): Professeur {
     return this.professeurService.professeur;
   }
+
   get soutenance(): Soutenance {
     return this.soutenanceService.soutenance;
   }
-  get juryDetails(): Array<Jury>{
+
+  get juryDetails(): Array<Jury> {
     return this.soutenanceService.juryDetails;
   }
-public save() {
-    this.soutenanceService.save();
-}
 
+  get specialites(): Array<Specialite> {
+    return this.specialiteService.specialites;
+  }
+
+  get structures(): Array<StructureDeRecherche> {
+    return this.structureDeRechercheService.structures;
+  }
+
+  get jury(): Jury {
+    return this.soutenanceService.jury;
+  }
+
+  get jurys(): Array<Jury> {
+    return this.soutenanceService.jurys;
+  }
+
+  public save() {
+    this.soutenanceService.save();
+  }
+
+  public updateOrSaveSoutenance(soutenance: Soutenance, id: number) {
+    this.soutenanceService.update(soutenance, id);
+  }
+
+  public updateJury(jury: Jury, id: number) {
+    this.soutenanceService.updateJury(jury, id);
+  }
+
+  public updateJurys(jurys: Array<Jury>) {
+    this.soutenanceService.updateJurys(jurys);
+  }
+  public updateDoctorat(doctorant: Doctorant, id: number) {
+    this.doctorantService.updateDoctorat(doctorant, id);
+  }
+  public updateDirecteur(directeur: DirecteurDeThese, id: number) {
+    this.directeurDeTheseService.update(directeur, id);
+  }
 }

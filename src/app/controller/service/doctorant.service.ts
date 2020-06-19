@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Doctorant} from '../model/doctorant.model';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,7 @@ export class DoctorantService {
   private _ok: string;
   private _no: string;
   private _newDoctorant = false;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
 
 
   get doctorant(): Doctorant {
@@ -86,9 +88,13 @@ export class DoctorantService {
           DoctorantService._compteur++;
           console.log(this._newDoctorant);
           console.log(DoctorantService._compteur);
+          this._snackBar.open('Enregistrer avec success ', '',{
+            duration: 5000,
+          });
         } else if (data === -1) {
-          this._no = 'cette reference existe déjà';
-
+          this._snackBar.open('Cet CIN déjà utiliser ', '', {
+            duration: 5000,
+          });
         }
       }, error => {
         console.log('erreur when saving');
@@ -126,6 +132,9 @@ export class DoctorantService {
     this.http.delete<number>(this._url + 'cin/' + doctorant.cin).subscribe(
       data => {
         this.deleteByCinFromView(doctorant);
+        this._snackBar.open('Supprimer avec success ', '', {
+          duration: 5000,
+        });
       }, error => {
         console.log('erreur');
       }
@@ -144,11 +153,23 @@ export class DoctorantService {
   }
   public update(doctorant: Doctorant, id: number) {
     this.http.put<number>(this._url + 'id/' + id, this.doctorant).subscribe(data => {
-      console.log(data);
-      console.log(this.doctorant.dateInscription);
+      this._snackBar.open('Modifier avec success ', '', {
+        duration: 5000,
+      });
     }, error => {
       console.log('error');
       });
   }
-
+  public updateDoctorat(doctorant: Doctorant, id: number) {
+    this.http.put<number>(this._url + 'doctorat/id/' + id, this.doctorant).subscribe(data => {
+      this._snackBar.open('Modifier avec success ', '', {
+        duration: 5000,
+      });
+    }, error => {
+      console.log('error');
+    });
+  }
+  // public update(doctorant: Doctorant): Observable<number>{
+  //   return this.http.put<number>(this._url + 'id/' + doctorant.id, doctorant);
+  // }
 }
