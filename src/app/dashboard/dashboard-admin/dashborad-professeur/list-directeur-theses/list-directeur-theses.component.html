@@ -1,0 +1,43 @@
+<div class=" col-md-12 mt-2" >
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="card-title text-center"> Table Des Directeurs De Thèse</h1>
+      </div>
+      <div class="card-body">
+        <div class="container ">
+          <div class="form-group row mb-4">
+            <input type="text" class="form-control" placeholder="Search" [(ngModel)] = "Tablesearch">
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead class="text-center thead-dark">
+            <tr>
+              <th scope="col"> CIN Professeur </th>
+              <th scope="col"> Nom Professeur  </th>
+              <th scope="col"> Doctorant </th>
+              <th scope="col"> Date Début d'Encadrement </th>
+              <th scope="col"> <span class="fa fa-user-times "></span> </th>
+            </tr>
+            </thead>
+            <tbody class="text-center">
+            <tr *ngFor="let d of directeurs | filter:Tablesearch | paginate: { itemsPerPage: 5 , currentPage: page}">
+              <td> {{d.professeur.cin}} </td>
+              <td> {{d.professeur.nom}} {{d.professeur.prenom}} </td>
+              <td> {{d.doctorant.nom}} {{d.doctorant.prenom}}</td>
+              <td> {{d.dateDebutEncadrement}} </td>
+              <td>
+                <button class="btn btn-danger btn-sm fa fa-trash" (click)="delete(d)"></button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="container row justify-content-center">
+            <pagination-controls class="pagination justify-content-center  pageColor" (pageChange)="page = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

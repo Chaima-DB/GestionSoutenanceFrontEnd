@@ -44,6 +44,8 @@ import { AjoutSoutenanceComponent } from './dashboard/dashboard-admin/dashboard-
 import { ListSoutenancesComponent } from './dashboard/dashboard-admin/dashboard-soutenance/list-soutenances/list-soutenances.component';
 import { DetailsSoutenancesComponent } from './dashboard/dashboard-admin/dashboard-soutenance/details-soutenances/details-soutenances.component';
 import { ListJurysComponent } from './dashboard/dashboard-admin/dashborad-professeur/list-jurys/list-jurys.component';
+import { AjoutDirecteurTheseComponent } from './dashboard/dashboard-admin/dashborad-professeur/ajout-directeur-these/ajout-directeur-these.component';
+import { ListDirecteurThesesComponent } from './dashboard/dashboard-admin/dashborad-professeur/list-directeur-theses/list-directeur-theses.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,8 @@ import { ListJurysComponent } from './dashboard/dashboard-admin/dashborad-profes
     ListSoutenancesComponent,
     DetailsSoutenancesComponent,
     ListJurysComponent,
+    AjoutDirecteurTheseComponent,
+    ListDirecteurThesesComponent,
 
 
 

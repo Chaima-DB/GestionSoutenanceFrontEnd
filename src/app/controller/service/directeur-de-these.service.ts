@@ -38,13 +38,14 @@ private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/directeurThese/'
     this.http.get<Array<DirecteurDeThese>>(this._url).subscribe(
       data => {
         this.directeurDeTheses = data;
+        console.log('done  find all directeurs Theses');
       }, error => {
         console.log('erreur  find all directeurs Theses');
       }
     );
   }
   public save() {
-    this.http.post<number>(this._url, this.directeurDeThese).subscribe(
+    this.http.post<number>(this._url + 'save', this.directeurDeThese).subscribe(
       data => {
         if (data > 0) {
           this.directeurDeTheses.push(this.cloneDirecteur(this.directeurDeThese));
@@ -62,14 +63,16 @@ private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/directeurThese/'
           });
         }
       }, error => {
-        console.log('erreur when saving');
+        this._snackBar.open('une erreur est survenu!! résseyer plutard  ', '', {
+          duration: 5000,
+        });
       }
     );
   }
 
   private cloneDirecteur(directeurDeThese: DirecteurDeThese) {
     const myClone = new DirecteurDeThese();
-    myClone.date = directeurDeThese.date;
+    myClone.dateDebutEncadrement = directeurDeThese.dateDebutEncadrement;
     myClone.professeur = directeurDeThese.professeur;
     myClone.doctorant = directeurDeThese.doctorant;
     return myClone;
