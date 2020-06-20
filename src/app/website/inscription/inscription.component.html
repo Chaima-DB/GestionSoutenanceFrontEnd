@@ -105,13 +105,13 @@
             <div class="container-fluid  col-sm-12 col-md-6">
               <mat-form-field class="full-width"  floatLabel="auto">
                 <mat-label>Email</mat-label>
-                <input formControlName="emailCtrl" type="text" matInput required [(ngModel)]="doctorant.email">
+                <input formControlName="emailCtrl" type="text" matInput required [(ngModel)]="doctorant.user.email">
               </mat-form-field>
             </div>
             <div class="container-fluid  col-sm-12 col-md-6">
               <mat-form-field class="full-width" floatLabel="auto">
                 <mat-label>Password</mat-label>
-                <input formControlName="passwordCtrl"  type="password" matInput required [(ngModel)]="doctorant.password">
+                <input formControlName="passwordCtrl"  type="password" matInput required [(ngModel)]="doctorant.user.password">
               </mat-form-field>
             </div>
           </div>
