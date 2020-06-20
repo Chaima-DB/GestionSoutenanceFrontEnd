@@ -6,6 +6,7 @@ import {Doctorant} from '../model/doctorant.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {of} from 'rxjs';
 import {newArray} from '@angular/compiler/src/util';
+import {DirecteurDeThese} from '../model/directeur-de-these.model';
 
 @Injectable({
   providedIn: 'root'
@@ -303,7 +304,41 @@ export class SoutenanceService {
           this._snackBar.open('une erreur est survenu!! réessayer plutard  ', '', {
             duration: 5000,
           });
+      });
+  }
+  public update(soutenance: Soutenance, id: number) {
+    this.http.put<number>(this._url + 'id/' + id, this.soutenance).subscribe(data => {
+      if (data === 1){
+        this.updateJurys(soutenance.jurys);
+        this._snackBar.open('Modifier avec success ', '', {
+        duration: 5000,
+      });
+      }else {
+       this.save();
       }
-    );
+    }, error => {
+      this._snackBar.open('une erreur est survenu!! réessayer plutard  ', '', {
+        duration: 5000,
+      });
+    });
+  }
+  public updateJury(jury: Jury , id: number) {
+    this.http.put<number>(this._url + 'id/' + id, this.jury).subscribe(data => {
+      if (data === 1){
+        this._snackBar.open('Modifier ', '', {
+          duration: 5000,
+        });
+      }
+    }, error => {
+      this._snackBar.open('une erreur est survenu!! réessayer plutard  ', '', {
+        duration: 5000,
+      });
+    });
+  }
+  public updateJurys(jurys: Array<Jury>){
+    const index = this.juryDetails.findIndex(s => s.id === this.jury.id)
+    if (index > 0 ){
+      this.updateJury(this.jury, this.jury.id);
+    }
   }
 }
