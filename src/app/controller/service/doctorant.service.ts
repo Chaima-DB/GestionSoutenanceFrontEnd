@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Doctorant} from '../model/doctorant.model';
-
+import { JwtResponse } from '../model/jwt-response';
 @Injectable({
   providedIn: 'root'
 })
@@ -95,6 +95,7 @@ export class DoctorantService {
       }
     );
   }
+
 
   private cloneDoctorant(doctorant: Doctorant) {
     const myClone = new Doctorant();

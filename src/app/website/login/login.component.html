@@ -5,18 +5,18 @@
     <mat-icon class="maticonsize" color="primary">account_circle</mat-icon>
     <div class="container">
       <mat-form-field  floatLabel="auto">
-        <mat-label>Username</mat-label>
-        <input type="text" matInput required>
+        <mat-label>Email</mat-label>
+        <input type="text" name="email" [(ngModel)]="user.email"  matInput required>
       </mat-form-field>
     </div>
     <div class="container">
       <mat-form-field floatLabel="auto">
         <mat-label>Password</mat-label>
-        <input type="password" matInput required>
+        <input type="password" name="password" [(ngModel)]="user.password" matInput required>
       </mat-form-field>
     </div>
     <div class="container">
-      <button mat-raised-button class="btnsize mt-3" color="primary" >Login</button>
+      <button mat-raised-button class="btnsize mt-3" color="primary" (click)="authenticate(user)" >Login</button>
     </div>
     <div class="container mt-4">
       <a class="link " href="">Forgot Password ?</a>
@@ -24,3 +24,4 @@
   </div>
 
 </div>
+

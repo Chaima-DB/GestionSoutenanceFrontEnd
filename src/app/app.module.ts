@@ -17,7 +17,7 @@ import { ProfileComponent } from './dashboard/dashboard-admin/dashboard-user/pro
 import { LoginComponent } from './website/login/login.component';
 import { InscriptionComponent } from './website/inscription/inscription.component';
 import { NavComponent } from './website/navigation/nav/nav.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { StructureDERechercheComponent } from './dashboard/dashboard-admin/dash-etablissement/structure-derecherche/structure-derecherche.component';
 import {HttpClientModule} from '@angular/common/http';
 import {DoctorantService} from './controller/service/doctorant.service';
@@ -33,17 +33,13 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import {DateFormatModule, DatePipe} from 'ng-date-format';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { ListProfesseursComponent } from './dashboard/dashboard-admin/dashborad-professeur/list-professeurs/list-professeurs.component';
-import { DetailProfesseurComponent } from './dashboard/dashboard-admin/dashborad-professeur/detail-professeur/detail-professeur.component';
-import { AjoutProfesseurComponent } from './dashboard/dashboard-admin/dashborad-professeur/ajout-professeur/ajout-professeur.component';
-import {Professeur} from './controller/model/professeur.model';
-import {ProfesseurService} from './controller/service/professeur.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { DashboardSoutenanceComponent } from './dashboard/dashboard-admin/dashboard-soutenance/dashboard-soutenance.component';
-import { AjoutSoutenanceComponent } from './dashboard/dashboard-admin/dashboard-soutenance/ajout-soutenance/ajout-soutenance.component';
-import { ListSoutenancesComponent } from './dashboard/dashboard-admin/dashboard-soutenance/list-soutenances/list-soutenances.component';
-import { DetailsSoutenancesComponent } from './dashboard/dashboard-admin/dashboard-soutenance/details-soutenances/details-soutenances.component';
-import { ListJurysComponent } from './dashboard/dashboard-admin/dashborad-professeur/list-jurys/list-jurys.component';
+import {ListProfesseursComponent} from "./dashboard/dashboard-admin/dashborad-professeur/list-professeurs/list-professeurs.component";
+import {AjoutProfesseurComponent} from "./dashboard/dashboard-admin/dashborad-professeur/ajout-professeur/ajout-professeur.component";
+import {ListJurysComponent} from "./dashboard/dashboard-admin/dashborad-professeur/list-jurys/list-jurys.component";
+import {DashboardSoutenanceComponent} from "./dashboard/dashboard-admin/dashboard-soutenance/dashboard-soutenance.component";
+import {ListSoutenancesComponent} from "./dashboard/dashboard-admin/dashboard-soutenance/list-soutenances/list-soutenances.component";
+import {AjoutSoutenanceComponent} from "./dashboard/dashboard-admin/dashboard-soutenance/ajout-soutenance/ajout-soutenance.component";
+import {DetailProfesseurComponent} from "./dashboard/dashboard-admin/dashborad-professeur/detail-professeur/detail-professeur.component";
 
 @NgModule({
   declarations: [
@@ -71,16 +67,13 @@ import { ListJurysComponent } from './dashboard/dashboard-admin/dashborad-profes
     DetailsDoctorantsComponent,
     FileUploadComponent,
     ListProfesseursComponent,
-    DetailProfesseurComponent,
     AjoutProfesseurComponent,
-    DashboardComponent,
-    DashboardSoutenanceComponent,
-    AjoutSoutenanceComponent,
-    ListSoutenancesComponent,
-    DetailsSoutenancesComponent,
+    DashboradProfesseurComponent,
     ListJurysComponent,
-
-
+    DashboardSoutenanceComponent,
+    ListSoutenancesComponent,
+    AjoutSoutenanceComponent,
+    DetailProfesseurComponent,
 
   ],
   imports: [
@@ -93,12 +86,12 @@ import { ListJurysComponent } from './dashboard/dashboard-admin/dashborad-profes
     Ng2SearchPipeModule,
     NgxPaginationModule,
     BrowserAnimationsModule,
+    FormsModule,
     DateFormatModule,
     BsDatepickerModule.forRoot(),
   ],
   providers: [
     DoctorantService,
-    ProfesseurService,
     DatePipe,
   ],
   bootstrap: [AppComponent],

@@ -1,6 +1,7 @@
 import {Sujet} from './sujet.model';
 import {Specialite} from './specialite.model';
 import {StructureDeRecherche} from './structure-de-recherche.model';
+import {User} from "./user";
 
 
 export class Doctorant {
@@ -17,4 +18,5 @@ export class Doctorant {
   public sujet: Sujet = new Sujet();
   public specialite: Specialite = new Specialite();
   public structureDeRecherche: StructureDeRecherche = new StructureDeRecherche();
+  public user: User = new User();
 }
