@@ -81,6 +81,9 @@ import { ListDirecteurThesesComponent } from './dashboard/dashboard-admin/dashbo
     ListSoutenancesComponent,
     DetailsSoutenancesComponent,
     ListJurysComponent,
+    ListDirecteurThesesComponent,
+    DashboradProfesseurComponent,
+    AjoutDirecteurTheseComponent
 
 
 

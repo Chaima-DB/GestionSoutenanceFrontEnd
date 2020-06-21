@@ -103,7 +103,6 @@ export class DetailsDoctorantsComponent implements OnInit {
     this.soutenanceService.updateJurys(jurys);
   }
   public updateDoctorat(doctorant: Doctorant, id: number) {
-    this.doctorantService.updateDoctorat(doctorant, id);
   }
   public updateDirecteur(directeur: DirecteurDeThese, id: number) {
     this.directeurDeTheseService.update(directeur, id);
