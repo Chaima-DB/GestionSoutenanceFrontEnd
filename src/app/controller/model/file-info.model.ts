@@ -1,4 +1,7 @@
 export class FileInfo {
   public name: string;
-  public pdf: any;
+  public id: number;
+  public url: string;
+  public description: string;
+  public dateUpload: Date ;
 }
