@@ -4,6 +4,11 @@ export class User {
   public  id: number;
   public email : string;
   public password : string;
-  public isEnable : boolean = true;
-  public roles: Array<Role> = new Array<Role>();
+  public isEnable : boolean ;
+  public role : Role = new Role();
 }
+
+  // {id: 1, titre :"ROLE_SUPER_ADMIN"},
+  // {id: 2, titre :"ROLE_ADMIN"},
+  // {id: 3, titre :"ROLE_USER"},
+  // {id: 4, titre :"ROLE_PROF"},

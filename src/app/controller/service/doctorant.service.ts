@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Doctorant} from '../model/doctorant.model';
 import { JwtResponse } from '../model/jwt-response';
+import {Role} from "../model/role";
+import {Router} from "@angular/router";
+import {AuthService} from "./auth.service";
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +17,9 @@ export class DoctorantService {
   private _ok: string;
   private _no: string;
   private _newDoctorant = false;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+              private  router: Router,
+              private authService: AuthService) {}
 
 
   get doctorant(): Doctorant {
@@ -76,9 +81,11 @@ export class DoctorantService {
   }
 
   public save() {
-    this.http.post<number>(this._url, this.doctorant).subscribe(
+    this.http.post<JwtResponse>(this._url, this.doctorant,this.authService.httpHeader).subscribe(
       data => {
-        if (data > 0) {
+        if (data) {
+          this.doctorant.user.isEnable = true;
+          this.doctorant.user.role.titre = "ROLE_USER";
           this.doctorants.push(this.cloneDoctorant(this.doctorant));
           this.doctorant = null;
           this._ok = ' enregistrer avec succes ';
@@ -86,9 +93,9 @@ export class DoctorantService {
           DoctorantService._compteur++;
           console.log(this._newDoctorant);
           console.log(DoctorantService._compteur);
-        } else if (data === -1) {
+          console.log(data);
+        } else if (!data) {
           this._no = 'cette reference existe déjà';
-
         }
       }, error => {
         console.log('erreur when saving');
@@ -110,6 +117,9 @@ export class DoctorantService {
     myClone.sujet.libelle = doctorant.sujet.libelle;
     myClone.specialite.libelle = doctorant.specialite.libelle;
     myClone.structureDeRecherche.title = doctorant.structureDeRecherche.title;
+    myClone.user.email = doctorant.user.email;
+    myClone.user.password = doctorant.user.password;
+    myClone.user.role = doctorant.user.role;
     return myClone;
   }
 

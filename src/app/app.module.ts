@@ -17,7 +17,7 @@ import { ProfileComponent } from './dashboard/dashboard-admin/dashboard-user/pro
 import { LoginComponent } from './website/login/login.component';
 import { InscriptionComponent } from './website/inscription/inscription.component';
 import { NavComponent } from './website/navigation/nav/nav.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { StructureDERechercheComponent } from './dashboard/dashboard-admin/dash-etablissement/structure-derecherche/structure-derecherche.component';
 import {HttpClientModule} from '@angular/common/http';
 import {DoctorantService} from './controller/service/doctorant.service';
@@ -46,6 +46,7 @@ import { DetailsSoutenancesComponent } from './dashboard/dashboard-admin/dashboa
 import { ListJurysComponent } from './dashboard/dashboard-admin/dashborad-professeur/list-jurys/list-jurys.component';
 import { AjoutDirecteurTheseComponent } from './dashboard/dashboard-admin/dashborad-professeur/ajout-directeur-these/ajout-directeur-these.component';
 import { ListDirecteurThesesComponent } from './dashboard/dashboard-admin/dashborad-professeur/list-directeur-theses/list-directeur-theses.component';
+import { DashbordUserComponent } from './dashboard/dashbord-user/dashbord-user.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { ListDirecteurThesesComponent } from './dashboard/dashboard-admin/dashbo
     ListJurysComponent,
     ListDirecteurThesesComponent,
     DashboradProfesseurComponent,
-    AjoutDirecteurTheseComponent
+    AjoutDirecteurTheseComponent,
+    DashbordUserComponent
 
 
 
@@ -94,6 +96,7 @@ import { ListDirecteurThesesComponent } from './dashboard/dashboard-admin/dashbo
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialsModule,
+    FormsModule,
     ReactiveFormsModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,

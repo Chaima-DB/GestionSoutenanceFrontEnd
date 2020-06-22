@@ -6,7 +6,7 @@
     <div class="container">
       <mat-form-field  floatLabel="auto">
         <mat-label>Email</mat-label>
-        <input type="text" name="email" [(ngModel)]="user.email"  matInput required>
+        <input type="email" name="email" [(ngModel)]="user.email"  matInput required>
       </mat-form-field>
     </div>
     <div class="container">
@@ -16,7 +16,7 @@
       </mat-form-field>
     </div>
     <div class="container">
-      <button mat-raised-button class="btnsize mt-3" color="primary" (click)="authenticate(user)" >Login</button>
+      <button mat-raised-button class="btnsize mt-3" color="primary" (click)="authenticate()">Login</button>
     </div>
     <div class="container mt-4">
       <a class="link " href="">Forgot Password ?</a>
@@ -24,4 +24,3 @@
   </div>
 
 </div>
-

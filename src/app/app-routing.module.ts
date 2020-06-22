@@ -28,7 +28,7 @@ const routes: Routes = [
   { path : 'inscription',
     component: InscriptionComponent,
   },
-  { path : 'dashboard',
+  { path : 'dashboardAdmin',
     component: DashboardAdminComponent,
               children: [
                 { path : '',
@@ -54,6 +54,10 @@ const routes: Routes = [
                   component: DashboardSoutenanceComponent,
                 },
               ]
+  },
+  { path : 'dashboardUser',
+    component: DashboardUserComponent,
+    children: []
   }
 ];
 

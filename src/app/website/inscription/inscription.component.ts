@@ -7,6 +7,7 @@ import {Doctorant} from '../../controller/model/doctorant.model';
 import {SpecialiteService} from '../../controller/service/specialite.service';
 import {SujetService} from '../../controller/service/sujet.service';
 import {Specialite} from '../../controller/model/specialite.model';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-inscription',
@@ -14,6 +15,8 @@ import {Specialite} from '../../controller/model/specialite.model';
   styleUrls: ['./inscription.component.css']
 })
 export class InscriptionComponent implements OnInit {
+  hideField = false;
+  roleUser = "ROLE_USER";
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -22,7 +25,8 @@ export class InscriptionComponent implements OnInit {
               private doctorantService: DoctorantService,
               private specialiteService: SpecialiteService,
               private sujetService: SujetService,
-              private _formBuilder: FormBuilder){ }
+              private _formBuilder: FormBuilder,
+              private  router: Router){ }
   requiredFormControlnom = new FormControl('', [
     Validators.required,
   ]);

@@ -113,6 +113,11 @@
                 <mat-label>Password</mat-label>
                 <input formControlName="passwordCtrl"  type="password" matInput required [(ngModel)]="doctorant.user.password">
               </mat-form-field>
+              <mat-form-field class="full-width" *ngIf="hideField">
+                <mat-select   formControlName="structureCtrl" [(ngModel)]="doctorant.user.role.titre" >
+                  <mat-option [value]="3" ngDefaultControl>{{roleUser}}</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
           </div>
         </div>
