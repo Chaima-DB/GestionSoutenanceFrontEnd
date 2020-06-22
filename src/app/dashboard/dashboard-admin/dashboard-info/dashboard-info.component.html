@@ -1,22 +1,93 @@
-<div *ngIf="currentFile" class="progress">
-  <div
-    class="progress-bar progress-bar-info progress-bar-striped"
-    role="progressbar"
-    attr.aria-valuenow="{{ progress }}"
-    aria-valuemin="0"
-    aria-valuemax="100"
-    [ngStyle]="{ width: progress + '%' }"
-  >
-    {{ progress }}%
+<div class="container">
+  <div class="container mt-3" >
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card-header">
+        <h1 class="text-center">Ajout d'un Article</h1>
+        </div>
+        <div class="card col-sm-12 col-md " >
+          <div class="card-body">
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <label >Mot Clés </label>
+                  <input type="text"  name="reference" required minlength="3" class="form-control" [(ngModel)]="article.motCle">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+
+                  <label >Doctorant</label>
+                  <select class="custom-select"  [(ngModel)]="article.doctorant.cin" >
+                    <option>choisir un doctorant...</option>
+                    <option selected *ngFor="let d of doctorants" [value]="d.cin  " ngDefaultControl >{{d.nom}} {{d.prenom}}</option>
+                  </select>
+
+                </div>
+                <div class="col-md-6">
+
+                  <label >Indexation</label>
+                  <select class="custom-select"  [(ngModel)]="article.indexation.libelle" >
+                    <option>choisir l'indexation...</option>
+                    <option selected *ngFor="let d of indexations" [value]="d.id  " ngDefaultControl >{{d.libelle}}</option>
+                  </select>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group ">
+              <div class="row">
+                <div class="col-md-6">
+
+                <div *ngIf="currentFile" class="progress">
+                  <div
+                    class="progress-bar progress-bar-info progress-bar-striped"
+                    role="progressbar"
+                    attr.aria-valuenow="{{ progress }}"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    [ngStyle]="{ width: progress + '%' }"
+                  >
+                    {{ progress }}%
+                  </div>
+                </div>
+
+                <label class="btn btn-default">
+                  <input type="file" (change)="selectFile($event)" />
+                </label>
+
+
+                <div class="alert alert-light" role="alert">{{ message }}</div>
+
+                </div>
+              </div>
+              </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-outline-info btn-block"  (click)="upload()" >Save</button>
+          </div>
+      </div>
+      <div class="card" >
+        <div class="card-header"><h2 class="text-center" > Liste des Articles</h2></div>
+        <table class="table table-striped table-hover">
+          <thead>
+          <th>file</th>
+          </thead>
+          <tbody>
+          <tr  *ngFor="let a of articles">
+            <td>{{a.file}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 
-<label class="btn btn-default">
-  <input type="file" (change)="selectFile($event)" />
-</label>
 
-<button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">
-  Upload
-</button>
-
-<div class="alert alert-light" role="alert">{{ message }}</div>
