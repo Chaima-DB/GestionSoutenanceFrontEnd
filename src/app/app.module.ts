@@ -47,6 +47,7 @@ import { ListJurysComponent } from './dashboard/dashboard-admin/dashborad-profes
 import { AjoutDirecteurTheseComponent } from './dashboard/dashboard-admin/dashborad-professeur/ajout-directeur-these/ajout-directeur-these.component';
 import { ListDirecteurThesesComponent } from './dashboard/dashboard-admin/dashborad-professeur/list-directeur-theses/list-directeur-theses.component';
 import { DashbordUserComponent } from './dashboard/dashbord-user/dashbord-user.component';
+import {Article} from './controller/model/article.model';
 
 @NgModule({
   declarations: [

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
 import {FileInfo} from '../model/file-info.model';
 import {Observable} from 'rxjs';
+import {Article} from '../model/article.model';
 
 
 @Injectable({

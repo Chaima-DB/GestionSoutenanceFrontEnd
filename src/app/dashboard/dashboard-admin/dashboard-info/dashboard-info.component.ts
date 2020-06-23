@@ -30,7 +30,10 @@ export class DashboardInfoComponent implements OnInit {
     this.articleService.findAllIndexation();
     this.articleService.findAll();
   }
-
+  public save() {
+    this.upload();
+    this.articleService.save();
+  }
   get doctorants(): Array<Doctorant> {
     return this.doctorantService.doctorants;
   }
@@ -43,19 +46,11 @@ export class DashboardInfoComponent implements OnInit {
   get article(): Article {
     return this.articleService.article;
   }
-  public save() {
-    this.articleService.save().pipe(first()).subscribe(data => {
-      this.upload();
-    }, error => {
-      console.log(error);
-    });
-  }
   selectFile(event) {
     this.selectedFiles = event.target.files;
   }
   upload() {
     this.progress = 0;
-
     this.currentFile = this.selectedFiles.item(0);
     this.uploadService.upload(this.currentFile).subscribe(
       event => {
@@ -65,7 +60,6 @@ export class DashboardInfoComponent implements OnInit {
           this.message = event.body.message;
           this.fileInfos = this.uploadService.getFiles();
         }
-        this.articleService.save();
       },
       err => {
         this.progress = 0;
@@ -75,5 +69,11 @@ export class DashboardInfoComponent implements OnInit {
 
     this.selectedFiles = undefined;
   }
-
+  // public save() {
+  //   this.articleService.save().pipe(first()).subscribe(data => {
+  //     this.upload();
+  //   }, error => {
+  //     console.log(error);
+  //   });
+  // }
 }
