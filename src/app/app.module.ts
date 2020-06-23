@@ -19,7 +19,7 @@ import { InscriptionComponent } from './website/inscription/inscription.componen
 import { NavComponent } from './website/navigation/nav/nav.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { StructureDERechercheComponent } from './dashboard/dashboard-admin/dash-etablissement/structure-derecherche/structure-derecherche.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpInterceptor} from '@angular/common/http';
 import {DoctorantService} from './controller/service/doctorant.service';
 import { EtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/etablissement.component';
 import { ListEtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/list-etablissement/list-etablissement.component';
@@ -46,7 +46,22 @@ import { DetailsSoutenancesComponent } from './dashboard/dashboard-admin/dashboa
 import { ListJurysComponent } from './dashboard/dashboard-admin/dashborad-professeur/list-jurys/list-jurys.component';
 import { AjoutDirecteurTheseComponent } from './dashboard/dashboard-admin/dashborad-professeur/ajout-directeur-these/ajout-directeur-these.component';
 import { ListDirecteurThesesComponent } from './dashboard/dashboard-admin/dashborad-professeur/list-directeur-theses/list-directeur-theses.component';
-import { DashbordUserComponent } from './dashboard/dashbord-user/dashbord-user.component';
+import {LoginService} from "./controller/service/login.service";
+import {StructureDeRechercheService} from "./controller/service/structure-de-recherche.service";
+import {EtablissementService} from "./controller/service/etablissement.service";
+import {AuthGuard} from "./controller/guards/auth.guard";
+import {JwtInterceptorService} from "./controller/service/jwt-interceptor.service";
+import {GuardAdminGuard} from "./controller/guards/guard-admin.guard";
+import {GuardProfGuard} from "./controller/guards/guard-prof.guard";
+import {GuardUserGuard} from "./controller/guards/guard-user.guard";
+import { DashboardDoctorantComponent } from './dashboard/dashboard-doctorant/dashboard-doctorant.component';
+import { DashboardDocSidelistComponent } from './dashboard/dashboard-doctorant/dashboard-doc-sidelist/dashboard-doc-sidelist.component';
+import { DashboardDocNavComponent } from './dashboard/dashboard-doctorant/dashboard-doc-nav/dashboard-doc-nav.component';
+import { DoctorantProfileComponent } from './dashboard/dashboard-doctorant/doctorant-profile/doctorant-profile.component';
+import {GuardLoginGuard} from "./controller/guards/guard-login.guard";
+import { AjoutArticleComponent } from './dashboard/dashboard-doctorant/article/ajout-article/ajout-article.component';
+import { ArticleComponent } from './dashboard/dashboard-doctorant/article/article.component';
+
 
 @NgModule({
   declarations: [
@@ -85,10 +100,13 @@ import { DashbordUserComponent } from './dashboard/dashbord-user/dashbord-user.c
     ListDirecteurThesesComponent,
     DashboradProfesseurComponent,
     AjoutDirecteurTheseComponent,
-    DashbordUserComponent
-
-
-
+    DashboardUserComponent,
+    DashboardDoctorantComponent,
+    DashboardDocSidelistComponent,
+    DashboardDocNavComponent,
+    DoctorantProfileComponent,
+    AjoutArticleComponent,
+    ArticleComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,7 +125,20 @@ import { DashbordUserComponent } from './dashboard/dashbord-user/dashbord-user.c
   providers: [
     DoctorantService,
     ProfesseurService,
+    StructureDeRechercheService,
+    EtablissementService,
+    LoginService,
+    GuardLoginGuard,
+    GuardAdminGuard,
+    GuardProfGuard,
+    GuardUserGuard,
+    AuthGuard,
     DatePipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
 })

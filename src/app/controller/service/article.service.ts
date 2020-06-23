@@ -5,6 +5,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {Article} from '../model/article.model';
 import {Indexation} from '../model/indexation.model';
 import {map} from 'rxjs/operators';
+import {DoctorantService} from "./doctorant.service";
+import {JwtClientService} from "./jwt-client.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,8 @@ export class ArticleService {
   private _baseUrl= 'http://localhost:8090/';
   private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/article/';
   private _urlIndexation= this._baseUrl + 'api/v1/gestionDesSoutenances-api/indexation/';
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar) { }
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar,private doctorantService: DoctorantService,
+              private jwtClientService: JwtClientService) { }
   get article(): Article {
     if (this._article == null) {
       this._article = new Article();
@@ -71,33 +74,36 @@ export class ArticleService {
     );
   }
 
-  // public save() {
-  //   this.http.post<number>(this._url, this.article).subscribe(
-  //     data => {
-  //       if (data > 0) {
-  //         this.articles.push(this.cloneArticle(this.article));
-  //         this.article = null;
-  //         this._snackBar.open('Enregistrer avec success ', '', {
-  //           duration: 5000,
-  //         });
-  //       }
-  //     }, error => {
-  //       console.log(this.article);
-  //       this._snackBar.open('une erreur est survenu!! résseyer plutard  ', '', {
-  //         duration: 5000,
-  //       });
-  //     }
-  //   );
-  // }
-  public save() {
-    return   this.http.post<number>(this._url, this.article).pipe(map(
+   public save() {
+    this.http.post<number>(this._url, this.article).subscribe(
       data => {
-        return data ;
-        /* this._snackBar.open('Enregistrer avec success ', '', {
-           duration: 5000
-         });*/
-      }));
+        if (data > 0) {
+          //this.article.doctorant.user = this.doctorantService.findByUserEmail(this.jwtClientService.getUsername());
+          this.article = null;
+          console.log(data);
+          this._snackBar.open('Enregistrer avec success ', '', {
+            duration: 5000,
+          });
+        }
+      }, error => {
+        console.log(this.article);
+        this._snackBar.open('une erreur est survenu!! résseyer plutard  ', '', {
+          duration: 5000,
+        });
+      }
+    );
   }
+  // public save() {
+  //   return   this.http.post<number>(this._url, this.article).subscribe(
+  //     data => {
+  //       console.log(data);
+  //       /* this._snackBar.open('Enregistrer avec success ', '', {
+  //          duration: 5000
+  //        });*/
+  //     },error => {
+  //       console.log(error);
+  //     });
+  // }
   private cloneArticle(article: Article) {
     const myClone = new Article();
     myClone.datePublicationArticle = article.datePublicationArticle;

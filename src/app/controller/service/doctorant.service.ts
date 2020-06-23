@@ -5,12 +5,15 @@ import { JwtResponse } from '../model/jwt-response';
 import {Role} from "../model/role";
 import {Router} from "@angular/router";
 import {AuthService} from "./auth.service";
+import {User} from "../model/user";
+import {map} from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
 export class DoctorantService {
   public static _compteur: number;
   private _doctorant: Doctorant;
+  private _user: User;
   private _doctorants: Array<Doctorant>;
   private _baseUrl= 'http://localhost:8090/';
   private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/doctorant/';
@@ -21,6 +24,17 @@ export class DoctorantService {
               private  router: Router,
               private authService: AuthService) {}
 
+
+  get user(): User {
+    if (this._user == null) {
+      this._user = new User();
+    }
+    return this._user;
+  }
+
+  set user(value: User) {
+    this._user = value;
+  }
 
   get doctorant(): Doctorant {
     if (this._doctorant == null) {
@@ -160,6 +174,15 @@ export class DoctorantService {
     }, error => {
       console.log('error');
       });
+  }
+
+  public findByUserEmail(email: string){
+   this.http.get<Doctorant>(this._url + "email/" + email ,this.authService.httpHeader)
+     .subscribe(data => {
+    this._doctorant = data;
+   }, error => {
+     console.log(error);
+   });
   }
 
 }

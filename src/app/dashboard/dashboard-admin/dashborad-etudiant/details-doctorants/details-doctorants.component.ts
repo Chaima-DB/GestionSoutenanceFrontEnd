@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {DoctorantService} from '../../../../controller/service/doctorant.service';
 import {Doctorant} from '../../../../controller/model/doctorant.model';
-import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
 import {ProfesseurService} from '../../../../controller/service/professeur.service';
 import {Professeur} from '../../../../controller/model/professeur.model';
-import {ServerBuilderOutput} from '@angular-devkit/build-angular';
 import {SoutenanceService} from '../../../../controller/service/soutenance.service';
 import {Soutenance} from '../../../../controller/model/soutenance.model';
 import {Jury} from '../../../../controller/model/jury.model';
@@ -13,7 +11,6 @@ import {SpecialiteService} from '../../../../controller/service/specialite.servi
 import {StructureDeRechercheService} from '../../../../controller/service/structure-de-recherche.service';
 import {Specialite} from '../../../../controller/model/specialite.model';
 import {StructureDeRecherche} from '../../../../controller/model/structure-de-recherche.model';
-import {of} from 'rxjs';
 import {DirecteurDeTheseService} from '../../../../controller/service/directeur-de-these.service';
 import {DirecteurDeThese} from '../../../../controller/model/directeur-de-these.model';
 

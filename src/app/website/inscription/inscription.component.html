@@ -42,7 +42,7 @@
             <div class="container col-sm-12 col-md-6">
               <mat-form-field class="full-width" floatLabel="auto">
                 <mat-label>Telephone</mat-label>
-                <input formControlName="telCtrl"  type="text" matInput required [(ngModel)]="doctorant.tel">
+                <input formControlName="telCtrl"  type="tel" matInput required [(ngModel)]="doctorant.tel">
               </mat-form-field>
             </div>
             <div class="container col-sm-12 col-md-6">
@@ -81,11 +81,11 @@
           </div>
           <div class="row">
             <div class="container col-sm-12 col-md-6">
-              <mat-form-field class="full-width">
+              <mat-form-field class="full-width" class="Select-size">
                 <mat-label>Choisir une Structure De Recherche </mat-label>
                 <mat-select   formControlName="structureCtrl" [(ngModel)]="doctorant.structureDeRecherche.reference" >
                   <mat-option>Aucun</mat-option>
-                  <mat-option value="valid"  *ngFor="let s of structures" [value]="s.reference  " ngDefaultControl>{{s.title}}</mat-option>
+                  <mat-option style="width:2000px; font-size: 14px;" value="valid"   *ngFor="let s of structures" [value]="s.reference  " ngDefaultControl>{{s.title}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>

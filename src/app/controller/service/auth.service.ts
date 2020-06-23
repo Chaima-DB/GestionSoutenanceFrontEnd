@@ -12,13 +12,12 @@ export class AuthService {
   httpHeader = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
-  TOKEN_KEY = "authToken";
   private currentSubjectUser: BehaviorSubject<any>;
   private currentUser: Observable<any>;
 
   constructor(private jwtClientService: JwtClientService,
   private http: HttpClient) {
-    this.currentSubjectUser = new BehaviorSubject<any>(localStorage.getItem(this.TOKEN_KEY));
+    this.currentSubjectUser = new BehaviorSubject<any>(localStorage.getItem(this.jwtClientService.TOKEN_KEY));
     this.currentUser = this.currentSubjectUser.asObservable();
   }
 
@@ -28,5 +27,9 @@ export class AuthService {
     this.jwtClientService.saveAuthority(data.authority);
     this.currentSubjectUser.next(data.token);
   }
-
+  public removeData() {
+    localStorage.removeItem(this.jwtClientService.TOKEN_KEY);
+    localStorage.removeItem(this.jwtClientService.USERNAME_KEY);
+    localStorage.removeItem(this.jwtClientService.AUTHORITY_KEY);
+  }
 }
