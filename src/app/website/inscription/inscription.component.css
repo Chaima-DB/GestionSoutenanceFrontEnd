@@ -19,7 +19,9 @@
 .link {
   color: gray;
 }
-
+.Select-size {
+  width: 120% !important;
+}
 .btnsize{
   width: 200px!important;
   font-family: Arial;

@@ -1,0 +1,17 @@
+<mat-sidenav-container >
+  <mat-sidenav mode="side" opened #sideNav class="sideNav">
+    <app-dashboard-prof-sidelist></app-dashboard-prof-sidelist>
+
+    <div align="center">
+      <button mat-mini-fab class="minifab  margin" color="primary" (click)="sideNav.close(); closeSideNav()">
+        <mat-icon>arrow_left</mat-icon>
+      </button></div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-dashborad-nav [showIcone]="close" (sideNavToggle)="sideNav.open()"></app-dashborad-nav>
+    <main>
+      <router-outlet> </router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

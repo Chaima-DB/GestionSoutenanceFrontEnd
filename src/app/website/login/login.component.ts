@@ -13,6 +13,7 @@ import {JwtClientService} from "../../controller/service/jwt-client.service";
 })
 export class LoginComponent implements OnInit {
   isLoginFailed = false;
+  role: string;
   constructor(private loginService: LoginService,
               private router: Router,
               private jwtClientService: JwtClientService ) { }
@@ -25,13 +26,16 @@ export class LoginComponent implements OnInit {
   authenticate(){
     this.loginService.authenticate(new UserLogin(this.user.email,this.user.password)).pipe(
       first()).subscribe(data => {
-      if (this.jwtClientService.getAuthority().toString() == "ROLE_SUPER_ADMIN" ||
-          this.jwtClientService.getAuthority().toString() == "ROLE_ADMIN") {
+        this.role = this.jwtClientService.getAuthority().toString()
+      if ( this.role == "ROLE_SUPER_ADMIN" || this.role == "ROLE_ADMIN") {
               this.isLoginFailed = false;
               this.router.navigateByUrl('/dashboardAdmin');
-      }else if (this.jwtClientService.getAuthority().toString() == "ROLE_USER"){
+      }else if (this.role == "ROLE_USER"){
               this.isLoginFailed = false;
               this.router.navigateByUrl('/dashboardUser');
+      }else if (this.role = 'ROLE_PROF'){
+        this.isLoginFailed = false;
+        this.router.navigateByUrl('/');
       }else {
         this.isLoginFailed = false;
         this.router.navigateByUrl('/');

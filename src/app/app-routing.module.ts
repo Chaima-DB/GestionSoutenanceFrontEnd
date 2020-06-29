@@ -5,13 +5,19 @@ import {DashboradEtudiantComponent} from './dashboard/dashboard-admin/dashborad-
 import {DashboradProfesseurComponent} from './dashboard/dashboard-admin/dashborad-professeur/dashborad-professeur.component';
 import {HomeComponent} from './website/home/home.component';
 import {DashboardInfoComponent} from './dashboard/dashboard-admin/dashboard-info/dashboard-info.component';
-import {ListeDoctorantComponent} from './dashboard/dashboard-admin/dashborad-etudiant/liste-doctorant/liste-doctorant.component';
 import {DashboardUserComponent} from './dashboard/dashboard-admin/dashboard-user/dashboard-user.component';
 import {LoginComponent} from './website/login/login.component';
 import {InscriptionComponent} from './website/inscription/inscription.component';
 import {EtablissementComponent} from './dashboard/dashboard-admin/dash-etablissement/etablissement.component';
-import {AjoutEtablissementComponent} from './dashboard/dashboard-admin/dash-etablissement/ajout-etablissement/ajout-etablissement.component';
 import {DashboardSoutenanceComponent} from './dashboard/dashboard-admin/dashboard-soutenance/dashboard-soutenance.component';
+import {AuthGuard} from "./controller/guards/auth.guard";
+import {GuardAdminGuard} from "./controller/guards/guard-admin.guard";
+import {GuardProfGuard} from "./controller/guards/guard-prof.guard";
+import {GuardUserGuard} from "./controller/guards/guard-user.guard";
+import {DashboardDoctorantComponent} from "./dashboard/dashboard-doctorant/dashboard-doctorant.component";
+import {DoctorantProfileComponent} from "./dashboard/dashboard-doctorant/doctorant-profile/doctorant-profile.component";
+import {GuardLoginGuard} from "./controller/guards/guard-login.guard";
+import {ArticleComponent} from "./dashboard/dashboard-doctorant/article/article.component";
 
 
 const routes: Routes = [
@@ -24,12 +30,16 @@ const routes: Routes = [
   },
   { path : 'login',
     component: LoginComponent,
+    canActivate: [GuardLoginGuard]
   },
   { path : 'inscription',
     component: InscriptionComponent,
+    canActivate: [GuardLoginGuard]
   },
   { path : 'dashboardAdmin',
     component: DashboardAdminComponent,
+    canActivate: [AuthGuard,
+                  GuardAdminGuard],
               children: [
                 { path : '',
                   redirectTo : 'dashboard-info',
@@ -56,8 +66,23 @@ const routes: Routes = [
               ]
   },
   { path : 'dashboardUser',
-    component: DashboardUserComponent,
-    children: []
+    component: DashboardDoctorantComponent,
+    canActivate: [AuthGuard, GuardUserGuard],
+    children: [
+      { path : 'Userprofile',
+        component: DoctorantProfileComponent,
+      },
+      { path : 'article',
+        component: ArticleComponent,
+      },
+    ],
+
+  },
+  { path : 'dashboardProf',
+    canActivate: [AuthGuard,
+                  GuardProfGuard],
+    children: [
+    ]
   }
 ];
 

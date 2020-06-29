@@ -1,0 +1,228 @@
+<div class="d-flex justify-content-between">
+  <button mat-button (click)="onClose()"><mat-icon>close</mat-icon></button>
+</div>
+
+<!---------------------------------------------------------------------------------------------------------->
+
+<div class="container-fluid text-left">
+  <h1 class="text-center text-dark mb-4">Profil <label>{{doctorant.nom}}</label><label> {{doctorant.prenom}}</label></h1>
+  <div class="row mb-3">
+    <div class="col">
+      <div class="card shadow mb-3">
+        <div class="card-header py-3">
+          <p class="text-left text-primary m-0 font-weight-bold">Information Personnel: </p>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-row">
+              <div class="col">
+                <div class="form-group">
+                  <label >
+                    <strong>CIN :   </strong>
+                  </label><label >
+                  {{doctorant.cin}}
+                </label>
+                </div>
+                <div class="form-group">
+                  <label ><strong>CNE :  </strong>
+                  </label>
+                  <label >
+                    {{doctorant.cne}}
+                  </label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label >
+                    <strong>Email Address :  </strong>
+                  </label>
+                  <label>
+                    {{doctorant.email}}
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label >
+                    <strong>Telephone : </strong>
+                  </label>
+                  <label >
+                    {{doctorant.tel}}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col">
+                <div class="form-group">
+                  <label >
+                    <strong>Sexe :  </strong>
+                  </label>
+                  <label >
+                    <strong>{{doctorant.sexe}} </strong>
+                  </label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label >
+                    <strong>Date Inscription :  </strong>
+                  </label>
+                  <label >
+                    {{doctorant.dateInscription}}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card shadow mb-3">
+            <div class="card-header py-3">
+              <p class="text-primary m-0 font-weight-bold">Information Sur Sa Doctorat :</p>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label>
+                        <strong>Structure De Recherche:     </strong>
+                      </label>
+                      <label>
+                        {{doctorant.structureDeRecherche.title}}
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label >
+                        <strong>Sujet De Thèse : </strong>
+                      </label>
+                      <label >
+                        {{doctorant.sujet.libelle}}
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label >
+                        <strong>Specialité:   </strong>
+                      </label>
+                      <label >
+                        {{doctorant.specialite.libelle}}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="card shadow">
+            <div class="card-body">
+              <form>
+                  <h4 class="text-center text-primary">Liste Des Rapporteurs</h4>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                      <tr>
+                        <th>Cin</th>
+                        <th>Nom</th>
+                        <th> Prénom</th>
+                        <th>Avis</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let r of rapporteurs">
+                        <td>{{r.professeur.cin}}</td>
+                        <td>{{r.professeur.nom}}</td>
+                        <td>{{r.professeur.prenom}}</td>
+                        <td>{{r.avis}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card shadow mb-5">
+    <div class="card-body">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h3 class="text-left text-primary font-weight-bold m-0">Soutenance </h3>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-row">
+              <div class="col">
+                <div class="form-group">
+                  <label >
+                    <strong>Date : </strong>
+                  </label>
+                  <label >
+                    {{soutenance.dateSoutenance}} / {{soutenance.heureSoutenance}}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-center text-primary">Liste Des Jurys</h4>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th> Prénom</th>
+                    <th> Spécialité</th>
+                    <th> Date de Dèrnière Publication</th>
+                    <th>Avis</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let j of juryDetails">
+                    <td>{{j.professeur.nom}}</td>
+                    <td>{{j.professeur.prenom}}</td>
+                    <td>{{j.professeur.specialite.libelle}}</td>
+                    <td>{{j.professeur.dateDernierePublication}}</td>
+                    <td>{{j.avis}} </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="card shadow mb-5">
+        <div class="card-header py-3">
+          <p class="text-primary m-0 font-weight-bold">Documents</p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Title</h4>
+                  <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
+                  <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Title</h4>
+                  <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
+                  <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

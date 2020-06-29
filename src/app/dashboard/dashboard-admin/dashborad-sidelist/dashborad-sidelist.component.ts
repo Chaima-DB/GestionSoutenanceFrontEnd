@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {JwtClientService} from "../../../controller/service/jwt-client.service";
+
 
 @Component({
   selector: 'app-dashborad-sidelist',
@@ -7,9 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboradSidelistComponent implements OnInit {
 
-  constructor() { }
+  constructor(private jwtClientService: JwtClientService) { }
 
   ngOnInit(): void {
   }
-
 }
