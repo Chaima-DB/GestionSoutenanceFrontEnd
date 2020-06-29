@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Doctorant} from '../model/doctorant.model';
 import { JwtResponse } from '../model/jwt-response';
-import {Role} from "../model/role";
-import {Router} from "@angular/router";
-import {AuthService} from "./auth.service";
-import {User} from "../model/user";
-import {map} from "rxjs/operators";
+import {Router} from '@angular/router';
+import {AuthService} from './auth.service';
+import {User} from '../model/user';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,8 +14,8 @@ export class DoctorantService {
   private _doctorant: Doctorant;
   private _user: User;
   private _doctorants: Array<Doctorant>;
-  private _baseUrl= 'http://localhost:8090/';
-  private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/doctorant/';
+  private _baseUrl = 'http://localhost:8090/';
+  private _url = this._baseUrl + 'api/v1/gestionDesSoutenances-api/doctorant/';
   private _ok: string;
   private _no: string;
   private _newDoctorant = false;
@@ -95,19 +94,15 @@ export class DoctorantService {
   }
 
   public save() {
-    this.http.post<JwtResponse>(this._url, this.doctorant,this.authService.httpHeader).subscribe(
+    this.http.post<JwtResponse>(this._url, this.doctorant, this.authService.httpHeader).subscribe(
       data => {
         if (data) {
           this.doctorant.user.isEnable = true;
-          this.doctorant.user.role.titre = "ROLE_USER";
+          this.doctorant.user.role.titre = 'ROLE_USER';
           this.doctorants.push(this.cloneDoctorant(this.doctorant));
           this.doctorant = null;
           this._ok = ' enregistrer avec succes ';
           this._newDoctorant = true;
-          DoctorantService._compteur++;
-          console.log(this._newDoctorant);
-          console.log(DoctorantService._compteur);
-          console.log(data);
         } else if (!data) {
           this._no = 'cette reference existe déjà';
         }
@@ -177,7 +172,7 @@ export class DoctorantService {
   }
 
   public findByUserEmail(email: string){
-   this.http.get<Doctorant>(this._url + "email/" + email ,this.authService.httpHeader)
+   this.http.get<Doctorant>(this._url + 'email/' + email , this.authService.httpHeader)
      .subscribe(data => {
     this._doctorant = data;
    }, error => {

@@ -49,7 +49,8 @@ export class AjoutSoutenanceComponent implements OnInit {
   }
   get professeurs(): Array<Professeur> {
     return this.professeurService.professeurs;
-  }get jurys(): Array<Jury> {
+  }
+  get jurys(): Array<Jury> {
     return this.soutenanceService.jurys;
   }
   get lesJurys(): Array<Jury> {

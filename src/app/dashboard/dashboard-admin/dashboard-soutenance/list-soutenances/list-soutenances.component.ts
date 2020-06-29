@@ -4,7 +4,6 @@ import {Doctorant} from '../../../../controller/model/doctorant.model';
 import {DoctorantService} from '../../../../controller/service/doctorant.service';
 import {Soutenance} from '../../../../controller/model/soutenance.model';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {DetailsDoctorantsComponent} from '../../dashborad-etudiant/details-doctorants/details-doctorants.component';
 import {DetailsSoutenancesComponent} from '../details-soutenances/details-soutenances.component';
 
 @Component({
@@ -48,7 +47,7 @@ export class ListSoutenancesComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = false;
     dialogConfig.width = ' 700px ';
-    dialogConfig.height = '700px';
+    dialogConfig.height = '480px';
     this.dialog.open(DetailsSoutenancesComponent, dialogConfig);
   }
 }

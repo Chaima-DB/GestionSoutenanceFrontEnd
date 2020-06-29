@@ -1,0 +1,10 @@
+.avatar {
+  width: 70px;
+  height: 70px;
+  background-image: url("../../../../assets/images/fstg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 100px;
+
+
+}

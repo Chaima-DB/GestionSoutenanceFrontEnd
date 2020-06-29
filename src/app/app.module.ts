@@ -46,7 +46,19 @@ import { DetailsSoutenancesComponent } from './dashboard/dashboard-admin/dashboa
 import { ListJurysComponent } from './dashboard/dashboard-admin/dashborad-professeur/list-jurys/list-jurys.component';
 import { AjoutDirecteurTheseComponent } from './dashboard/dashboard-admin/dashborad-professeur/ajout-directeur-these/ajout-directeur-these.component';
 import { ListDirecteurThesesComponent } from './dashboard/dashboard-admin/dashborad-professeur/list-directeur-theses/list-directeur-theses.component';
-import { DashbordUserComponent } from './dashboard/dashbord-user/dashbord-user.component';
+import {DashboardProfComponent} from './dashboard/dashboard-prof/dashboard-prof.component';
+import {DashboardProfNavComponent} from './dashboard/dashboard-prof/dashboard-prof-nav/dashboard-prof-nav.component';
+import {DashboardProfSidelistComponent} from './dashboard/dashboard-prof/dashboard-prof-sidelist/dashboard-prof-sidelist.component';
+import {ProfDoctorantsComponent} from './dashboard/dashboard-prof/prof-doctorants/prof-doctorants.component';
+import {ProfDocDetailsComponent} from './dashboard/dashboard-prof/prof-doctorants/prof-doc-details/prof-doc-details.component';
+import {ProfProfilComponent} from './dashboard/dashboard-prof/prof-profil/prof-profil.component';
+import {ArticleComponent} from './dashboard/dashboard-doctorant/article/article.component';
+import {AjoutArticleComponent} from './dashboard/dashboard-doctorant/article/ajout-article/ajout-article.component';
+import {DashboardDoctorantComponent} from './dashboard/dashboard-doctorant/dashboard-doctorant.component';
+import {DashboardDocNavComponent} from './dashboard/dashboard-doctorant/dashboard-doc-nav/dashboard-doc-nav.component';
+import {DashboardDocSidelistComponent} from './dashboard/dashboard-doctorant/dashboard-doc-sidelist/dashboard-doc-sidelist.component';
+import {AjoutRapporteursComponent} from './dashboard/dashboard-admin/dashborad-professeur/ajout-rapporteurs/ajout-rapporteurs.component';
+
 
 @NgModule({
   declarations: [
@@ -84,11 +96,21 @@ import { DashbordUserComponent } from './dashboard/dashbord-user/dashbord-user.c
     ListJurysComponent,
     ListDirecteurThesesComponent,
     DashboradProfesseurComponent,
+    AjoutRapporteursComponent,
     AjoutDirecteurTheseComponent,
-    DashbordUserComponent
-
-
-
+    DashboradNavComponent,
+    DashboardUserComponent,
+    DashboardProfComponent,
+    DashboardProfNavComponent,
+    DashboardProfSidelistComponent,
+    ProfDoctorantsComponent,
+    ProfDocDetailsComponent,
+    ProfProfilComponent,
+    ArticleComponent,
+    AjoutArticleComponent,
+    DashboardDoctorantComponent,
+    DashboardDocNavComponent,
+    DashboardDocSidelistComponent,
   ],
   imports: [
     BrowserModule,

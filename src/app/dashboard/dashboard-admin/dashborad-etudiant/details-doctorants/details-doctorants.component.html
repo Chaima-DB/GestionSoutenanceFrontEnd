@@ -5,7 +5,7 @@
 <!---------------------------------------------------------------------------------------------------------->
 
 <div class="container-fluid text-left">
-  <h1 class="text-center text-dark mb-4">Profil <label>{{doctorant.nom}}</label><label> {{doctorant.prenom}}</label></h1>
+  <h1 class="text-center text-dark mb-4"><label><strong>{{doctorant.nom}} </strong></label><label><strong> {{doctorant.prenom}} </strong></label></h1>
   <div class="row mb-3">
     <div class="col">
       <div class="card shadow mb-3">
@@ -20,7 +20,7 @@
                   <label >
                     <strong>CIN :   </strong>
                   </label><label >
-                  <strong>{{doctorant.cin}}</strong>
+                  {{doctorant.cin}}
                   </label>
                   <input type="text" class="form-control" name="cin" [(ngModel)]="directeurDeThese.doctorant.cin" [(ngModel)]="soutenance.doctorant.cin" [(ngModel)]="doctorant.cin"/>
                 </div>
@@ -28,7 +28,7 @@
                   <label ><strong>CNE :  </strong>
                   </label>
                   <label >
-                    <strong>{{doctorant.cne}}</strong>
+                    {{doctorant.cne}}
                   </label>
                   <input type="text" class="form-control"  name="cne" [(ngModel)]="doctorant.cne"/>
                 </div>
@@ -39,7 +39,7 @@
                     <strong>Email Address :  </strong>
                   </label>
                   <label>
-                    <strong>{{doctorant.email}}</strong>
+                    {{doctorant.email}}
                   </label>
                   <input type="email" class="form-control"  name="email" [(ngModel)]="doctorant.email"/>
                 </div>
@@ -48,7 +48,7 @@
                     <strong>Telephone : </strong>
                   </label>
                   <label >
-                    <strong>{{doctorant.tel}}</strong>
+                   {{doctorant.tel}}
                   </label>
                   <input type="text" class="form-control"  name="tel" [(ngModel)]="doctorant.tel"/>
                 </div>
@@ -61,7 +61,7 @@
                     <strong>Sexe :  </strong>
                   </label>
                   <label >
-                    <strong>{{doctorant.sexe}} </strong>
+                    {{doctorant.sexe}} 
                   </label>
                   <input type="text" class="form-control"  name="sexe" [(ngModel)]="doctorant.sexe"/>
                 </div>
@@ -72,7 +72,7 @@
                     <strong>Date Inscription :  </strong>
                   </label>
                   <label >
-                    <strong>{{doctorant.dateInscription}}</strong>
+                    {{doctorant.dateInscription}}
                   </label>
                   <input class="form-control" name="dateInscription"  type="date"
                          [(ngModel)]="doctorant.dateInscription " />
@@ -100,7 +100,7 @@
                       <strong>Structure De Recherche:     </strong>
                       </label>
                       <label>
-                        <strong>{{doctorant.structureDeRecherche.title}}</strong>
+                        {{doctorant.structureDeRecherche.title}}
                       </label>
                       <select class="form-control" name="doctorant-structure" [(ngModel)]="doctorant.structureDeRecherche.reference">
                         <optgroup label="liste des structures de recherches">
@@ -113,7 +113,7 @@
                         <strong>Sujet De Thèse : </strong>
                       </label>
                       <label >
-                        <strong>{{doctorant.sujet.libelle}}</strong>
+                        {{doctorant.sujet.libelle}}
                       </label>
                     </div>
                   </div>
@@ -123,7 +123,7 @@
                         <strong>Specialité:   </strong>
                       </label>
                       <label >
-                        <strong>{{doctorant.specialite.libelle}}</strong>
+                        {{doctorant.specialite.libelle}}
                       </label>
                       <select class="form-control" name="doctorant-specialité" [(ngModel)]="doctorant.specialite.reference">
                         <optgroup label="liste des spécialités">
@@ -134,10 +134,10 @@
                     <div
                       class="form-group">
                       <label >
-                        <strong>Directeur De Thèse : </strong>
+                        <strong>Directeur De Thèse :  </strong>
                       </label>
                       <label >
-                        <strong></strong>
+                        {{directeurDeThese.professeur.nom}} {{directeurDeThese.professeur.prenom}}
                       </label>
                       <select class="form-control"  name="doctorant-directeur" [(ngModel)]="directeurDeThese.professeur.cin">
                         <optgroup label="liste des professeurs">
@@ -153,59 +153,36 @@
           </div>
           <div class="card shadow">
             <div class="card-header py-3">
-              <p class="text-primary m-0 font-weight-bold">Affecter Des Rapporteurs : </p>
+              <p class="text-primary m-0 font-weight-bold">Les Rapporteurs : </p>
             </div>
             <div class="card-body">
               <form>
-                <div class="form-group"><label ><strong>Date : </strong></label><input class="form-control" type="date" /></div>
-                <div class="form-row">
-                  <div class="col">
-                    <div class="form-group">
-                      <label >
-                        <strong>Ajouter un  Rapporteur </strong>
-                      </label>
-                      <select class="form-control">
-                        <optgroup label="This is a group">
-                          <option value="12" selected>This is item 1</option>
-                          <option value="13">This is item 2</option>
-                          <option value="14">This is item 3</option>
-                        </optgroup>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Save Settings</button>
                   <h4 class="text-center text-primary">Liste Des Rapporteurs</h4>
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
                       <tr>
-                        <th>Nom</th>
-                        <th> Prénom</th>
-                        <th> Spécialité</th>
-                        <th> Date de Dèrnière Publication</th>
-                        <th>Avis</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col"> Prénom</th>
+                        <th scope="col"> Spécialité</th>
+                        <th scope="col"> Date de Dérnière Publication</th>
+                        <th scope="col">Avis</th>
+                        <th scope="col"> <span class="fa fa-user-times "></span> </th>
                       </tr>
                       </thead>
                       <tbody>
-                      <tr>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
-                        <td>Cell 2</td>
-                        <td>Cell 2</td>
-                        <td>Cell 2</td>
-                      </tr>
-                      <tr>
-                        <td>Cell 3</td>
-                        <td>Cell 4</td>
-                        <td>Cell 4</td>
-                        <td>Cell 4</td>
-                        <td>Cell 4</td>
+                      <tr *ngFor="let r of rapporteurs">
+                        <td>{{r.professeur.nom}}</td>
+                        <td>{{r.professeur.prenom}}</td>
+                        <td>{{r.professeur.specialite.libelle}}</td>
+                        <td>{{r.professeur.dateDernierePublication}}</td>
+                        <td><input type="text" name="avis" class="form-control" [(ngModel)]="r.avis"></td>
+                        <button class="btn btn-danger btn-sm fa fa-trash mt-3" (click)="deleteByProfCin(r)" ></button>
                       </tr>
                       </tbody>
                     </table>
                   </div>
-                </div>
+                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Editer</button></div>
               </form>
             </div>
           </div>
@@ -254,20 +231,34 @@
                     <th> Spécialité</th>
                     <th> Date de Dèrnière Publication</th>
                     <th>Avis</th>
+                    <th scope="col"> <span class="fa fa-user-times "></span> </th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr *ngFor="let j of juryDetails">
-                    <td>{{j.professeur.nom}}</td>
+                    <td>{{j.professeur. nom}}</td>
                     <td>{{j.professeur.prenom}}</td>
                     <td>{{j.professeur.specialite.libelle}}</td>
                     <td>{{j.professeur.dateDernierePublication}}</td>
-                    <td>{{j.avis}} </td>
+                    <td>{{j.avis}}<input type="text" name="avis" class="form-control" [(ngModel)]="j.avis"></td>
+                    <button class="btn btn-dark btn-sm fa fa-edit mt-3" (click)="updateJury(j,j.id)"  ></button>
                   </tr>
                   </tbody>
                 </table>
+                <div class="col">
+                  <div class="form-group">
+                    <label >
+                      <strong>Résultat : </strong>
+                    </label>
+                    <label >
+                      <strong >{{soutenance.resultatFinal}}  </strong>
+                    </label>
+                    <input type="text" class="form-control col-md-4"  name="resultat" [(ngModel)]="soutenance.resultatFinal"/>
+                  </div>
+                </div>
               </div>
             </div>
+            <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Editer</button></div>
           </form>
         </div>
       </div>
@@ -275,29 +266,95 @@
         <div class="card-header py-3">
           <p class="text-primary m-0 font-weight-bold">Documents</p>
         </div>
-        <div class="card-body">
+        <div class="card ">
+        <div class="card-body p-0">
           <div class="row">
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Title</h4>
-                  <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                  <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-                </div>
-              </div>
+            <div class="col-md-3 d-none d-lg-flex">
+              <div class="flex-grow-1 bg-image"></div>
             </div>
-            <div class="col">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Title</h4>
-                  <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                  <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h4 class="text-dark mb-4"> <strong>Article</strong> </h4>
                 </div>
+                <div class="form-group">
+                  <label ><strong>Titre :  </strong></label>
+                  <label >7 moyens simples de protéger votre vie privée sur Internet </label>
+                </div>
+                <div class="form-group"><label ><strong>Mot Clés :  </strong></label>
+                  <label >NSA, bout-en-bout, Chiffrement, TLS et IPsec </label>
+                </div>
+                <div class="form-group">
+                  <label ><strong>Indexation :  </strong></label>
+                  <label >Thomson Reuthers </label>
+                </div>
+
+
               </div>
             </div>
           </div>
         </div>
       </div>
+        <div class="card ">
+          <div class="card-body p-0">
+            <div class="row">
+              <div class="col-md-3 d-none d-lg-flex">
+                <div class="flex-grow-1 bg-image"></div>
+              </div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h4 class="text-dark mb-4"> <strong>Article</strong> </h4>
+                  </div>
+                  <div class="form-group">
+                    <label ><strong>Titre :  </strong></label>
+                    <label >7 moyens simples de protéger votre vie privée sur Internet </label>
+                  </div>
+                  <div class="form-group"><label ><strong>Mot Clés :  </strong></label>
+                    <label >NSA, bout-en-bout, Chiffrement, TLS et IPsec </label>
+                  </div>
+                  <div class="form-group">
+                    <label ><strong>Indexation :  </strong></label>
+                    <label >Thomson Reuthers </label>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card ">
+          <div class="card-body p-0">
+            <div class="row">
+              <div class="col-md-3 d-none d-lg-flex">
+                <div class="flex-grow-1 bg-image"></div>
+              </div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h4 class="text-dark mb-4"> <strong>Article</strong> </h4>
+                  </div>
+                  <div class="form-group">
+                    <label ><strong>Titre :  </strong></label>
+                    <label >7 moyens simples de protéger votre vie privée sur Internet </label>
+                  </div>
+                  <div class="form-group"><label ><strong>Mot Clés :  </strong></label>
+                    <label >NSA, bout-en-bout, Chiffrement, TLS et IPsec </label>
+                  </div>
+                  <div class="form-group">
+                    <label ><strong>Indexation :  </strong></label>
+                    <label >Thomson Reuthers </label>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
     </div>
   </div>
 </div>
+

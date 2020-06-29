@@ -18,6 +18,11 @@ import {DashboardDoctorantComponent} from "./dashboard/dashboard-doctorant/dashb
 import {DoctorantProfileComponent} from "./dashboard/dashboard-doctorant/doctorant-profile/doctorant-profile.component";
 import {GuardLoginGuard} from "./controller/guards/guard-login.guard";
 import {ArticleComponent} from "./dashboard/dashboard-doctorant/article/article.component";
+import {DashboardProfComponent} from './dashboard/dashboard-prof/dashboard-prof.component';
+import {ProfProfilComponent} from './dashboard/dashboard-prof/prof-profil/prof-profil.component';
+import {DetailsDoctorantsComponent} from './dashboard/dashboard-admin/dashborad-etudiant/details-doctorants/details-doctorants.component';
+import {ProfDoctorantsComponent} from './dashboard/dashboard-prof/prof-doctorants/prof-doctorants.component';
+
 
 
 const routes: Routes = [
@@ -79,9 +84,16 @@ const routes: Routes = [
 
   },
   { path : 'dashboardProf',
+    component: DashboardProfComponent,
     canActivate: [AuthGuard,
                   GuardProfGuard],
     children: [
+      { path : 'profile',
+        component: ProfProfilComponent,
+      },
+      { path : 'doctorants',
+        component: ProfDoctorantsComponent,
+      },
     ]
   }
 ];

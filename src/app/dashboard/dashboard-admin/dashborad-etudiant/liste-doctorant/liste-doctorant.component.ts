@@ -5,6 +5,9 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {DetailsDoctorantsComponent} from '../details-doctorants/details-doctorants.component';
 import {SoutenanceService} from '../../../../controller/service/soutenance.service';
 import {Soutenance} from '../../../../controller/model/soutenance.model';
+import {RapporteurService} from '../../../../controller/service/rapporteur.service';
+import {Rapporteur} from '../../../../controller/model/rapporteur.model';
+import {DirecteurDeTheseService} from '../../../../controller/service/directeur-de-these.service';
 
 
 
@@ -17,14 +20,16 @@ export class ListeDoctorantComponent implements OnInit {
   public page = 1;
   public  Tablesearch= "";
 
-  constructor( private doctorantService: DoctorantService, private soutenanceService: SoutenanceService,
+  constructor( private doctorantService: DoctorantService,
+               private soutenanceService: SoutenanceService,
+               private rapporteurService: RapporteurService,
+               private directeurDeTheseService: DirecteurDeTheseService,
                private dialog: MatDialog) {
 
   }
   ngOnInit(): void {
     this.doctorantService.findAll();
   }
-
  get doctorants(): Array<Doctorant>  {
  return this.doctorantService.doctorants;
  }
@@ -49,5 +54,10 @@ export class ListeDoctorantComponent implements OnInit {
   public findByDoctorantCin(doctorant: Doctorant) {
     this.soutenanceService.findByDoctorantCin(doctorant);
   }
-
+  public findRapporteurByDoctorantCin(doctorant: Doctorant){
+    this.rapporteurService.findByDoctorantCin(doctorant);
+  }
+  public findDirecteurByDoctorantCin(doctorant: Doctorant) {
+    this.directeurDeTheseService.findByDoctorantCin(doctorant);
+  }
 }

@@ -13,6 +13,8 @@ import {Specialite} from '../../../../controller/model/specialite.model';
 import {StructureDeRecherche} from '../../../../controller/model/structure-de-recherche.model';
 import {DirecteurDeTheseService} from '../../../../controller/service/directeur-de-these.service';
 import {DirecteurDeThese} from '../../../../controller/model/directeur-de-these.model';
+import {RapporteurService} from '../../../../controller/service/rapporteur.service';
+import {Rapporteur} from '../../../../controller/model/rapporteur.model';
 
 @Component({
   selector: 'app-details-doctorants',
@@ -26,7 +28,8 @@ export class DetailsDoctorantsComponent implements OnInit {
               private soutenanceService: SoutenanceService,
               private specialiteService: SpecialiteService,
               private structureDeRechercheService: StructureDeRechercheService,
-              private directeurDeTheseService: DirecteurDeTheseService) {
+              private directeurDeTheseService: DirecteurDeTheseService,
+              private rapporteurService: RapporteurService) {
   }
 
   ngOnInit(): void {
@@ -37,6 +40,9 @@ export class DetailsDoctorantsComponent implements OnInit {
 
   onClose() {
     this.dialogBox.close();
+  }
+  get rapporteurs(): Array<Rapporteur>  {
+    return this.rapporteurService.rapporteurs;
   }
   get directeurDeThese(): DirecteurDeThese {
     return this.directeurDeTheseService.directeurDeThese;
@@ -87,7 +93,9 @@ export class DetailsDoctorantsComponent implements OnInit {
   public save() {
     this.soutenanceService.save();
   }
-
+  public deleteByProfCin(rapporteur: Rapporteur) {
+    this.rapporteurService.deleteByProfesseurCin(rapporteur);
+  }
   public updateOrSaveSoutenance(soutenance: Soutenance, id: number) {
     this.soutenanceService.update(soutenance, id);
   }

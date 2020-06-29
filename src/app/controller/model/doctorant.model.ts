@@ -1,7 +1,7 @@
 import {Sujet} from './sujet.model';
 import {Specialite} from './specialite.model';
 import {StructureDeRecherche} from './structure-de-recherche.model';
-import {User} from "./user";
+import {User} from './user';
 
 
 export class Doctorant {

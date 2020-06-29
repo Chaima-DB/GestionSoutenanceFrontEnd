@@ -188,7 +188,7 @@ export class SoutenanceService {
           });
         } else if (data === -1) {
           // this._no = 'cette reference est déjà utiliser ';
-          this._snackBar.open('cette reference est déjà utiliser ', '',{
+          this._snackBar.open('cette reference est déjà utiliser ', '', {
             duration: 5000,
           });
         }else if (data === -2) {
@@ -323,7 +323,7 @@ export class SoutenanceService {
     });
   }
   public updateJury(jury: Jury , id: number) {
-    this.http.put<number>(this._url + 'id/' + id, this.jury).subscribe(data => {
+    this.http.put<number>(this._urlJury + 'id/' + id, jury).subscribe(data => {
       if (data === 1){
         this._snackBar.open('Modifier ', '', {
           duration: 5000,

@@ -1,39 +1,29 @@
 <mat-toolbar color="primary" class="navbar toolbar">
   <div class="mr-4 mb-1" >
+    <div class="avatar"></div>
+
+  </div>
+  <div class="mr-auto">
     <button mat-icon-button *ngIf="menuIcon" (click)="onToggleSidenav()">
       <mat-icon >menu</mat-icon>
     </button>
-  </div>
-  <div class="mr-auto">
-    <h4 >{{titre}}</h4>
+
   </div>
   <div class="menuRight">
-    <mat-form-field floatLabel="never">
-      <mat-label>Search</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <button mat-icon-button>
-      <mat-icon>search</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon>settings</mat-icon>
-    </button>
+
     <button mat-icon-button [matMenuTriggerFor]="menuitems" aria-label="Example icon-button with a menu">
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menuitems="matMenu">
+      <button mat-menu-item routerLink="/home">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
       <button mat-menu-item (click)="logOut()">
         <mat-icon>logout</mat-icon>
         <span>Log out</span>
       </button>
-      <button mat-menu-item disabled>
-        <mat-icon>voicemail</mat-icon>
-        <span>Check voice mail</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-        <span>Disable alerts</span>
-      </button>
+
     </mat-menu>
 
   </div>

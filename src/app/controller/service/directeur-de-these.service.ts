@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Jury} from '../model/jury.model';
 import {Professeur} from '../model/professeur.model';
+import {User} from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -114,6 +115,16 @@ private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/directeurThese/'
 
       }, error => {
         console.log('error');
+      }
+    );
+  }
+  public findByProfesseurUserEmail(email: string){
+    this.http.get<Array<DirecteurDeThese>>(this._url + 'email/' + email).subscribe(
+      data => {
+        console.log(data);
+        this._directeurDeTheses = data;
+      }, error => {
+        console.log(error);
       }
     );
   }

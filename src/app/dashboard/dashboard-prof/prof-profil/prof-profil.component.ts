@@ -19,6 +19,9 @@ export class ProfProfilComponent implements OnInit {
   get professeur(): Professeur {
     return this.professeurService.professeur;
   }
+  get prof(): Professeur {
+    return this.professeurService.prof;
+  }
   get user(): User {
     return this.professeurService.user;
   }
