@@ -5,7 +5,7 @@ import {FileInfo} from './file-info.model';
 export class Article {
   public doctorant: Doctorant = new Doctorant();
   public indexation: Indexation = new Indexation();
-  public file: FileInfo = new FileInfo();
+  public file: File;
   public datePublicationArticle: Date;
   public motCle: string ;
 

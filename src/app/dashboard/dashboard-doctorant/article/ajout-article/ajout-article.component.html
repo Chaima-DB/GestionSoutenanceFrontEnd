@@ -50,16 +50,14 @@
                         <input type="file" (change)="selectFile($event)" />
                       </label>
 
-
                       <div class="alert alert-light" role="alert">{{ message }}</div>
-
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="card-footer">
-              <button class="btn btn-outline-info btn-block"  (click)="upload()" >Save</button>
+              <button class="btn btn-outline-info btn-block"  (click)="save()" >Save</button>
             </div>
           </div>
           <div class="card" >
@@ -77,6 +75,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="form-field col-lg-6">
+      <input type="file" (change)="selectFile($event)" [(ngModel)]="article.file" name="pdf">
+      <button class="btn btn-btn" [disabled]="!selectedFiles" (click)="upload()"> <i class="fa fa-download"> Télécharger </i> </button>
     </div>
   </form>
 </div>
