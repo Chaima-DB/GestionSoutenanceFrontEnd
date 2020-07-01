@@ -98,7 +98,7 @@ export class DoctorantService {
       data => {
         if (data) {
           this.doctorant.user.isEnable = true;
-          this.doctorant.user.role.titre = 'ROLE_USER';
+          this.doctorant.user.roles.push({id: 3, titre :"ROLE_USER"});
           this.doctorants.push(this.cloneDoctorant(this.doctorant));
           this.doctorant = null;
           this._ok = ' enregistrer avec succes ';
@@ -128,7 +128,7 @@ export class DoctorantService {
     myClone.structureDeRecherche.title = doctorant.structureDeRecherche.title;
     myClone.user.email = doctorant.user.email;
     myClone.user.password = doctorant.user.password;
-    myClone.user.role = doctorant.user.role;
+    myClone.user.roles = doctorant.user.roles;
     return myClone;
   }
 

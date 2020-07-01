@@ -23,13 +23,13 @@ export class AuthService {
 
   public  saveData(data : JwtResponse){
     this.jwtClientService.saveToken(data.token);
-    this.jwtClientService.saveUsername(data.email);
+    this.jwtClientService.saveEmail(data.email);
     this.jwtClientService.saveAuthority(data.authority);
     this.currentSubjectUser.next(data.token);
   }
   public removeData() {
     localStorage.removeItem(this.jwtClientService.TOKEN_KEY);
-    localStorage.removeItem(this.jwtClientService.USERNAME_KEY);
+    localStorage.removeItem(this.jwtClientService.EMAIL_KEY);
     localStorage.removeItem(this.jwtClientService.AUTHORITY_KEY);
   }
 }

@@ -6,18 +6,20 @@ import {JwtClientService} from '../service/jwt-client.service';
   providedIn: 'root'
 })
 export class GuardAdminGuard implements CanActivate {
-  role: string;
+  roles: string [];
   constructor(private router: Router,
               private jwtClientService: JwtClientService) {
   }
   canActivate(): boolean{
-    this.role = this.jwtClientService.getAuthority().toString();
-    if (this.role === 'ROLE_SUPER_ADMIN' || this.role === 'ROLE_ADMIN') {
+    this.jwtClientService.getAuthority().forEach(role => {
+      this.roles.push(role);
+    } )
+    if (this.roles === ['ROLE_SUPER_ADMIN'] || this.roles === ['ROLE_ADMIN']) {
   return true;
-}else if (this.role === 'ROLE_USER' ){
+}else if (this.roles === ['ROLE_USER'] ){
   this.router.navigate(['/dashboardUser']);
   return false;
-}else if (this.role === 'ROLE_PROF' ){
+}else if (this.roles === ['ROLE_PROF'] ){
     this.router.navigate(['/dashboardProf']);
     return false;
   }

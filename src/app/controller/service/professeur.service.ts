@@ -110,7 +110,7 @@ export class ProfesseurService {
       data => {
         if (data) {
           this.professeur.user.isEnable = true;
-          this.professeur.user.role.titre = 'ROLE_PROF';
+          this.professeur.user.roles.push({id: 4, titre :"ROLE_PROF"});
           this.professeurs.push(this.cloneProfesseur(this.professeur));
           this.professeur = null;
           this._snackBar.open('Enregistrer avec success ', '', {
@@ -137,7 +137,7 @@ export class ProfesseurService {
     myClone.dateDernierePublication = professeur.dateDernierePublication;
     myClone.user.email = professeur.user.email;
     myClone.user.password = professeur.user.password;
-    myClone.user.role = professeur.user.role;
+    myClone.user.roles = professeur.user.roles;
     return myClone;
   }
 

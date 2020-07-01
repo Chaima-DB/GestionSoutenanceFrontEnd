@@ -31,11 +31,6 @@ export class LoginService {
     this._userLogin = value;
   }
 
-  public welcome(token) {
-    let tokenStr = "Bearer "+ token;
-    const headers = new HttpHeaders().set("Authorization",tokenStr);
-    this.http.get(this._baseUrl+"user/welcome" ,{headers,responseType : 'text' as 'json'});
-  }
   public authenticate(user: UserLogin) {
   return this.http.post<JwtResponse>(this._url,this.user, this.authService.httpHeader).pipe(map(
     data => {

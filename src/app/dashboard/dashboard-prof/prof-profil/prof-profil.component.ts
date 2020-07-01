@@ -25,7 +25,7 @@ export class ProfProfilComponent implements OnInit {
   get user(): User {
     return this.professeurService.user;
   }
-  Useremail = this.jwtClientService.getUsername();
+  Useremail = this.jwtClientService.getEmail();
   ngOnInit(): void {
     this.professeurService.findByUserEmail(this.Useremail);
 

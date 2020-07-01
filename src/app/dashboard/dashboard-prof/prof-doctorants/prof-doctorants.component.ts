@@ -27,7 +27,7 @@ export class ProfDoctorantsComponent implements OnInit {
                private rapporteurService: RapporteurService, private jwtClientService: JwtClientService) {
 
   }
-  Useremail = this.jwtClientService.getUsername();
+  Useremail = this.jwtClientService.getEmail();
   ngOnInit(): void {
     this.directeurDeTheseService.findByProfesseurUserEmail(this.Useremail);
     console.log(this.Useremail);

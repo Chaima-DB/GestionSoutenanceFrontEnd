@@ -91,7 +91,7 @@ export class ArticleService {
         }
       }, error => {
         console.log(error);
-        this.article.doctorant.user.email = this.jwtClientService.getUsername();
+        this.article.doctorant.user.email = this.jwtClientService.getEmail();
         console.log(this.article.doctorant.user.email);
         this._snackBar.open('une erreur est survenu!! résseyer plutard  ', '', {
           duration: 5000,

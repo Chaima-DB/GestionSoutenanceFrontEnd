@@ -5,7 +5,7 @@ export class User {
   public email : string;
   public password : string;
   public isEnable : boolean ;
-  public role : Role = new Role();
+  public roles= new Array<Role>();
 }
 
   // {id: 1, titre :"ROLE_SUPER_ADMIN"},
