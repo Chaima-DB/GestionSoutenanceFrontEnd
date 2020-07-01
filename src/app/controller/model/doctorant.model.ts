@@ -15,6 +15,7 @@ export class Doctorant {
   public tel: string;
   public password: string;
   public dateInscription: Date;
+  public nv: number;
   public sujet: Sujet = new Sujet();
   public specialite: Specialite = new Specialite();
   public structureDeRecherche: StructureDeRecherche = new StructureDeRecherche();

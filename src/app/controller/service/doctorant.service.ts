@@ -5,6 +5,7 @@ import { JwtResponse } from '../model/jwt-response';
 import {Router} from '@angular/router';
 import {AuthService} from './auth.service';
 import {User} from '../model/user';
+import {Rapporteur} from '../model/rapporteur.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,12 @@ export class DoctorantService {
   private _doctorant: Doctorant;
   private _user: User;
   private _doctorants: Array<Doctorant>;
+  private _nouveaux: Array<Doctorant>;
+  private _inscrit: Array<Doctorant>;
+  private _liste: Array<Rapporteur>;
   private _baseUrl = 'http://localhost:8090/';
   private _url = this._baseUrl + 'api/v1/gestionDesSoutenances-api/doctorant/';
+  private _urlupdateAddRapporteurs= this._url + 'add/';
   private _ok: string;
   private _no: string;
   private _newDoctorant = false;
@@ -23,7 +28,16 @@ export class DoctorantService {
               private  router: Router,
               private authService: AuthService) {}
 
+  get liste(): Array<Rapporteur> {
+    if (this._liste == null){
+      this._liste = new Array<Rapporteur>();
+    }
+    return this._liste;
+  }
 
+  set liste(value: Array<Rapporteur>) {
+    this._liste = value;
+  }
   get user(): User {
     if (this._user == null) {
       this._user = new User();
@@ -55,6 +69,28 @@ export class DoctorantService {
 
   set doctorants(value: Array<Doctorant>) {
     this._doctorants = value;
+  }
+
+  get nouveaux(): Array<Doctorant> {
+    if (this._nouveaux == null) {
+      this._nouveaux = new Array<Doctorant>();
+    }
+    return this._nouveaux;
+  }
+
+  set nouveaux(value: Array<Doctorant>) {
+    this._nouveaux = value;
+  }
+
+  get inscrit(): Array<Doctorant> {
+    if (this._inscrit == null) {
+      this._inscrit = new Array<Doctorant>();
+    }
+    return this._inscrit;
+  }
+
+  set inscrit(value: Array<Doctorant>) {
+    this._inscrit = value;
   }
 
   get no(): string {
@@ -171,6 +207,13 @@ export class DoctorantService {
       });
   }
 
+  public updateAddRapporteurs(doctorant: Doctorant,  Liste: Array<Rapporteur> ) {
+    this.http.post<number>(this._urlupdateAddRapporteurs, doctorant).subscribe(data => {
+
+    }, error => {
+      console.log('error');
+    });
+  }
   public findByUserEmail(email: string){
    this.http.get<Doctorant>(this._url + 'email/' + email , this.authService.httpHeader)
      .subscribe(data => {
@@ -179,5 +222,34 @@ export class DoctorantService {
      console.log(error);
    });
   }
-
+  public findNvInscrit(){
+    this.http.get<Array<Doctorant>>(this._url + 'nv/' + 0).subscribe(
+      data => {
+        this.nouveaux = data;
+      }, error => {
+        console.log('erreur  find nv doctorants');
+      }
+    );
+  }
+  public findDoctorants(){
+    this.http.get<Array<Doctorant>>(this._url + 'nv/' + 1).subscribe(
+      data => {
+        console.log(data);
+        this.inscrit = data;
+      }, error => {
+        console.log('erreur  find  doctorants');
+      }
+    );
+  }
+  public updateInscription(doctorant: Doctorant, id: number) {
+    this.http.put<number>(this._url + 'updateInscription/id/' + id, this.doctorant).subscribe(data => {
+      const index = this.nouveaux.findIndex(d => d.cin === doctorant.cin);
+      if (index !== -1) {
+        this.nouveaux.splice(index, 1);
+        this.inscrit.push(doctorant);
+      }
+    }, error => {
+      console.log('error');
+    });
+  }
 }

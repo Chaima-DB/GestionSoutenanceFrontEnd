@@ -30,16 +30,20 @@ export class AjoutRapporteursComponent implements OnInit {
   get rapporteur(): Rapporteur {
     return this.rapporteurService.rapporteur;
   }
+  get doctorant(): Doctorant {
+    return this.rapporteurService.doctorant;
+  }
   get liste(): Array<Rapporteur> {
     return this.rapporteurService.liste;
   }
   get rapporteurs(): Array<Rapporteur> {
     return this.rapporteurService.rapporteurs;
   }
-  public save() {
-    this.rapporteurService.save();
-  }
+
   public addRapporteur() {
     this.rapporteurService.addRapporteur();
+  }
+  public updateaddRapporteur(doctorant: Doctorant, rapporteurs: Array<Rapporteur>) {
+    this.doctorantService.updateAddRapporteurs( doctorant, rapporteurs );
   }
 }

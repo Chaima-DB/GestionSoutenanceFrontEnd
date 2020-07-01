@@ -14,12 +14,25 @@ export class RapporteurService {
 
   private _rapporteurs: Array<Rapporteur>;
   private _rapporteur: Rapporteur;
+  private _doctorant: Doctorant;
   private _liste: Array<Rapporteur>;
   private _baseUrl= 'http://localhost:8090/';
   private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/rapporteur/';
+  private _urlupdateAddRapporteurs= this._baseUrl + 'api/v1/gestionDesSoutenances-api/doctorant/add/';
   constructor(private http: HttpClient, private _snackBar: MatSnackBar,
               private authService: AuthService) { }
 
+
+  get doctorant(): Doctorant {
+    if ( this._doctorant == null ){
+      this._doctorant = new Doctorant();
+    }
+    return this._doctorant;
+  }
+
+  set doctorant(value: Doctorant) {
+    this._doctorant = value;
+  }
 
   get rapporteurs(): Array<Rapporteur> {
     if (this._rapporteurs == null){
@@ -71,23 +84,40 @@ export class RapporteurService {
       }
     );
   }
-  public save() {
-    this.http.post<number>(this._url , this.liste).subscribe(
+  // public save() {
+  //   this.http.post<number>(this._url , this.liste).subscribe(
+  //     data => {
+  //       if (data > 0) {
+  //         this.liste = null;
+  //         this._snackBar.open('Enregistrer avec success ', '', {
+  //           duration: 5000,
+  //         });
+  //       }
+  //     }, error => {
+  //       this._snackBar.open('une erreur est survenu!! résseyer plutard  ', '', {
+  //         duration: 5000,
+  //       });
+  //     }
+  //   );
+  // }
+  public save(){
+    this.http.post<number>(this._url, this.liste).subscribe(
       data => {
+        console.log(data);
         if (data > 0) {
+          this.liste.push(this.cloneRapporteur(this.rapporteur));
+          this.rapporteur = null;
           this.liste = null;
           this._snackBar.open('Enregistrer avec success ', '', {
             duration: 5000,
           });
         }
       }, error => {
-        this._snackBar.open('une erreur est survenu!! résseyer plutard  ', '', {
-          duration: 5000,
-        });
+        console.log('erreur sauvgarde rapporteurs');
+
       }
     );
   }
-
   private cloneRapporteur(rapporteur: Rapporteur) {
     const myClone = new Rapporteur();
     myClone.dateAffectation = rapporteur.dateAffectation;
@@ -113,8 +143,17 @@ export class RapporteurService {
       this.rapporteurs.splice(index, 1);
     }
   }
-  public deleteByProfesseurCin(rapporteur1: Rapporteur) {
-    this.http.delete<number>(this._url + 'cinProf/' + rapporteur1.professeur.cin).subscribe(
+  // public deleteByProfesseurCin(rapporteur1: Rapporteur) {
+  //   this.http.delete<number>(this._url + 'cinProf/' + rapporteur1.professeur.cin).subscribe(
+  //     data => {
+  //       this.deleteByCinFromView(rapporteur1);
+  //     }, error => {
+  //       console.log('erreur');
+  //     }
+  //   );
+  // }
+  public deleteByProfesseurCinAndDoctorantCin(rapporteur1: Rapporteur) {
+    this.http.delete<number>(this._url + 'profCin/' + rapporteur1.professeur.cin + 'docCin/' + rapporteur1.doctorant.cin).subscribe(
       data => {
         this.deleteByCinFromView(rapporteur1);
       }, error => {

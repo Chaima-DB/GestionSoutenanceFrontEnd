@@ -1,10 +1,15 @@
 
   <mat-tab-group>
-    <mat-tab label="Liste des Doctorants">
+    <mat-tab   label='Doctorants Inscrient' >
       <app-liste-doctorant></app-liste-doctorant>
     </mat-tab>
-    <mat-tab label="Second"> Content 2 </mat-tab>
-    <mat-tab label="Third"> Content 3 </mat-tab>
+    <mat-tab  >
+      <ng-template mat-tab-label >
+        Demande D'inscription
+        <mat-icon [hidden]="doctorants.length == 0" matBadge="{{doctorants.length}}" matBadgeColor="warn" class="material-icons ml-1" > notification_important</mat-icon>
 
+      </ng-template>
+      <app-list-nv-inscrit></app-list-nv-inscrit>
+    </mat-tab>
   </mat-tab-group>
 

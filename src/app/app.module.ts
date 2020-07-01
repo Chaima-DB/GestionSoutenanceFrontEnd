@@ -24,7 +24,6 @@ import {DoctorantService} from './controller/service/doctorant.service';
 import { EtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/etablissement.component';
 import { ListEtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/list-etablissement/list-etablissement.component';
 import { AjoutEtablissementComponent } from './dashboard/dashboard-admin/dash-etablissement/ajout-etablissement/ajout-etablissement.component';
-import { DocComponent } from './doc/doc.component';
 import {ListStructureComponent} from './dashboard/dashboard-admin/dash-etablissement/structure-derecherche/list-structure/list-structure.component';
 import {AjoutStructureComponent} from './dashboard/dashboard-admin/dash-etablissement/structure-derecherche/ajout-structure/ajout-structure.component';
 import { DetailsDoctorantsComponent } from './dashboard/dashboard-admin/dashborad-etudiant/details-doctorants/details-doctorants.component';
@@ -58,6 +57,7 @@ import {DashboardDoctorantComponent} from './dashboard/dashboard-doctorant/dashb
 import {DashboardDocNavComponent} from './dashboard/dashboard-doctorant/dashboard-doc-nav/dashboard-doc-nav.component';
 import {DashboardDocSidelistComponent} from './dashboard/dashboard-doctorant/dashboard-doc-sidelist/dashboard-doc-sidelist.component';
 import {AjoutRapporteursComponent} from './dashboard/dashboard-admin/dashborad-professeur/ajout-rapporteurs/ajout-rapporteurs.component';
+import { ListNvInscritComponent } from './dashboard/dashboard-admin/dashborad-etudiant/list-nv-inscrit/list-nv-inscrit.component';
 
 
 @NgModule({
@@ -80,7 +80,6 @@ import {AjoutRapporteursComponent} from './dashboard/dashboard-admin/dashborad-p
     EtablissementComponent,
     ListEtablissementComponent,
     AjoutEtablissementComponent,
-    DocComponent,
     ListStructureComponent,
     AjoutStructureComponent,
     DetailsDoctorantsComponent,
@@ -111,6 +110,7 @@ import {AjoutRapporteursComponent} from './dashboard/dashboard-admin/dashborad-p
     DashboardDoctorantComponent,
     DashboardDocNavComponent,
     DashboardDocSidelistComponent,
+    ListNvInscritComponent,
   ],
   imports: [
     BrowserModule,

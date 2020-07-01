@@ -13,11 +13,10 @@ export class DashboradEtudiantComponent implements OnInit {
   constructor(private doctorantService: DoctorantService) { }
 
   ngOnInit(): void {
-    this.doctorantService.findAll();
   }
 
   get doctorants(): Array<Doctorant> {
-    return this.doctorantService.doctorants;
+    return this.doctorantService.nouveaux;
   }
 
 }

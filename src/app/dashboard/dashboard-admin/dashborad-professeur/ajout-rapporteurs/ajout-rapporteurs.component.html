@@ -14,14 +14,14 @@
               <div class="col-md-6">
 
                 <label >Doctorant</label>
-                <select class="custom-select"  [(ngModel)]="rapporteur.doctorant.cin" >
+                <select class="custom-select"  [(ngModel)]="doctorant.cin" >
                   <option>choisir un doctorant...</option>
-                  <option selected *ngFor="let d of doctorants" [value]="d.cin  " ngDefaultControl >{{d.nom}} {{d.prenom}}</option>
+                  <option selected *ngFor="let d of doctorants" [value]="d.cin  " ngDefaultControl >{{d.nom}} {{d.prenom}}-{{d.specialite.libelle}}</option>
                 </select>
 
               </div>
               <div class="col-md-6">
-                <label >Doctorant</label>
+                <label >Rapporteur</label>
                 <div class="row">
                   <div class="col-md-8">
                     <select class="custom-select"  [(ngModel)]="rapporteur.professeur.cin" >
@@ -51,7 +51,7 @@
         </div>
 
         <div class="card-footer">
-          <button class="btn btn-outline-info btn-block"  (click)="save()" >Save</button>
+          <button class="btn btn-outline-info btn-block"  (click)="updateaddRapporteur(doctorant, liste)" >Save</button>
         </div>
 
       </div>

@@ -271,11 +271,13 @@ export class SoutenanceService {
     myClone.dateSoutenance = soutenance.dateSoutenance;
     myClone.doctorant.cin = soutenance.doctorant.cin;
     myClone.heureSoutenance = soutenance.heureSoutenance;
+    myClone.resultatFinal = soutenance.resultatFinal;
     return myClone;
   }
 
   private cloneJury(jury: Jury) {
     const myClone = new  Jury();
+    myClone.soutenance = jury.soutenance;
     myClone.professeur = jury.professeur;
     myClone.avis = jury.avis;
     return myClone;

@@ -47,6 +47,9 @@ export class DetailsDoctorantsComponent implements OnInit {
   get directeurDeThese(): DirecteurDeThese {
     return this.directeurDeTheseService.directeurDeThese;
   }
+  get rapporteur(): Rapporteur {
+    return this.rapporteurService.rapporteur;
+  }
   get doctorants(): Array<Doctorant> {
     return this.doctorantService.doctorants;
   }
@@ -93,8 +96,8 @@ export class DetailsDoctorantsComponent implements OnInit {
   public save() {
     this.soutenanceService.save();
   }
-  public deleteByProfCin(rapporteur: Rapporteur) {
-    this.rapporteurService.deleteByProfesseurCin(rapporteur);
+  public deleteByProfesseurCinAndDoctorantCin(rapporteur1: Rapporteur) {
+    this.rapporteurService.deleteByProfesseurCinAndDoctorantCin(rapporteur1);
   }
   public updateOrSaveSoutenance(soutenance: Soutenance, id: number) {
     this.soutenanceService.update(soutenance, id);
@@ -112,4 +115,14 @@ export class DetailsDoctorantsComponent implements OnInit {
   public updateDirecteur(directeur: DirecteurDeThese, id: number) {
     this.directeurDeTheseService.update(directeur, id);
   }
+  public addRapporteur() {
+    this.rapporteurService.addRapporteur();
+  }
+  get liste(): Array<Rapporteur> {
+    return this.rapporteurService.liste;
+  }
+  public saveRapporteur() {
+    this.rapporteurService.save();
+  }
+
 }

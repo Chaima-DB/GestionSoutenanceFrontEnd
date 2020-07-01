@@ -46,7 +46,7 @@ private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/directeurThese/'
     );
   }
   public save() {
-    this.http.post<number>(this._url + 'save', this.directeurDeThese).subscribe(
+    this.http.post<number>(this._url , this.directeurDeThese).subscribe(
       data => {
         if (data > 0) {
           this.directeurDeTheses.push(this.cloneDirecteur(this.directeurDeThese));

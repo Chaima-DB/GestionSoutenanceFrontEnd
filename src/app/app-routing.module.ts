@@ -43,7 +43,7 @@ const routes: Routes = [
   },
   { path : 'dashboardAdmin',
     component: DashboardAdminComponent,
-    canActivate: [AuthGuard,
+     canActivate: [AuthGuard,
                   GuardAdminGuard],
               children: [
                 { path : '',
@@ -72,7 +72,7 @@ const routes: Routes = [
   },
   { path : 'dashboardUser',
     component: DashboardDoctorantComponent,
-    canActivate: [AuthGuard, GuardUserGuard],
+     canActivate: [AuthGuard, GuardUserGuard],
     children: [
       { path : 'Userprofile',
         component: DoctorantProfileComponent,
@@ -85,7 +85,7 @@ const routes: Routes = [
   },
   { path : 'dashboardProf',
     component: DashboardProfComponent,
-    canActivate: [AuthGuard,
+     canActivate: [AuthGuard,
                   GuardProfGuard],
     children: [
       { path : 'profile',
