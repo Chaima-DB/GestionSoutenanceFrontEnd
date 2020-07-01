@@ -21,9 +21,10 @@ export class DoctorantProfileComponent implements OnInit {
   get user(): User {
     return this.doctorantService.user;
   }
-  Useremail = this.jwtClientService.getUsername();
+  Useremail = this.jwtClientService.getEmail();
   ngOnInit(): void {
     this.doctorantService.findByUserEmail(this.Useremail);
+    console.log(this.Useremail)
 
   }
   findByUserEmail(user : User){

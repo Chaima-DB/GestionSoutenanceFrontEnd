@@ -7,7 +7,7 @@ import {Doctorant} from "../../../../controller/model/doctorant.model";
 import {Article} from "../../../../controller/model/article.model";
 import {Indexation} from "../../../../controller/model/indexation.model";
 import {first} from "rxjs/operators";
-import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {HttpEvent, HttpEventType, HttpResponse, HttpRequest, HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-ajout-article',
@@ -23,7 +23,8 @@ export class AjoutArticleComponent implements OnInit {
   fileInfos: Observable<any>;
   constructor(private  uploadService: FileUploderService,
               private  articleService: ArticleService,
-              private doctorantService: DoctorantService) { }
+              private doctorantService: DoctorantService,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
     this.doctorantService.findAll();
@@ -61,15 +62,26 @@ export class AjoutArticleComponent implements OnInit {
           this.message = event.body.message;
           this.fileInfos = this.uploadService.getFiles();
         }
-      //  this.articleService.save();
+
       },
       err => {
         this.progress = 0;
+        console.log(err);
         this.message = 'Could not upload the file!';
         this.currentFile = undefined;
       });
 
     this.selectedFiles = undefined;
+  }
+  pushFileToStorage(file: File): Observable<HttpEvent<{}>> {
+    const data: FormData = new FormData();
+    data.append('file', file);
+    const newRequest = new HttpRequest('POST', 'http://localhost:8090/savefile', data, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.http.request(newRequest);
+    console.log('error');
   }
 
 

@@ -7,6 +7,7 @@ import {Indexation} from '../model/indexation.model';
 import {map} from 'rxjs/operators';
 import {DoctorantService} from "./doctorant.service";
 import {JwtClientService} from "./jwt-client.service";
+import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,9 @@ export class ArticleService {
   private _baseUrl= 'http://localhost:8090/';
   private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/article/';
   private _urlIndexation= this._baseUrl + 'api/v1/gestionDesSoutenances-api/indexation/';
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar,private doctorantService: DoctorantService,
+  constructor(private http: HttpClient,
+              private authService: AuthService,
+              private _snackBar: MatSnackBar,private doctorantService: DoctorantService,
               private jwtClientService: JwtClientService) { }
   get article(): Article {
     if (this._article == null) {
@@ -75,10 +78,11 @@ export class ArticleService {
   }
 
    public save() {
-    this.http.post<number>(this._url, this.article).subscribe(
+    this.http.post<number>(this._url, this.article ,this.authService.httpHeader).subscribe(
       data => {
         if (data > 0) {
-          //this.article.doctorant.user = this.doctorantService.findByUserEmail(this.jwtClientService.getUsername());
+          //this.article.doctorant.user.email = this.jwtClientService.getUsername();
+          this.articles.push(this.cloneArticle(this.article));
           this.article = null;
           console.log(data);
           this._snackBar.open('Enregistrer avec success ', '', {
@@ -86,7 +90,9 @@ export class ArticleService {
           });
         }
       }, error => {
-        console.log(this.article);
+        console.log(error);
+        this.article.doctorant.user.email = this.jwtClientService.getEmail();
+        console.log(this.article.doctorant.user.email);
         this._snackBar.open('une erreur est survenu!! résseyer plutard  ', '', {
           duration: 5000,
         });
