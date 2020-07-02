@@ -1,14 +1,6 @@
 <app-nav></app-nav>
 <router-outlet></router-outlet>
 <div class="row">
-<div class="col-md-3  "><div class="card documents ">
-  <div class="card-header" ><strong>Documents Importants</strong></div>
-  <ul class="list-group list-group-flush" *ngFor="let file of fileInfos | async">
-    <li class="list-group-item">
-      <a href="{{ file.url }}">{{ file.name }}</a>
-    </li>
-  </ul>
-</div></div>
 <div class="col-md-9">
 <main class="page lanidng-page">
   <div class="portfolio-block block-intro">

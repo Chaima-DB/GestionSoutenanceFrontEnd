@@ -58,6 +58,7 @@ import {DashboardDocNavComponent} from './dashboard/dashboard-doctorant/dashboar
 import {DashboardDocSidelistComponent} from './dashboard/dashboard-doctorant/dashboard-doc-sidelist/dashboard-doc-sidelist.component';
 import {AjoutRapporteursComponent} from './dashboard/dashboard-admin/dashborad-professeur/ajout-rapporteurs/ajout-rapporteurs.component';
 import { ListNvInscritComponent } from './dashboard/dashboard-admin/dashborad-etudiant/list-nv-inscrit/list-nv-inscrit.component';
+import {DoctorantProfileComponent} from "./dashboard/dashboard-doctorant/doctorant-profile/doctorant-profile.component";
 
 
 @NgModule({
@@ -111,6 +112,7 @@ import { ListNvInscritComponent } from './dashboard/dashboard-admin/dashborad-et
     DashboardDocNavComponent,
     DashboardDocSidelistComponent,
     ListNvInscritComponent,
+    DoctorantProfileComponent,
   ],
   imports: [
     BrowserModule,

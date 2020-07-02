@@ -13,6 +13,14 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-6">
+                      <label >Titre </label>
+                      <input type="text"  name="reference" required minlength="3" class="form-control" [(ngModel)]="article.titre">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-6">
                       <label >Mot Clés </label>
                       <input type="text"  name="reference" required minlength="3" class="form-control" [(ngModel)]="article.motCle">
                     </div>
@@ -24,7 +32,7 @@
                     <label >Indexation</label>
                     <select class="custom-select" name="indexation" [(ngModel)]="article.indexation.libelle" >
                       <option>choisir l'indexation...</option>
-                      <option selected *ngFor="let d of indexations" [value]="d.id  " ngDefaultControl >{{d.libelle}}</option>
+                      <option selected *ngFor="let d of indexations" [value]="d.id  " ngDefaultControl >{{d.id}}-{{d.libelle}}</option>
                     </select>
                   </div>
                 </div>
@@ -32,7 +40,6 @@
                 <div class="form-group ">
                   <div class="row">
                     <div class="col-md-6">
-
                       <div *ngIf="currentFile" class="progress">
                         <div
                           class="progress-bar progress-bar-info progress-bar-striped"
@@ -46,9 +53,10 @@
                         </div>
                       </div>
 
-                      <label class="btn btn-default">
-                        <input type="file" (change)="selectFile($event)" />
-                      </label>
+                      <div class="form-field col-lg-6">
+                        <input type="file" (change)="selectFile($event)" [(ngModel)]="article.file" name="pdf">
+<!--                        <button class="btn btn-btn" [disabled]="!selectedFiles" (click)="upload()"> <i class="fa fa-download"> Télécharger </i> </button>-->
+                      </div>
 
                       <div class="alert alert-light" role="alert">{{ message }}</div>
                     </div>
@@ -75,10 +83,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="form-field col-lg-6">
-      <input type="file" (change)="selectFile($event)" [(ngModel)]="article.file" name="pdf">
-      <button class="btn btn-btn" [disabled]="!selectedFiles" (click)="upload()"> <i class="fa fa-download"> Télécharger </i> </button>
     </div>
   </form>
 </div>

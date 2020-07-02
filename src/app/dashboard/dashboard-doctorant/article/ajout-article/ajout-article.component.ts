@@ -45,6 +45,7 @@ export class AjoutArticleComponent implements OnInit {
     return this.articleService.article;
   }
   public save() {
+    this.upload();
     this.articleService.save();
   }
   selectFile(event) {
@@ -52,15 +53,13 @@ export class AjoutArticleComponent implements OnInit {
   }
   upload() {
     this.progress = 0;
-
     this.currentFile = this.selectedFiles.item(0);
-    this.uploadService.upload(this.currentFile).subscribe(
+    this.uploadService.pushFileToStorage(this.currentFile).subscribe(
       event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
-          this.message = event.body.message;
-          this.fileInfos = this.uploadService.getFiles();
+          console.log('file saved');
         }
 
       },
@@ -73,16 +72,7 @@ export class AjoutArticleComponent implements OnInit {
 
     this.selectedFiles = undefined;
   }
-  pushFileToStorage(file: File): Observable<HttpEvent<{}>> {
-    const data: FormData = new FormData();
-    data.append('file', file);
-    const newRequest = new HttpRequest('POST', 'http://localhost:8090/savefile', data, {
-      reportProgress: true,
-      responseType: 'text'
-    });
-    return this.http.request(newRequest);
-    console.log('error');
-  }
+
 
 
 }

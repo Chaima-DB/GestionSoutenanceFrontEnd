@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
-import {FileInfo} from '../model/file-info.model';
 import {Observable} from 'rxjs';
-import {Article} from '../model/article.model';
 
 
 @Injectable({
@@ -13,17 +11,15 @@ export class FileUploderService {
 
   constructor(private http: HttpClient) { }
 
-  upload(file: File): Observable<HttpEvent<any>> {
-    const formData: FormData = new FormData();
-
-    formData.append('file', file);
-
-    const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
+  pushFileToStorage(file: File): Observable<HttpEvent<{}>> {
+    const data: FormData = new FormData();
+    data.append('file', file);
+    const newRequest = new HttpRequest('POST', 'http://localhost:8090/savefile', data, {
       reportProgress: true,
-      responseType: 'json'
+      responseType: 'text'
     });
-
-    return this.http.request(req);
+    return this.http.request(newRequest);
+    console.log('error');
   }
 
   getFiles(): Observable<any> {
