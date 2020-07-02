@@ -1,6 +1,5 @@
 import {Doctorant} from './doctorant.model';
 import {Indexation} from './indexation.model';
-import {FileInfo} from './file-info.model';
 
 export class Article {
   public doctorant: Doctorant = new Doctorant();
@@ -8,5 +7,7 @@ export class Article {
   public file: File;
   public datePublicationArticle: Date;
   public motCle: string ;
+  public titre: string;
+  public desciption: string;
 
 }
