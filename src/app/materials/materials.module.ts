@@ -18,9 +18,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatBadgeModule} from '@angular/material/badge';
-import {MatDialog, MatDialogConfig, MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 import {MatStepperModule} from '@angular/material/stepper';
-import {MatProgressBar, MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatRadioModule} from '@angular/material/radio';
 
 
 const Materials = [
@@ -46,6 +47,7 @@ const Materials = [
   MatDialogModule,
   MatStepperModule,
   MatProgressBarModule,
+  MatRadioModule
 ];
 
 @NgModule({
