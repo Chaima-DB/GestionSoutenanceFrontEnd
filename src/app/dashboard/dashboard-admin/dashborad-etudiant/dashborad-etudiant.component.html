@@ -7,9 +7,16 @@
       <ng-template mat-tab-label >
         Demande D'inscription
         <mat-icon [hidden]="doctorants.length == 0" matBadge="{{doctorants.length}}" matBadgeColor="warn" class="material-icons ml-1" > notification_important</mat-icon>
-
       </ng-template>
-      <app-list-nv-inscrit></app-list-nv-inscrit>
+      <div [hidden]="doctorants.length === 0" >
+        <app-list-nv-inscrit></app-list-nv-inscrit>
+      </div>
+      <div [hidden]="doctorants.length !== 0" class="text-center mt-5" >
+        <img src="../../../../assets/images/notification.PNG" alt="image notification">
+        <p class="notification">
+        La boite des nouvelles inscriptions est vide pour le moment
+        </p>
+      </div>
     </mat-tab>
   </mat-tab-group>
 

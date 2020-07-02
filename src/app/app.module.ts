@@ -58,6 +58,7 @@ import {DashboardDocNavComponent} from './dashboard/dashboard-doctorant/dashboar
 import {DashboardDocSidelistComponent} from './dashboard/dashboard-doctorant/dashboard-doc-sidelist/dashboard-doc-sidelist.component';
 import {AjoutRapporteursComponent} from './dashboard/dashboard-admin/dashborad-professeur/ajout-rapporteurs/ajout-rapporteurs.component';
 import { ListNvInscritComponent } from './dashboard/dashboard-admin/dashborad-etudiant/list-nv-inscrit/list-nv-inscrit.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -112,20 +113,21 @@ import { ListNvInscritComponent } from './dashboard/dashboard-admin/dashborad-et
     DashboardDocSidelistComponent,
     ListNvInscritComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MaterialsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    Ng2SearchPipeModule,
-    NgxPaginationModule,
-    BrowserAnimationsModule,
-    DateFormatModule,
-    BsDatepickerModule.forRoot(),
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MaterialsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        Ng2SearchPipeModule,
+        NgxPaginationModule,
+        BrowserAnimationsModule,
+        DateFormatModule,
+        BsDatepickerModule.forRoot(),
+        MatRadioModule,
+    ],
   providers: [
     DoctorantService,
     ProfesseurService,

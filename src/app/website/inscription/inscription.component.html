@@ -46,9 +46,13 @@
               </mat-form-field>
             </div>
             <div class="container col-sm-12 col-md-6">
-              <mat-form-field class="full-width" floatLabel="auto">
-                <mat-label aria-placeholder="homme ou femme">sexe</mat-label>
-                <input formControlName="sexeCtrl"   type="text" matInput required [(ngModel)]="doctorant.sexe">
+              <mat-form-field class="full-width " floatLabel="auto">
+                <mat-label>Sexe</mat-label>
+                <mat-select   formControlName="sexeCtrl" [(ngModel)]="doctorant.sexe" >
+                  <mat-option>Aucun</mat-option>
+                  <mat-option value="Femme"   ngDefaultControl>Femme</mat-option>
+                  <mat-option value="Homme"   ngDefaultControl>Homme</mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
           </div>

@@ -53,12 +53,27 @@
                 <label >telephone </label>
                 <input type="text" id="tel" #tel name="tel" required minlength="3" class="form-control"  [(ngModel)]="professeur.tel">
               </div>
+<!--              <div class="col-md-6">-->
+<!--                <label >Sexe</label>-->
+<!--                <select class="custom-select" name="sexe" id="sexe" #sexe [(ngModel)]="professeur.sexe">-->
+<!--                <option selected value="Homme">Homme</option>-->
+<!--                <option selected value="Femme">Femme</option>-->
+<!--                </select>-->
+<!--              </div>-->
               <div class="col-md-6">
                 <label >Sexe</label>
-                <select class="custom-select" name="sexe" id="sexe" #sexe [(ngModel)]="professeur.sexe">
-                <option selected value="Homme">Homme</option>
-                <option selected value="Femme">Femme</option>
-                </select>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Homme" checked [(ngModel)]="professeur.sexe">
+                <label class="form-check-label" for="exampleRadios1">
+                  Homme
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Femme" [(ngModel)]="professeur.sexe">
+                <label class="form-check-label" for="exampleRadios2">
+                  Femme
+                </label>
+              </div>
               </div>
             </div>
           </div>

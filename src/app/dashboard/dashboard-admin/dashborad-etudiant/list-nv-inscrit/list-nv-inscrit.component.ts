@@ -45,5 +45,7 @@ export class ListNvInscritComponent implements OnInit {
   public update(doctorant: Doctorant, id: number) {
     this.doctorantService.updateInscription(doctorant, id);
   }
-
+  public sendEmailToDoctorant(doctorant: Doctorant){
+    this.doctorantService.sendEmailToDoctorant(doctorant);
+  }
 }

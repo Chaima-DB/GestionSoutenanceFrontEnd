@@ -34,7 +34,7 @@
               <button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteByCin(doctorant)" ></button>
             </td>
             <td>
-              <button class="btn btn-success btn-sm fa fa-check-square" (click)="update(doctorant,doctorant.id)" ></button>
+              <button class="btn btn-success btn-sm fa fa-check-square" (click)="update(doctorant,doctorant.id); sendEmailToDoctorant(doctorant)" ></button>
             </td>
           </tr>
           </tbody>

@@ -10,14 +10,14 @@ import {LoginComponent} from './website/login/login.component';
 import {InscriptionComponent} from './website/inscription/inscription.component';
 import {EtablissementComponent} from './dashboard/dashboard-admin/dash-etablissement/etablissement.component';
 import {DashboardSoutenanceComponent} from './dashboard/dashboard-admin/dashboard-soutenance/dashboard-soutenance.component';
-import {AuthGuard} from "./controller/guards/auth.guard";
-import {GuardAdminGuard} from "./controller/guards/guard-admin.guard";
-import {GuardProfGuard} from "./controller/guards/guard-prof.guard";
-import {GuardUserGuard} from "./controller/guards/guard-user.guard";
-import {DashboardDoctorantComponent} from "./dashboard/dashboard-doctorant/dashboard-doctorant.component";
-import {DoctorantProfileComponent} from "./dashboard/dashboard-doctorant/doctorant-profile/doctorant-profile.component";
-import {GuardLoginGuard} from "./controller/guards/guard-login.guard";
-import {ArticleComponent} from "./dashboard/dashboard-doctorant/article/article.component";
+import {AuthGuard} from './controller/guards/auth.guard';
+import {GuardAdminGuard} from './controller/guards/guard-admin.guard';
+import {GuardProfGuard} from './controller/guards/guard-prof.guard';
+import {GuardUserGuard} from './controller/guards/guard-user.guard';
+import {DashboardDoctorantComponent} from './dashboard/dashboard-doctorant/dashboard-doctorant.component';
+import {DoctorantProfileComponent} from './dashboard/dashboard-doctorant/doctorant-profile/doctorant-profile.component';
+import {GuardLoginGuard} from './controller/guards/guard-login.guard';
+import {ArticleComponent} from './dashboard/dashboard-doctorant/article/article.component';
 import {DashboardProfComponent} from './dashboard/dashboard-prof/dashboard-prof.component';
 import {ProfProfilComponent} from './dashboard/dashboard-prof/prof-profil/prof-profil.component';
 import {DetailsDoctorantsComponent} from './dashboard/dashboard-admin/dashborad-etudiant/details-doctorants/details-doctorants.component';
@@ -43,8 +43,8 @@ const routes: Routes = [
   },
   { path : 'dashboardAdmin',
     component: DashboardAdminComponent,
-     canActivate: [AuthGuard,
-                  GuardAdminGuard],
+    // canActivate: [AuthGuard,
+    //               GuardAdminGuard],
               children: [
                 { path : '',
                   redirectTo : 'dashboard-info',
@@ -72,7 +72,7 @@ const routes: Routes = [
   },
   { path : 'dashboardUser',
     component: DashboardDoctorantComponent,
-     canActivate: [AuthGuard, GuardUserGuard],
+    // canActivate: [AuthGuard, GuardUserGuard],
     children: [
       { path : 'Userprofile',
         component: DoctorantProfileComponent,
@@ -85,8 +85,8 @@ const routes: Routes = [
   },
   { path : 'dashboardProf',
     component: DashboardProfComponent,
-     canActivate: [AuthGuard,
-                  GuardProfGuard],
+    // canActivate: [AuthGuard,
+    //               GuardProfGuard],
     children: [
       { path : 'profile',
         component: ProfProfilComponent,

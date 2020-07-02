@@ -1,11 +1,11 @@
-import {Role} from "./role";
+import {Role} from './role';
 
 export class User {
   public  id: number;
-  public email : string;
-  public password : string;
-  public isEnable : boolean ;
-  public roles= new Array<Role>();
+  public email: string;
+  public password: string;
+  public isEnable: boolean ;
+  public roles = new Array<Role>();
 }
 
   // {id: 1, titre :"ROLE_SUPER_ADMIN"},

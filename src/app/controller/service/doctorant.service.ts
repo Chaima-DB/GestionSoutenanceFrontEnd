@@ -20,7 +20,7 @@ export class DoctorantService {
   private _liste: Array<Rapporteur>;
   private _baseUrl = 'http://localhost:8090/';
   private _url = this._baseUrl + 'api/v1/gestionDesSoutenances-api/doctorant/';
-  private _urlupdateAddRapporteurs= this._url + 'add/';
+  private _urlupdateAddRapporteurs = this._url + 'add/';
   private _ok: string;
   private _no: string;
   private _newDoctorant = false;
@@ -134,7 +134,7 @@ export class DoctorantService {
       data => {
         if (data) {
           this.doctorant.user.isEnable = true;
-          this.doctorant.user.roles.push({id: 3, titre :"ROLE_USER"});
+          this.doctorant.user.roles.push({id: 3, titre : 'ROLE_USER'});
           this.doctorants.push(this.cloneDoctorant(this.doctorant));
           this.doctorant = null;
           this._ok = ' enregistrer avec succes ';
@@ -251,5 +251,14 @@ export class DoctorantService {
     }, error => {
       console.log('error');
     });
+  }
+  public sendEmailToDoctorant(doctorant: Doctorant){
+    this.http.post<Doctorant>(this._baseUrl + 'email/', doctorant ).subscribe(
+      data => {
+        console.log('success');
+      }, error => {
+        console.log('error');
+      }
+    );
   }
 }
