@@ -22,7 +22,7 @@ export class ArticleService {
   private _urlIndexation= this._baseUrl + 'api/v1/gestionDesSoutenances-api/indexation/';
   constructor(private http: HttpClient,
               private authService: AuthService,
-              private _snackBar: MatSnackBar,private doctorantService: DoctorantService,
+              private _snackBar: MatSnackBar, private doctorantService: DoctorantService,
               private jwtClientService: JwtClientService) { }
   get article(): Article {
     if (this._article == null) {
@@ -78,13 +78,11 @@ export class ArticleService {
   }
 
    public save() {
-    this.http.post<number>(this._url, this.article ,this.authService.httpHeader).subscribe(
+    this.http.post<number>(this._url, this.article , this.authService.httpHeader).subscribe(
       data => {
         if (data > 0) {
-          //this.article.doctorant.user.email = this.jwtClientService.getUsername();
           this.articles.push(this.cloneArticle(this.article));
           this.article = null;
-          console.log(data);
           this._snackBar.open('Enregistrer avec success ', '', {
             duration: 5000,
           });
@@ -112,7 +110,7 @@ export class ArticleService {
     const myClone = new Article();
     myClone.datePublicationArticle = article.datePublicationArticle;
     myClone.indexation = article.indexation;
-    myClone.doctorant = article.doctorant;
+    myClone.doctorant.user.email = this.jwtClientService.getEmail();
     myClone.motCle = article.motCle;
     myClone.file = article.file;
     return myClone;

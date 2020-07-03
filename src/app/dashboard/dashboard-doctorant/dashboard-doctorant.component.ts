@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DoctorantService} from '../../controller/service/doctorant.service';
 
 @Component({
   selector: 'app-dashboard-doctorant',
@@ -14,5 +15,4 @@ export class DashboardDoctorantComponent implements OnInit {
   closeSideNav() {
     this.close = true;
   }
-
 }

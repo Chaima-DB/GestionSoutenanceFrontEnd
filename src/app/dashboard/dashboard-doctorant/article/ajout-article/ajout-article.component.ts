@@ -8,6 +8,7 @@ import {Article} from "../../../../controller/model/article.model";
 import {Indexation} from "../../../../controller/model/indexation.model";
 import {first} from "rxjs/operators";
 import {HttpEvent, HttpEventType, HttpResponse, HttpRequest, HttpClient} from "@angular/common/http";
+import {JwtClientService} from '../../../../controller/service/jwt-client.service';
 
 @Component({
   selector: 'app-ajout-article',
@@ -24,6 +25,7 @@ export class AjoutArticleComponent implements OnInit {
   constructor(private  uploadService: FileUploderService,
               private  articleService: ArticleService,
               private doctorantService: DoctorantService,
+              private jwtClientService: JwtClientService,
               private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -34,6 +36,9 @@ export class AjoutArticleComponent implements OnInit {
 
   get doctorants(): Array<Doctorant> {
     return this.doctorantService.doctorants;
+  }
+  get doctorant(): Doctorant {
+    return this.doctorantService.doctorant;
   }
   get articles(): Array<Article> {
     return this.articleService.articles;
@@ -46,6 +51,7 @@ export class AjoutArticleComponent implements OnInit {
   }
   public save() {
     this.upload();
+    this.article.doctorant.user.email = this.jwtClientService.getEmail() ;
     this.articleService.save();
   }
   selectFile(event) {

@@ -153,7 +153,7 @@ export class RapporteurService {
   //   );
   // }
   public deleteByProfesseurCinAndDoctorantCin(rapporteur1: Rapporteur) {
-    this.http.delete<number>(this._url + 'profCin/' + rapporteur1.professeur.cin + 'docCin/' + rapporteur1.doctorant.cin).subscribe(
+    this.http.delete<number>(this._url + 'profCin/' + rapporteur1.professeur.cin + '/docCin/' + rapporteur1.doctorant.cin).subscribe(
       data => {
         this.deleteByCinFromView(rapporteur1);
       }, error => {
@@ -161,4 +161,5 @@ export class RapporteurService {
       }
     );
   }
+
 }

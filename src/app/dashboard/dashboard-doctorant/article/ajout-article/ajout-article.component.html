@@ -30,9 +30,9 @@
                 <div class="form-group">
                   <div class="row">
                     <label >Indexation</label>
-                    <select class="custom-select" name="indexation" [(ngModel)]="article.indexation.libelle" >
+                    <select class="custom-select" name="indexation" [(ngModel)]="article.indexation.reference" >
                       <option>choisir l'indexation...</option>
-                      <option selected *ngFor="let d of indexations" [value]="d.id  " ngDefaultControl >{{d.id}}-{{d.libelle}}</option>
+                      <option selected *ngFor="let d of indexations" [value]="d.reference  " ngDefaultControl >{{d.libelle}}</option>
                     </select>
                   </div>
                 </div>

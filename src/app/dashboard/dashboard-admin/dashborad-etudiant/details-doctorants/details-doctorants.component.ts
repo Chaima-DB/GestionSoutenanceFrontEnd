@@ -116,12 +116,14 @@ export class DetailsDoctorantsComponent implements OnInit {
     this.directeurDeTheseService.update(directeur, id);
   }
   public addRapporteur() {
+    this.liste.forEach(r => r.doctorant = this.doctorant );
     this.rapporteurService.addRapporteur();
   }
   get liste(): Array<Rapporteur> {
     return this.rapporteurService.liste;
   }
   public saveRapporteur() {
+    this.liste.forEach(r => r.doctorant = this.doctorant );
     this.rapporteurService.save();
   }
 
