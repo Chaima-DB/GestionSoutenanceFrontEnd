@@ -18,11 +18,11 @@ export class AjoutDirecteurTheseComponent implements OnInit {
               private directeurDeTheseService: DirecteurDeTheseService, ) { }
 
   ngOnInit(): void {
-    this.doctorantService.findAll();
     this.professeurService.findAll();
+    this.doctorantService.findDoctorants();
   }
-  get doctorants(): Array<Doctorant> {
-    return this.doctorantService.doctorants;
+  get inscrit(): Array<Doctorant>  {
+    return this.doctorantService.inscrit;
   }
   get professeurs(): Array<Professeur> {
     return this.professeurService.professeurs;

@@ -1,7 +1,7 @@
 <div class="container mt-2">
   <div class="card">
     <div class="card-header">
-      <h1 class="card-title text-center"> Liste Des Demandes D'inscription</h1>
+      <h1 class="card-title text-center">Listes des doctorants pas encore confirmer leur inscriptions</h1>
     </div>
     <div class="card-body">
       <div class="container ">
@@ -18,7 +18,6 @@
             <th scope="col"> Prenom </th>
             <th scope="col"> <span class="fa fa-address-card "></span> </th>
             <th scope="col"> <span class="fa fa-user-times "></span> </th>
-            <th scope="col"> Confirmer </th>
 
           </tr>
           </thead>
@@ -33,9 +32,6 @@
             <td>
               <button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteByCin(doctorant)" ></button>
             </td>
-            <td>
-              <button class="btn btn-success btn-sm fa fa-check-square" (click)="update(doctorant,doctorant.id); sendEmailToDoctorant(doctorant)" ></button>
-            </td>
           </tr>
           </tbody>
         </table>
@@ -46,4 +42,5 @@
     </div>
   </div>
 </div>
+
 

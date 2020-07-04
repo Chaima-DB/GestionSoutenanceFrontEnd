@@ -15,8 +15,11 @@ export class DashboradEtudiantComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get doctorants(): Array<Doctorant> {
+  get nouveaux(): Array<Doctorant> {
     return this.doctorantService.nouveaux;
+  }
+  get attente(): Array<Doctorant> {
+    return this.doctorantService.attente;
   }
 
 }

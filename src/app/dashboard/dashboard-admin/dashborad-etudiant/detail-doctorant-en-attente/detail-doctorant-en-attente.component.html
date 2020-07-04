@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="card mt-4">
     <div class="card-header text-center text-primary font-weight-bold">
@@ -97,56 +96,6 @@
           <div class="container col-md-6">
             <div class="row">
               <div class="container col-sm-6 col-md-6">
-                <p class="font-weight-bolder">Date Inscription: </p>
-              </div>
-              <div class="container col-sm-6 col-md-6">
-                <p>{{doctorant.dateInscription}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <div class="container col-md-6">
-            <div class="row">
-              <div class="container col-sm-6 col-md-6">
-                <p class="font-weight-bolder">Directeur de these: </p>
-              </div>
-              <div class="container col-sm-6 col-md-6">
-                <p>{{directeur.professeur.nom}} {{directeur.professeur.prenom}}</p>
-              </div>
-            </div>
-          </div>
-          <div class="container col-md-6">
-            <div class="row">
-              <div class="container col-sm-6 col-md-6">
-                <p class="font-weight-bolder">Sujet: </p>
-              </div>
-              <div class="container col-sm-6 col-md-6">
-                <p>{{doctorant.sujet.libelle}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <div class="container col-md-6">
-            <div class="row">
-              <div class="container col-sm-6 col-md-6">
-                <p class="font-weight-bolder">Structure de recherche: </p>
-              </div>
-              <div class="container col-sm-6 col-md-6">
-                <p>{{doctorant.structureDeRecherche.title}}</p>
-              </div>
-            </div>
-          </div>
-          <div class="container col-md-6">
-            <div class="row">
-              <div class="container col-sm-6 col-md-6">
                 <p class="font-weight-bolder">Specialite: </p>
               </div>
               <div class="container col-sm-6 col-md-6">
@@ -157,9 +106,36 @@
         </div>
       </div>
 
-    </div>
-    <div class="card-footer">
+      <div class="container mt-2">
+        <div class="row">
+          <div class="container col-12 col-md-12">
+            <div class="row">
+              <div class="container col-sm-6 col-md-3">
+                <p class="font-weight-bolder">Sujet: </p>
+              </div>
+              <div class="container col-sm-6 col-md-9">
+                <p>{{doctorant.sujet.libelle}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-2">
+        <div class="row">
+          <div class="container col-12 col-md-12">
+            <div class="row">
+              <div class="container col-sm-6 col-md-3">
+                <p class="font-weight-bolder">Structure de recherche: </p>
+              </div>
+              <div class="container col-sm-6 col-md-9">
+                <p>{{doctorant.structureDeRecherche.title}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
 </div>
+

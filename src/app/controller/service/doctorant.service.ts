@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {AuthService} from './auth.service';
 import {User} from '../model/user';
 import {Rapporteur} from '../model/rapporteur.model';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class DoctorantService {
   private _doctorants: Array<Doctorant>;
   private _nouveaux: Array<Doctorant>;
   private _inscrit: Array<Doctorant>;
+  private _attente: Array<Doctorant>;
   private _liste: Array<Rapporteur>;
   private _baseUrl = 'http://localhost:8090/';
   private _url = this._baseUrl + 'api/v1/gestionDesSoutenances-api/doctorant/';
@@ -26,7 +28,8 @@ export class DoctorantService {
   private _newDoctorant = false;
   constructor(private http: HttpClient,
               private  router: Router,
-              private authService: AuthService) {}
+              private authService: AuthService,
+              private _snackBar: MatSnackBar) {}
 
   get liste(): Array<Rapporteur> {
     if (this._liste == null){
@@ -91,6 +94,18 @@ export class DoctorantService {
 
   set inscrit(value: Array<Doctorant>) {
     this._inscrit = value;
+  }
+
+
+  get attente(): Array<Doctorant> {
+    if (this._attente == null) {
+      this._attente = new Array<Doctorant>();
+    }
+    return this._attente;
+  }
+
+  set attente(value: Array<Doctorant>) {
+    this._attente = value;
   }
 
   get no(): string {
@@ -182,8 +197,14 @@ export class DoctorantService {
     this.http.delete<number>(this._url + 'cin/' + doctorant.cin).subscribe(
       data => {
         this.deleteByCinFromView(doctorant);
+        this._snackBar.open('supprimer avec success ', '', {
+          duration: 5000,
+        });
       }, error => {
         console.log('erreur');
+        this._snackBar.open('une erreur est survenu!! résseyer plutard  ', '', {
+          duration: 5000,
+        });
       }
     );
   }
@@ -202,7 +223,13 @@ export class DoctorantService {
     this.http.put<number>(this._url + 'id/' + id, this.doctorant).subscribe(data => {
       console.log(data);
       console.log(this.doctorant.dateInscription);
+      this._snackBar.open('modifier avec success ', '', {
+        duration: 5000,
+      });
     }, error => {
+      this._snackBar.open('une erreur est survenu!! résseyer plutard  ', '', {
+        duration: 5000,
+      });
       console.log('error');
       });
   }
@@ -231,8 +258,17 @@ export class DoctorantService {
       }
     );
   }
-  public findDoctorants(){
+  public findEnattente(){
     this.http.get<Array<Doctorant>>(this._url + 'nv/' + 1).subscribe(
+      data => {
+        this.attente = data;
+      }, error => {
+        console.log('erreur  find nv doctorants');
+      }
+    );
+  }
+  public findDoctorants(){
+    this.http.get<Array<Doctorant>>(this._url + 'nv/' + 2).subscribe(
       data => {
         console.log(data);
         this.inscrit = data;
@@ -241,12 +277,23 @@ export class DoctorantService {
       }
     );
   }
-  public updateInscription(doctorant: Doctorant, id: number) {
-    this.http.put<number>(this._url + 'updateInscription/id/' + id, this.doctorant).subscribe(data => {
+  public afterConfirmation(cin: string) {
+    this.http.put<number>(this._url + 'updateAfterConfirmation/cin/' + cin, this.doctorant).subscribe(() => {
+      const index = this.attente.findIndex(d => d.cin === this.doctorant.cin);
+      if (index !== -1) {
+        this.attente.splice(index, 1);
+        this.inscrit.push(this.doctorant);
+      }
+    }, error => {
+      console.log('error');
+    });
+  }
+  public beforConfirmation(doctorant: Doctorant, id: number) {
+    this.http.put<number>(this._url + 'updateBeforConfirmation/id/' + id, this.doctorant).subscribe(() => {
       const index = this.nouveaux.findIndex(d => d.cin === doctorant.cin);
       if (index !== -1) {
         this.nouveaux.splice(index, 1);
-        this.inscrit.push(doctorant);
+        this.attente.push(doctorant);
       }
     }, error => {
       console.log('error');
@@ -256,7 +303,13 @@ export class DoctorantService {
     this.http.post<Doctorant>(this._baseUrl + 'email/', doctorant ).subscribe(
       data => {
         console.log('success');
+        this._snackBar.open('Email de confirmation envoyer avec success ', '', {
+          duration: 5000,
+        });
       }, error => {
+        this._snackBar.open('une erreur est survenu lors d\'envoie d\'email!! résseyer plutard  ', '', {
+          duration: 5000,
+        });
         console.log('error');
       }
     );

@@ -18,7 +18,7 @@
                 <label >Doctorant</label>
                 <select class="custom-select"  [(ngModel)]="directeurDeThese.doctorant.cin" >
                   <option>choisir un doctorant...</option>
-                  <option selected *ngFor="let d of doctorants" [value]="d.cin  " ngDefaultControl >{{d.cin}}-{{d.nom}} {{d.prenom}}</option>
+                  <option selected *ngFor="let d of inscrit" [value]="d.cin  " ngDefaultControl >{{d.cin}}-{{d.nom}} {{d.prenom}}</option>
                 </select>
               </div>
             </div>

@@ -6,15 +6,30 @@
     <mat-tab  >
       <ng-template mat-tab-label >
         Demande D'inscription
-        <mat-icon [hidden]="doctorants.length == 0" matBadge="{{doctorants.length}}" matBadgeColor="warn" class="material-icons ml-1" > notification_important</mat-icon>
+        <mat-icon [hidden]="nouveaux.length == 0" matBadge="{{nouveaux.length}}" matBadgeColor="warn" class="material-icons ml-1" > notification_important</mat-icon>
       </ng-template>
-      <div [hidden]="doctorants.length === 0" >
+      <div [hidden]="nouveaux.length === 0" >
         <app-list-nv-inscrit></app-list-nv-inscrit>
       </div>
-      <div [hidden]="doctorants.length !== 0" class="text-center mt-5" >
+      <div [hidden]="nouveaux.length !== 0" class="text-center mt-5" >
         <img src="../../../../assets/images/notification.PNG" alt="image notification">
         <p class="notification">
-        La boite des nouvelles inscriptions est vide pour le moment
+        Cette boite est vide pour le moment
+        </p>
+      </div>
+    </mat-tab>
+    <mat-tab  >
+      <ng-template mat-tab-label >
+        Demandes En attente de confirmation des doctorants
+        <mat-icon [hidden]="attente.length == 0" matBadge="{{attente.length}}" matBadgeColor="warn" class="material-icons ml-1" > notification_important</mat-icon>
+      </ng-template>
+      <div [hidden]="attente.length === 0" >
+        <app-list-en-attente></app-list-en-attente>
+      </div>
+      <div [hidden]="attente.length !== 0" class="text-center mt-5" >
+        <img src="../../../../assets/images/notification.PNG" alt="image notification">
+        <p class="notification">
+          Cette boite est vide pour le moment
         </p>
       </div>
     </mat-tab>

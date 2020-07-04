@@ -30,12 +30,12 @@ export class ListeDoctorantComponent implements OnInit {
   ngOnInit(): void {
     this.doctorantService.findDoctorants();
   }
- get doctorants(): Array<Doctorant>  {
- return this.doctorantService.doctorants;
- }
   get inscrit(): Array<Doctorant>  {
     return this.doctorantService.inscrit;
   }
+ get doctorants(): Array<Doctorant>  {
+ return this.doctorantService.doctorants;
+ }
   get doctorant(): Doctorant  {
     return this.doctorantService.doctorant;
   }

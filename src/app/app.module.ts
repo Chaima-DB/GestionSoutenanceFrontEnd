@@ -59,6 +59,10 @@ import {DashboardDocSidelistComponent} from './dashboard/dashboard-doctorant/das
 import {AjoutRapporteursComponent} from './dashboard/dashboard-admin/dashborad-professeur/ajout-rapporteurs/ajout-rapporteurs.component';
 import { ListNvInscritComponent } from './dashboard/dashboard-admin/dashborad-etudiant/list-nv-inscrit/list-nv-inscrit.component';
 import {DoctorantProfileComponent} from "./dashboard/dashboard-doctorant/doctorant-profile/doctorant-profile.component";
+import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { ListEnAttenteComponent } from './dashboard/dashboard-admin/dashborad-etudiant/list-en-attente/list-en-attente.component';
+import { DetailDoctorantEnAttenteComponent } from './dashboard/dashboard-admin/dashborad-etudiant/detail-doctorant-en-attente/detail-doctorant-en-attente.component';
+import {DirecteurDeTheseService} from './controller/service/directeur-de-these.service';
 
 
 @NgModule({
@@ -113,6 +117,9 @@ import {DoctorantProfileComponent} from "./dashboard/dashboard-doctorant/doctora
     DashboardDocSidelistComponent,
     ListNvInscritComponent,
     DoctorantProfileComponent,
+    ConfirmationComponent,
+    ListEnAttenteComponent,
+    DetailDoctorantEnAttenteComponent,
   ],
   imports: [
     BrowserModule,
@@ -131,6 +138,7 @@ import {DoctorantProfileComponent} from "./dashboard/dashboard-doctorant/doctora
   providers: [
     DoctorantService,
     ProfesseurService,
+    DirecteurDeTheseService,
     DatePipe,
   ],
   bootstrap: [AppComponent],

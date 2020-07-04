@@ -22,6 +22,7 @@ import {DashboardProfComponent} from './dashboard/dashboard-prof/dashboard-prof.
 import {ProfProfilComponent} from './dashboard/dashboard-prof/prof-profil/prof-profil.component';
 import {DetailsDoctorantsComponent} from './dashboard/dashboard-admin/dashborad-etudiant/details-doctorants/details-doctorants.component';
 import {ProfDoctorantsComponent} from './dashboard/dashboard-prof/prof-doctorants/prof-doctorants.component';
+import {ConfirmationComponent} from './confirmation/confirmation.component';
 
 
 
@@ -33,9 +34,12 @@ const routes: Routes = [
   { path : 'home',
     component: HomeComponent,
   },
+  { path : 'confirmation/:cin',
+    component: ConfirmationComponent,
+  },
   { path : 'login',
     component: LoginComponent,
-    canActivate: [GuardLoginGuard]
+   // canActivate: [GuardLoginGuard]
   },
   { path : 'inscription',
     component: InscriptionComponent,

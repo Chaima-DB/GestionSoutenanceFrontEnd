@@ -39,9 +39,9 @@
                     <strong>Email Address :  </strong>
                   </label>
                   <label>
-                    {{doctorant.email}}
+                    {{doctorant.user.email}}
                   </label>
-                  <input type="email" class="form-control"  name="email" [(ngModel)]="doctorant.email"/>
+                  <input type="email" class="form-control"  name="email" [(ngModel)]="doctorant.user.email"/>
                 </div>
                 <div class="form-group">
                   <label >
@@ -171,17 +171,24 @@
                         </select>
                       </div>
                       <div class="col-md-4 mt-1">
-                        <button  class="btn btn-primary btn-sm "  (click)="addRapporteur()">Ajouter</button>
+                        <button  class="btn btn-primary btn-sm " [disabled]="(liste.length + rapporteurs.length) >2 "  (click)="addRapporteur()">Ajouter</button>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <h2 class="text-center text-primary" > Liste des Rapporteurs Choisis :</h2>
                     <table class="table table-striped table-hover">
-                      <thead><th>CIN</th></thead>
+                      <thead>
+                        <th>CIN</th>
+                        <th>CIN</th>
+                        <th>CIN</th>
+                      </thead>
+
                       <tbody>
                       <tr  *ngFor="let a of liste">
                         <td>{{a.professeur.cin}}</td>
+                        <td>{{a.professeur.nom}}</td>
+                        <td>{{a.professeur.prenom}}</td>
                       </tr>
                       </tbody>
                     </table>

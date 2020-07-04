@@ -2,28 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import {DoctorantService} from '../../../../controller/service/doctorant.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {Doctorant} from '../../../../controller/model/doctorant.model';
-
 import {DetailDoctorantEnAttenteComponent} from '../detail-doctorant-en-attente/detail-doctorant-en-attente.component';
 
 @Component({
-  selector: 'app-list-nv-inscrit',
-  templateUrl: './list-nv-inscrit.component.html',
-  styleUrls: ['./list-nv-inscrit.component.css']
+  selector: 'app-list-en-attente',
+  templateUrl: './list-en-attente.component.html',
+  styleUrls: ['./list-en-attente.component.css']
 })
-export class ListNvInscritComponent implements OnInit {
+export class ListEnAttenteComponent implements OnInit {
   public page = 1;
   public  Tablesearch = '';
-  public id;
   constructor( private doctorantService: DoctorantService,
                private dialog: MatDialog) {
 
   }
   ngOnInit(): void {
-    this.doctorantService.findNvInscrit();
+    this.doctorantService.findEnattente();
   }
   get nouveaux(): Array<Doctorant>  {
-    return this.doctorantService.nouveaux;
-  }
+    return this.doctorantService.attente;
+}
   get doctorant(): Doctorant  {
     return this.doctorantService.doctorant;
   }
@@ -38,12 +36,5 @@ export class ListNvInscritComponent implements OnInit {
     dialogConfig.width = ' 1000px ';
     dialogConfig.height = '500px';
     this.dialog.open(DetailDoctorantEnAttenteComponent, dialogConfig);
-  }
-  public update(doctorant: Doctorant, id: number) {
-
-    this.doctorantService.beforConfirmation(doctorant, id);
-  }
-  public sendEmailToDoctorant(doctorant: Doctorant){
-    this.doctorantService.sendEmailToDoctorant(doctorant);
   }
 }

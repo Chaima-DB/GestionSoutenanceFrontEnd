@@ -105,12 +105,12 @@ export class RapporteurService {
       data => {
         console.log(data);
         if (data > 0) {
-          this.liste.push(this.cloneRapporteur(this.rapporteur));
           this.rapporteur = null;
           this.liste = null;
           this._snackBar.open('Enregistrer avec success ', '', {
             duration: 5000,
           });
+          window.location.reload();
         }
       }, error => {
         console.log('erreur sauvgarde rapporteurs');
@@ -129,8 +129,17 @@ export class RapporteurService {
   public addRapporteur() {
     const index = this.liste.findIndex(j => j.professeur.cin === this.rapporteur.professeur.cin);
     if (index < 0) {
+      // if (this.rapporteur.professeur.specialite === this.rapporteur.doctorant.specialite){
       this.liste.push(this.cloneRapporteur(this.rapporteur));
       this.rapporteur = null;
+      // }
+      // else {
+      //   console.log(this.rapporteur.professeur.specialite.reference);
+      //   console.log(this.rapporteur.doctorant.specialite.reference);
+      //   this._snackBar.open(' Le Rapporteur choisie et le doctorant n\'ont pas la même spécialité ', '', {
+      //     duration: 5000,
+      //   });
+     // }
     }else{
       this._snackBar.open(' Rapporteur déjà choisie ', '', {
         duration: 5000,

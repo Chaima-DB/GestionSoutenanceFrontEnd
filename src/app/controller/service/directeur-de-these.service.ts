@@ -111,7 +111,7 @@ private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/directeurThese/'
   public findByProfesseurCin(professeur: Professeur){
     this.http.get<Array<DirecteurDeThese>>(this._url + 'profCin/' + professeur.cin).subscribe(
       data => {
-        this._directeurDeTheses = data;
+        this.directeurDeTheses = data;
 
       }, error => {
         console.log('error');
@@ -123,6 +123,16 @@ private _url= this._baseUrl + 'api/v1/gestionDesSoutenances-api/directeurThese/'
       data => {
         console.log(data);
         this._directeurDeTheses = data;
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
+  public findByDoctorantUserEmail(email: string){
+    this.http.get<DirecteurDeThese>(this._url + email).subscribe(
+      data => {
+        console.log(data);
+        this._directeurDeThese = data;
       }, error => {
         console.log(error);
       }

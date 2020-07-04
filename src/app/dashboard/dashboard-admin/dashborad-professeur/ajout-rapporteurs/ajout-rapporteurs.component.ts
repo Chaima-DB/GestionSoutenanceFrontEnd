@@ -19,10 +19,10 @@ export class AjoutRapporteursComponent implements OnInit {
 
   ngOnInit(): void {
     this.professeurService.findAll();
-    this.doctorantService.findAll();
+    this.doctorantService.findDoctorants();
   }
-  get doctorants(): Array<Doctorant> {
-    return this.doctorantService.doctorants;
+  get inscrit(): Array<Doctorant>  {
+    return this.doctorantService.inscrit;
   }
   get professeurs(): Array<Professeur> {
     return this.professeurService.professeurs;
