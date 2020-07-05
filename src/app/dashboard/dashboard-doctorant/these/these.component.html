@@ -1,0 +1,49 @@
+<form action="" class="form-group" (ngSubmit)="upload(these)">
+  <div class="form-group ">
+    <label >reference</label>
+    <input type="text" class="form-control" name="reference" [(ngModel)]="these.reference">
+  </div>
+  <div class="form-group ">
+    <label >titre</label>
+    <input type="text" name="titre" class="form-control" [(ngModel)]="these.titre">
+  </div>
+  <div class="form-group ">
+    <div class="row">
+      <div class="col-md-6">
+        <div *ngIf="currentFile" class="progress">
+          <div
+            class="progress-bar progress-bar-info progress-bar-striped"
+            role="progressbar"
+            attr.aria-valuenow="{{ progress }}"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            [ngStyle]="{ width: progress + '%' }"
+          >
+            {{ progress }}%
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="these.file" name="pdf">
+          <!--                        <button class="btn btn-btn" [disabled]="!selectedFiles" (click)="upload()"> <i class="fa fa-download"> Télécharger </i> </button>-->
+        </div>
+
+        <div class="alert alert-light" role="alert">{{ message }}</div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-outline-info btn-block" >Save</button>
+
+</form>
+<div class="card">
+  <div class="card-header">List of Files</div>
+  <ul
+    class="list-group list-group-flush"
+    *ngFor="let file of theses ">
+
+    <li class="list-group-item">
+      <a href="http://localhost:8090/files/{{ file.fileName}}">{{ file.titre }} {{file.reference}}</a>
+    </li>
+  </ul>
+
+</div>

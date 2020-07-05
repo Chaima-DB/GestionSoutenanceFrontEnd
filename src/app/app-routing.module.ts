@@ -23,6 +23,7 @@ import {ProfProfilComponent} from './dashboard/dashboard-prof/prof-profil/prof-p
 import {DetailsDoctorantsComponent} from './dashboard/dashboard-admin/dashborad-etudiant/details-doctorants/details-doctorants.component';
 import {ProfDoctorantsComponent} from './dashboard/dashboard-prof/prof-doctorants/prof-doctorants.component';
 import {ConfirmationComponent} from './confirmation/confirmation.component';
+import {TheseComponent} from './dashboard/dashboard-doctorant/these/these.component';
 
 
 
@@ -83,6 +84,9 @@ const routes: Routes = [
       },
       { path : 'article',
         component: ArticleComponent,
+      },
+      { path : 'these',
+        component: TheseComponent,
       },
     ],
 

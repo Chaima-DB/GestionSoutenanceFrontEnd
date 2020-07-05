@@ -72,11 +72,16 @@
             <div class="card-header"><h2 class="text-center" > Liste des Articles</h2></div>
             <table class="table table-striped table-hover">
               <thead>
+              <th>titre</th>
+              <th>nom du doc</th>
               <th>file</th>
               </thead>
               <tbody>
               <tr  *ngFor="let a of articles">
+                <td>{{a.titre}}</td>
+                <td>{{a.doctorant.nom}}</td>
                 <td>{{a.file}}</td>
+
               </tr>
               </tbody>
             </table>

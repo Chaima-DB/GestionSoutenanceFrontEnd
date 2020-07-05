@@ -58,11 +58,12 @@ import {DashboardDocNavComponent} from './dashboard/dashboard-doctorant/dashboar
 import {DashboardDocSidelistComponent} from './dashboard/dashboard-doctorant/dashboard-doc-sidelist/dashboard-doc-sidelist.component';
 import {AjoutRapporteursComponent} from './dashboard/dashboard-admin/dashborad-professeur/ajout-rapporteurs/ajout-rapporteurs.component';
 import { ListNvInscritComponent } from './dashboard/dashboard-admin/dashborad-etudiant/list-nv-inscrit/list-nv-inscrit.component';
-import {DoctorantProfileComponent} from "./dashboard/dashboard-doctorant/doctorant-profile/doctorant-profile.component";
+import {DoctorantProfileComponent} from './dashboard/dashboard-doctorant/doctorant-profile/doctorant-profile.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { ListEnAttenteComponent } from './dashboard/dashboard-admin/dashborad-etudiant/list-en-attente/list-en-attente.component';
 import { DetailDoctorantEnAttenteComponent } from './dashboard/dashboard-admin/dashborad-etudiant/detail-doctorant-en-attente/detail-doctorant-en-attente.component';
 import {DirecteurDeTheseService} from './controller/service/directeur-de-these.service';
+import { TheseComponent } from './dashboard/dashboard-doctorant/these/these.component';
 
 
 @NgModule({
@@ -120,6 +121,7 @@ import {DirecteurDeTheseService} from './controller/service/directeur-de-these.s
     ConfirmationComponent,
     ListEnAttenteComponent,
     DetailDoctorantEnAttenteComponent,
+    TheseComponent,
   ],
   imports: [
     BrowserModule,
