@@ -15,6 +15,11 @@ import {DirecteurDeTheseService} from '../../../../controller/service/directeur-
 import {DirecteurDeThese} from '../../../../controller/model/directeur-de-these.model';
 import {RapporteurService} from '../../../../controller/service/rapporteur.service';
 import {Rapporteur} from '../../../../controller/model/rapporteur.model';
+import {TheseService} from '../../../../controller/service/these.service';
+import {UploadFileService} from '../../../../controller/service/upload-file.service';
+import {These} from '../../../../controller/model/these.model';
+import {Observable} from 'rxjs';
+import {FileInfo} from '../../../../controller/model/file-info.model';
 
 @Component({
   selector: 'app-details-doctorants',
@@ -22,6 +27,10 @@ import {Rapporteur} from '../../../../controller/model/rapporteur.model';
   styleUrls: ['./details-doctorants.component.css']
 })
 export class DetailsDoctorantsComponent implements OnInit {
+
+  fileInfos: Array <any> ;
+  fileInfo: any ;
+  baseUrl = 'http://localhost:8090';
   constructor(public dialogBox: MatDialogRef<DetailsDoctorantsComponent>,
               private doctorantService: DoctorantService,
               private professeurService: ProfesseurService,
@@ -29,13 +38,18 @@ export class DetailsDoctorantsComponent implements OnInit {
               private specialiteService: SpecialiteService,
               private structureDeRechercheService: StructureDeRechercheService,
               private directeurDeTheseService: DirecteurDeTheseService,
-              private rapporteurService: RapporteurService) {
+              private rapporteurService: RapporteurService,
+              private theseService: TheseService,
+              private uploadFileService: UploadFileService) {
   }
 
   ngOnInit(): void {
     this.professeurService.findAll();
     this.specialiteService.findAll();
     this.structureDeRechercheService.findAll();
+    this.thesesDoctorant.forEach(t => this.fileInfos.push(this.fileInfo = this.uploadFileService.getDoctorantFiles(t.fileName)));
+    console.log(this.fileInfos);
+    console.log(this.fileInfo);
   }
 
   onClose() {
@@ -99,12 +113,15 @@ export class DetailsDoctorantsComponent implements OnInit {
   public deleteByProfesseurCinAndDoctorantCin(rapporteur1: Rapporteur) {
     this.rapporteurService.deleteByProfesseurCinAndDoctorantCin(rapporteur1);
   }
-  public updateOrSaveSoutenance(soutenance: Soutenance, id: number) {
+  public updateSoutenance(soutenance: Soutenance, id: number) {
     this.soutenanceService.update(soutenance, id);
   }
 
   public updateJury(jury: Jury, id: number) {
     this.soutenanceService.updateJury(jury, id);
+  }
+  public updateRapporteur(rapporteur: Rapporteur, id: number) {
+    this.rapporteurService.update(rapporteur, id);
   }
 
   public updateJurys(jurys: Array<Jury>) {
@@ -126,5 +143,7 @@ export class DetailsDoctorantsComponent implements OnInit {
     this.liste.forEach(r => r.doctorant = this.doctorant );
     this.rapporteurService.save();
   }
-
+  get thesesDoctorant(): Array<These>  {
+    return this.theseService.thesesDoctorant;
+  }
 }

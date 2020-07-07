@@ -5,6 +5,8 @@ import {Article} from '../model/article.model';
 import {AuthService} from './auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Observable} from 'rxjs';
+import {Doctorant} from '../model/doctorant.model';
+import {Rapporteur} from '../model/rapporteur.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +17,12 @@ export class TheseService {
               private _snackBar: MatSnackBar) { }
   private _these: These;
   private _theses: Array<These>;
+  private _thesesDoctorant: Array<These>;
 
   private _baseUrl= 'http://localhost:8090/';
   private _url= this._baseUrl + 'saveThese/reference/';
+  private _urlCin= this._baseUrl + 'api/v1/gestionDesSoutenances-api/these/cin/';
+  private _urlEmail= this._baseUrl + 'api/v1/gestionDesSoutenances-api/these/email/';
 
 
 
@@ -43,17 +48,40 @@ export class TheseService {
     this._theses = value;
   }
 
-  public findAll() {
-    this.http.get<Array<These>>(this._baseUrl).subscribe(
+  get thesesDoctorant(): Array<These> {
+    if (this._thesesDoctorant == null){
+      this._thesesDoctorant = new Array<These>();
+    }
+    return this._thesesDoctorant;
+  }
+
+  set thesesDoctorant(value: Array<These>) {
+    this._thesesDoctorant = value;
+  }
+
+  public findByDoctorantCin(doctorant: Doctorant){
+    this.http.get<Array<These>>(this._urlCin + doctorant.cin).subscribe(
       data => {
-        this.theses = data;
-        console.log('done  find all Theses');
+        this.thesesDoctorant = data;
+        console.log(data);
+
       }, error => {
-        console.log('erreur  find all Theses');
+        console.log('error');
       }
     );
   }
-  public save() {
+  public findByDoctorantUserEmail(email: string){
+    this.http.get<Array<These>>(this._urlEmail + email).subscribe(
+      data => {
+        this.theses = data;
+        console.log(data);
+
+      }, error => {
+        console.log('error');
+      }
+    );
+  }
+/*  public save() {
     this.http.post<any>(this._url + 'saveThese' , this.these).subscribe(
       data => {
         if (data > 0) {
@@ -70,7 +98,7 @@ export class TheseService {
         });
       }
     );
-  }
+  }*/
   saveFileThese(these: These, file: File): Observable<HttpEvent<{}>> {
     console.log(these);
     const data: FormData = new FormData();

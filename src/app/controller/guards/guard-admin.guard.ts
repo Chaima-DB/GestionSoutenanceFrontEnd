@@ -13,7 +13,7 @@ export class GuardAdminGuard implements CanActivate {
   canActivate(): boolean{
     this.jwtClientService.getAuthority().forEach(role => {
       this.roles.push(role);
-    } )
+    });
     if (this.roles === ['ROLE_SUPER_ADMIN'] || this.roles === ['ROLE_ADMIN']) {
   return true;
 }else if (this.roles === ['ROLE_USER'] ){

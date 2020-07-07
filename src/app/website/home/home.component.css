@@ -28,13 +28,20 @@
   color: #673ab7;
   text-align: center;
 }
-.row {
-  background-color: #faeeec;
-}
 
 label {
   margin-left: 30px;
 }
 .adresse{
-  margin-left: 60px;
+  border-top: solid 2px darkblue ;
+  text-align: center;
+  padding-top: 10px;
+}
+.heading{
+  color: darkblue;
+  font-family: Georgia;
+
+}
+.about-me {
+  border-bottom: solid 2px darkblue ;
 }

@@ -8,6 +8,9 @@ import {Soutenance} from '../../../../controller/model/soutenance.model';
 import {RapporteurService} from '../../../../controller/service/rapporteur.service';
 import {Rapporteur} from '../../../../controller/model/rapporteur.model';
 import {DirecteurDeTheseService} from '../../../../controller/service/directeur-de-these.service';
+import {TheseService} from '../../../../controller/service/these.service';
+import {These} from '../../../../controller/model/these.model';
+import {UploadFileService} from '../../../../controller/service/upload-file.service';
 
 
 
@@ -20,10 +23,12 @@ export class ListeDoctorantComponent implements OnInit {
   public page = 1;
   public  Tablesearch= "";
 
+
   constructor( private doctorantService: DoctorantService,
                private soutenanceService: SoutenanceService,
                private rapporteurService: RapporteurService,
                private directeurDeTheseService: DirecteurDeTheseService,
+               private theseService: TheseService, private uploadFileService: UploadFileService,
                private dialog: MatDialog) {
 
   }
@@ -36,6 +41,9 @@ export class ListeDoctorantComponent implements OnInit {
  get doctorants(): Array<Doctorant>  {
  return this.doctorantService.doctorants;
  }
+  get thesesDoctorant(): Array<These>  {
+    return this.theseService.thesesDoctorant;
+  }
   get doctorant(): Doctorant  {
     return this.doctorantService.doctorant;
   }
@@ -63,4 +71,8 @@ export class ListeDoctorantComponent implements OnInit {
   public findDirecteurByDoctorantCin(doctorant: Doctorant) {
     this.directeurDeTheseService.findByDoctorantCin(doctorant);
   }
+  public findThesesByDoctorantCin(doctorant: Doctorant) {
+    this.theseService.findByDoctorantCin(doctorant);
+  }
+  // this.thesesDoctorant.forEach(value => this.fileInfo = this.uploadFileService.getDoctorantFiles(value.fileName));
 }

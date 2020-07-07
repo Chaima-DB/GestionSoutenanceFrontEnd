@@ -6,6 +6,7 @@ import {AuthService} from './auth.service';
 import {Professeur} from '../model/professeur.model';
 import {DirecteurDeThese} from '../model/directeur-de-these.model';
 import {Doctorant} from '../model/doctorant.model';
+import {Soutenance} from '../model/soutenance.model';
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +56,7 @@ export class RapporteurService {
     this._liste = value;
   }
   get rapporteur(): Rapporteur {
-    if(this._rapporteur == null){
+    if (this._rapporteur == null){
       this._rapporteur = new Rapporteur();
     }
     return this._rapporteur;
@@ -169,6 +170,19 @@ export class RapporteurService {
         console.log('erreur');
       }
     );
+  }
+  public update(rapporteur: Rapporteur, id: number) {
+    this.http.put<number>(this._url + 'id/' + id, this.rapporteur).subscribe(data => {
+      if (data === 1){
+        this._snackBar.open('Modifier ', '', {
+          duration: 5000,
+        });
+      }
+    }, error => {
+      this._snackBar.open('une erreur est survenu!! réessayer plutard  ', '', {
+        duration: 5000,
+      });
+    });
   }
 
 }

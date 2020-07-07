@@ -64,6 +64,8 @@ import { ListEnAttenteComponent } from './dashboard/dashboard-admin/dashborad-et
 import { DetailDoctorantEnAttenteComponent } from './dashboard/dashboard-admin/dashborad-etudiant/detail-doctorant-en-attente/detail-doctorant-en-attente.component';
 import {DirecteurDeTheseService} from './controller/service/directeur-de-these.service';
 import { TheseComponent } from './dashboard/dashboard-doctorant/these/these.component';
+import { TheseUploadComponent } from './dashboard/dashboard-doctorant/these-upload/these-upload.component';
+import { DocumentsComponent } from './dashboard/dashboard-doctorant/documents/documents.component';
 
 
 @NgModule({
@@ -122,6 +124,8 @@ import { TheseComponent } from './dashboard/dashboard-doctorant/these/these.comp
     ListEnAttenteComponent,
     DetailDoctorantEnAttenteComponent,
     TheseComponent,
+    TheseUploadComponent,
+    DocumentsComponent,
   ],
   imports: [
     BrowserModule,

@@ -31,13 +31,13 @@ export class LoginComponent implements OnInit {
         this.role = this.jwtClientService.getAuthority().toString();
         if ( this.role === 'ROLE_SUPER_ADMIN' || this.role === 'ROLE_ADMIN') {
         this.isLoginFailed = false;
-        this.router.navigateByUrl('/dashboardAdmin');
+        this.router.navigateByUrl('/dashboardAdmin/espace-doctorant');
       }else if (this.role === 'ROLE_USER'){
               this.isLoginFailed = false;
-              this.router.navigateByUrl('/dashboardUser');
+              this.router.navigateByUrl('/dashboardUser/Userprofile');
       }else if ( this.role === 'ROLE_PROF'){
         this.isLoginFailed = false;
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/dashboardProf/profile');
       }else {
         this.isLoginFailed = false;
         this.router.navigateByUrl('/');
@@ -45,6 +45,9 @@ export class LoginComponent implements OnInit {
       },
       error => {
         console.log(error);
+        if (error.status === 401 ){
+        alert('vous n\'etes pas authoriser a acceder votre compte, veuiller Attendre la confirmation du centre d\'étude doctoral');
+        }
         this.isLoginFailed = true;
       });
   }

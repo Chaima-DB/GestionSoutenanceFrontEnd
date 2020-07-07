@@ -180,15 +180,11 @@
                     <table class="table table-striped table-hover">
                       <thead>
                         <th>CIN</th>
-                        <th>CIN</th>
-                        <th>CIN</th>
                       </thead>
 
                       <tbody>
                       <tr  *ngFor="let a of liste">
                         <td>{{a.professeur.cin}}</td>
-                        <td>{{a.professeur.nom}}</td>
-                        <td>{{a.professeur.prenom}}</td>
                       </tr>
                       </tbody>
                     </table>
@@ -213,6 +209,7 @@
                         <th scope="col"> Date de Dérnière Publication</th>
                         <th scope="col">Avis</th>
                         <th scope="col"> <span class="fa fa-user-times "></span> </th>
+                        <th scope="col"> <span class="fa fa-edit "></span> </th>
                       </tr>
                       </thead>
                       <tbody>
@@ -221,13 +218,13 @@
                         <td>{{r.professeur.prenom}}</td>
                         <td>{{r.professeur.specialite.libelle}}</td>
                         <td>{{r.professeur.dateDernierePublication}}</td>
-                        <td><input type="text" name="avis" class="form-control" [(ngModel)]="r.avis"></td>
-                        <button class="btn btn-danger btn-sm fa fa-trash mt-3" (click)="deleteByProfesseurCinAndDoctorantCin(r) " ></button>
+                        <td>{{r.avis}}<input type="text" name="avis" class="form-control" [(ngModel)]="r.avis"></td>
+                        <td><button class="btn btn-danger btn-sm fa fa-trash " (click)="deleteByProfesseurCinAndDoctorantCin(r) " ></button></td>
+                        <td><button class="btn btn-dark btn-sm fa fa-edit " (click)="updateRapporteur(r, r.id) " ></button></td>
                       </tr>
                       </tbody>
                     </table>
                   </div>
-                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Editer</button></div>
               </form>
             </div>
           </div>
@@ -235,7 +232,6 @@
       </div>
     </div>
   </div>
-  <div class="card shadow mb-5">
     <div class="card-body">
       <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -286,7 +282,7 @@
                     <td>{{j.professeur.specialite.libelle}}</td>
                     <td>{{j.professeur.dateDernierePublication}}</td>
                     <td>{{j.avis}}<input type="text" name="avis" class="form-control" [(ngModel)]="j.avis"></td>
-                    <button class="btn btn-dark btn-sm fa fa-edit mt-3" (click)="updateJury(j,j.id)"  ></button>
+                    <td> <button class="btn btn-dark btn-sm fa fa-edit " (click)="updateJury(j,j.id)"  ></button></td>
                   </tr>
                   </tbody>
                 </table>
@@ -298,108 +294,88 @@
                     <label >
                       <strong >{{soutenance.resultatFinal}}  </strong>
                     </label>
-                    <input type="text" class="form-control col-md-4"  name="resultat" [(ngModel)]="soutenance.resultatFinal"/>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Honorable" checked [(ngModel)]="soutenance.resultatFinal">
+                      <label class="form-check-label" for="exampleRadios1">
+                        Honorable
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Très Honorable" [(ngModel)]="soutenance.resultatFinal">
+                      <label class="form-check-label" for="exampleRadios2">
+                        Très Honorable
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Editer</button></div>
+            <div class="form-group ml-3"><button class=" btn btn-dark btn-sm fa fa-edit" type="submit" (click)="updateSoutenance(soutenance,soutenance.id)"></button></div>
           </form>
         </div>
       </div>
-      <div class="card shadow mb-5">
+      <div class="card shadow mb-5" [hidden]="thesesDoctorant.length <=0 ">
         <div class="card-header py-3">
           <p class="text-primary m-0 font-weight-bold">Documents</p>
         </div>
-        <div class="card ">
+        <div class="card " *ngFor="let t of thesesDoctorant">
         <div class="card-body p-0">
           <div class="row">
             <div class="col-md-3 d-none d-lg-flex">
               <div class="flex-grow-1 bg-image"></div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-9" >
               <div class="p-5">
                 <div class="text-center">
-                  <h4 class="text-dark mb-4"> <strong>Article</strong> </h4>
+                  <h4 class="text-dark mb-4"> <strong>These</strong> </h4>
                 </div>
                 <div class="form-group">
-                  <label ><strong>Titre :  </strong></label>
-                  <label >7 moyens simples de protéger votre vie privée sur Internet </label>
-                </div>
-                <div class="form-group"><label ><strong>Mot Clés :  </strong></label>
-                  <label >NSA, bout-en-bout, Chiffrement, TLS et IPsec </label>
+                  <div class="row">
+                    <div class="col-md-3">
+                  <label ><strong>Reference :</strong></label>
+                    </div>
+                    <div class="col-md-9">
+                  <label >{{t.reference}}</label>
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <label ><strong>Indexation :  </strong></label>
-                  <label >Thomson Reuthers </label>
+                  <div class="row">
+                    <div class="col-md-3">
+                  <label ><strong>Titre :</strong></label>
+                    </div>
+                    <div class="col-md-9">
+                  <label >{{t.titre}}</label>
+                    </div>
+                  </div>
                 </div>
-
-
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                  <label ><strong>Description : </strong></label>
+                    </div>
+                    <div class="col-md-9">
+                  <label >{{t.desciption}}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                  <label ><strong> PDF à telecharger : </strong></label>
+                    </div>
+                    <div class="col-md-9">
+                      <a href="{{baseUrl}}/files/{{t.fileName}}" >{{t.fileName}} </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-        <div class="card ">
-          <div class="card-body p-0">
-            <div class="row">
-              <div class="col-md-3 d-none d-lg-flex">
-                <div class="flex-grow-1 bg-image"></div>
-              </div>
-              <div class="col-lg-6">
-                <div class="p-5">
-                  <div class="text-center">
-                    <h4 class="text-dark mb-4"> <strong>Article</strong> </h4>
-                  </div>
-                  <div class="form-group">
-                    <label ><strong>Titre :  </strong></label>
-                    <label >7 moyens simples de protéger votre vie privée sur Internet </label>
-                  </div>
-                  <div class="form-group"><label ><strong>Mot Clés :  </strong></label>
-                    <label >NSA, bout-en-bout, Chiffrement, TLS et IPsec </label>
-                  </div>
-                  <div class="form-group">
-                    <label ><strong>Indexation :  </strong></label>
-                    <label >Thomson Reuthers </label>
-                  </div>
-
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card ">
-          <div class="card-body p-0">
-            <div class="row">
-              <div class="col-md-3 d-none d-lg-flex">
-                <div class="flex-grow-1 bg-image"></div>
-              </div>
-              <div class="col-lg-6">
-                <div class="p-5">
-                  <div class="text-center">
-                    <h4 class="text-dark mb-4"> <strong>Article</strong> </h4>
-                  </div>
-                  <div class="form-group">
-                    <label ><strong>Titre :  </strong></label>
-                    <label >7 moyens simples de protéger votre vie privée sur Internet </label>
-                  </div>
-                  <div class="form-group"><label ><strong>Mot Clés :  </strong></label>
-                    <label >NSA, bout-en-bout, Chiffrement, TLS et IPsec </label>
-                  </div>
-                  <div class="form-group">
-                    <label ><strong>Indexation :  </strong></label>
-                    <label >Thomson Reuthers </label>
-                  </div>
-
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
        </div>
     </div>
-  </div>
+
 </div>
 

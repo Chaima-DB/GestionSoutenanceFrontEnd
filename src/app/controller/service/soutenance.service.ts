@@ -311,7 +311,6 @@ export class SoutenanceService {
   public update(soutenance: Soutenance, id: number) {
     this.http.put<number>(this._url + 'id/' + id, this.soutenance).subscribe(data => {
       if (data === 1){
-        this.updateJurys(soutenance.jurys);
         this._snackBar.open('Modifier avec success ', '', {
         duration: 5000,
       });

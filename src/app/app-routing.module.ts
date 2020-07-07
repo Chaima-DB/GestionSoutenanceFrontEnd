@@ -24,6 +24,8 @@ import {DetailsDoctorantsComponent} from './dashboard/dashboard-admin/dashborad-
 import {ProfDoctorantsComponent} from './dashboard/dashboard-prof/prof-doctorants/prof-doctorants.component';
 import {ConfirmationComponent} from './confirmation/confirmation.component';
 import {TheseComponent} from './dashboard/dashboard-doctorant/these/these.component';
+import {TheseUploadComponent} from './dashboard/dashboard-doctorant/these-upload/these-upload.component';
+import {DocumentsComponent} from './dashboard/dashboard-doctorant/documents/documents.component';
 
 
 
@@ -40,7 +42,7 @@ const routes: Routes = [
   },
   { path : 'login',
     component: LoginComponent,
-   // canActivate: [GuardLoginGuard]
+    canActivate: [GuardLoginGuard]
   },
   { path : 'inscription',
     component: InscriptionComponent,
@@ -48,11 +50,11 @@ const routes: Routes = [
   },
   { path : 'dashboardAdmin',
     component: DashboardAdminComponent,
-    // canActivate: [AuthGuard,
-    //               GuardAdminGuard],
+    canActivate: [AuthGuard,
+                   GuardAdminGuard],
               children: [
                 { path : '',
-                  redirectTo : 'dashboard-info',
+                  redirectTo : 'espace-doctorant',
                   pathMatch: 'full'
                 },
                 { path : 'espace-doctorant',
@@ -77,7 +79,7 @@ const routes: Routes = [
   },
   { path : 'dashboardUser',
     component: DashboardDoctorantComponent,
-    // canActivate: [AuthGuard, GuardUserGuard],
+     canActivate: [AuthGuard, GuardUserGuard],
     children: [
       { path : 'Userprofile',
         component: DoctorantProfileComponent,
@@ -86,15 +88,18 @@ const routes: Routes = [
         component: ArticleComponent,
       },
       { path : 'these',
-        component: TheseComponent,
+        component: TheseUploadComponent,
+      },
+      { path : 'documents',
+        component: DocumentsComponent,
       },
     ],
 
   },
   { path : 'dashboardProf',
     component: DashboardProfComponent,
-    // canActivate: [AuthGuard,
-    //               GuardProfGuard],
+     canActivate: [AuthGuard,
+                  GuardProfGuard],
     children: [
       { path : 'profile',
         component: ProfProfilComponent,

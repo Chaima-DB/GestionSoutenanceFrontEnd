@@ -1,28 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs';
+import {UploadFileService} from '../../../controller/service/upload-file.service';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {TheseService} from '../../../controller/service/these.service';
-import {FileUploderService} from '../../../controller/service/file-uploder.service';
 import {These} from '../../../controller/model/these.model';
-import {Doctorant} from '../../../controller/model/doctorant.model';
 import {JwtClientService} from '../../../controller/service/jwt-client.service';
-import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-these',
-  templateUrl: './these.component.html',
-  styleUrls: ['./these.component.css']
+  selector: 'app-these-upload',
+  templateUrl: './these-upload.component.html',
+  styleUrls: ['./these-upload.component.css']
 })
-export class TheseComponent implements OnInit {
+export class TheseUploadComponent implements OnInit {
+
   selectedFiles: FileList;
   currentFile: File;
   progress = 0;
   message = '';
-  constructor(private theseService: TheseService, private uploadService: FileUploderService,
-              private jwtClientService: JwtClientService,
-              private sanitizer: DomSanitizer) {
-  }
 
+  fileInfos: Observable<any>;
+
+  constructor(private theseService: TheseService, private uploadService: UploadFileService,
+              private jwtClientService: JwtClientService) { }
   ngOnInit(): void {
+    this.fileInfos = this.uploadService.getFiles();
   }
   get these(): These {
     return this.theseService.these;
@@ -30,39 +31,31 @@ export class TheseComponent implements OnInit {
   get theses(): Array<These> {
     return this.theseService.theses;
   }
-
-  public save(these) {
-    this.upload(these);
-    // this.these.doctorant.user.email = this.jwtClientService.getEmail() ;
-
-  }
   selectFile(event) {
     this.selectedFiles = event.target.files;
   }
-  upload(these) {
-    console.log('avant' + these);
+  upload(these: These) {
     this.progress = 0;
+    these.doctorant.email = this.jwtClientService.getEmail() ;
     this.currentFile = this.selectedFiles.item(0);
-    this.theseService.saveFileThese(these, this.currentFile ).subscribe(
+    this.uploadService.upload(these, this.currentFile).subscribe(
       event => {
-        if (event.type === HttpEventType.UploadProgress) {
+        if (event.type === HttpEventType .UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
-          console.log(these);
         } else if (event instanceof HttpResponse) {
-          console.log('file saved');
-          console.log(these);
-
+          this.message = event.body.message;
+          this.fileInfos = this.uploadService.getFiles();
         }
-
       },
       err => {
         this.progress = 0;
-        console.log(err);
-        console.log(these);
         this.message = 'Could not upload the file!';
         this.currentFile = undefined;
       });
 
     this.selectedFiles = undefined;
+  }
+  getDoctorantFiles(fileName: string): any {
+    return this.uploadService.getDoctorantFiles(fileName);
   }
 }

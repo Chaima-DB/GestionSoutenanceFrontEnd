@@ -28,7 +28,7 @@ export class JwtClientService {
   }
   public saveAuthority(authority: string[]){
     window.localStorage.removeItem(this.AUTHORITY_KEY);
-    window.localStorage.setItem(this.AUTHORITY_KEY,JSON.stringify(authority) );
+    window.localStorage.setItem(this.AUTHORITY_KEY, JSON.stringify(authority) );
   }
   public  getAuthority(): string[]{
     this.roles = [];

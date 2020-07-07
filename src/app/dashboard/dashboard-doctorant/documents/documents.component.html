@@ -1,0 +1,76 @@
+<mat-tab-group>
+  <mat-tab label="Mes Theses" >
+    <div class="container">
+    <div class="card shadow mb-5 mt-5" [hidden]="theses.length <=0 ">
+      <div class="card" *ngFor="let t of theses">
+        <div class="card-body p-0">
+          <div class="row">
+            <div class="col-md-3 d-none d-lg-flex">
+<!--              bg-image-->
+              <div class="flex-grow-1 fa fa-file-pdf-o mt-5 font "></div>
+            </div>
+            <div class="col-lg-9" >
+              <div class="p-5">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <label ><strong>Reference :</strong></label>
+                    </div>
+                    <div class="col-md-9">
+                      <label >{{t.reference}}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <label ><strong>Titre :</strong></label>
+                    </div>
+                    <div class="col-md-9">
+                      <label >{{t.titre}}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <label ><strong>Description : </strong></label>
+                    </div>
+                    <div class="col-md-9">
+                      <label >{{t.desciption}}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <label ><strong> PDF à telecharger : </strong></label>
+                    </div>
+                    <div class="col-md-9">
+                      <a href="{{baseUrl}}/files/{{t.fileName}}" >{{t.fileName}} </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5 alert-danger height" [hidden]="theses.length>0">
+      <div class="fa fa-frown-o font-size-Icon "></div>
+      <div class=" font-weight-bold font-size mt-4">Vous n'avez aucune These pour le moment</div>
+    </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Mes Articles">
+    <div class="container">
+      <div class="text-center mt-5 alert-danger height" >
+        <div class="fa fa-frown-o font-size-Icon "></div>
+        <div class=" font-weight-bold font-size mt-4">Vous n'avez aucun Article pour le moment</div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+
